@@ -43,12 +43,12 @@
 		목표 : 정적 자원을 처리에서 배제하는 설정
 		= 이미지, 동영상, css, js, text, json, xml, ...
 		= mvc 모듈에서 설정 가능
-		= location에는 배제시킬 위치를 작성
+		= location에는 연결시킬 위치를 작성
 		= mapping에는 연결시킬 주소를 작성
 		= 활성화 태그 필요 
 	-->
 	<annotation-driven/>
-	<resources location="/resources/" mapping="/res/**"></resources>
+	<resources location="/resources/" mapping="/resources/**"></resources>
 	
 	<!-- 파일 업로드 도구
 				=multipart/form-data를 처리하는 도구

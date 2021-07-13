@@ -1,0 +1,328 @@
+@charset "UTF-8";
+
+/*
+	상단 메뉴 디자인
+	1. 메뉴가 아래로 나오는 것이 아니라 우측으로 붙어서 나오도록 처리
+	= float 또는 inline-block
+	2. 서브메뉴를 숨김
+	= display:none
+	3. 메뉴에 마우스가 올라가면 서브메뉴가 표시
+	= :hover
+	4. 서브메뉴는 연관배치를 하지 말아야 함
+	= position:absolute;
+	5. 메뉴바에 배경색 부여
+	6. 모든 메뉴항목에 여백과 폭 설정
+	7. 서브메뉴(ul)에 top, left, right, bottom을 줘서 간격을 일치
+	= absolute에 top, left를 부여하면 기본적으로 페이지를 기준으로 위치가 설정된다
+	= 만약 바깥영역이 relative, absolute, fixed 중 하나라면 바깥영역을 기준으로 위치가 설정된다.
+	8. 글자 또는 메뉴 hover 설정 등을 구현
+	9. 서서브 메뉴부터는 우측에 나오도록 구현
+*/
+.menu {
+	border-bottom: 1px solid black;
+	text-align: center;
+}
+.menu, .menu ul {
+	margin:0;
+	padding:0;
+	list-style: none;
+	
+	background-color: RGB(67, 164, 157);
+}
+.menu > li {
+	display: inline-block;
+	position: relative;
+}
+.menu ul {
+	display:none; 
+	position:absolute;
+	left:0;
+	top:53px; 
+}
+.menu li:hover > ul {
+	display:block;
+}
+.menu li {
+	padding:1rem 0.5rem;
+	width:150px;
+	z-index: 2;
+}
+.menu li:hover {
+	background-color: RGB(228, 244, 243);
+	text-decoration: none;
+}
+.menu li:hover>a{
+	color: gray;
+}
+
+.menu li > a {
+/* 	color:black; */
+	text-decoration: none;
+	display: block;
+	width:100%;
+	
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+}
+.menu > li > ul > li ul{
+	top:0;
+	left:0;
+	margin-left:150px;
+	background-color:#f5f5f5;
+}
+
+
+/* 심용보 작업 */
+
+/* 
+메인페이지 지점이동 
+*/
+.areaBtn, .areaBtnMove, .areaBtnMoveInactive {
+	border: none;
+	height: 60px;
+	outline: none;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.areaBtn, .areaBtnMove{
+	background-color: RGB(228, 244, 243);
+	padding: 0px;
+}
+
+.areaBtnMoveInactive {
+	background-color: RGB(245, 245, 245);
+	color: RGB(200, 200, 200);
+	padding: 0px;
+}
+
+.areaBtn {
+	width: 187px;
+}
+
+.areaBtnMove, .areaBtnMoveInactive {
+	width: 20px;
+}
+
+.areaBtn:hover, .areaBtnMove:hover {
+	background-color: rgb(181, 225, 210);
+	cursor: pointer;
+	transition: background-color 0.2s ease-in-out;
+}
+
+.inactive {
+	cursor: default;
+}
+
+/* 	
+로그인&회원가입
+ */
+.main {
+	padding: 40px 40px;
+}
+
+.header {
+	border-bottom: 1px solid lightgray;
+	padding-bottom: 5px;
+	margin-bottom: 30px;
+}
+
+.header .row{
+	margin-top: 0px;
+}
+
+.section {
+	border: 1px solid lightgray;
+}
+
+.header .title {
+	font-size: 32px;
+	text-align: left;
+	font-weight: 500;
+}
+
+.header .path {
+	color: RGB(100, 100, 100);
+}
+
+.img_area {
+	height: 100%;
+}
+
+.imageArea>img {
+	vertical-align: middle;
+}
+
+/* 
+통합검색
+ */
+.searchHeader {
+	display: inline-block;
+	position: relative;
+	margin-top: 20px;
+}
+
+.searchHeader .searchInput {
+	width: 500px;
+	height: 50px;
+	padding: 0.5rem;
+	outline: none;
+	border: 1px solid lightgray;
+	font-size: 16px;
+}
+
+.searchHeader .searchImage {
+	height: 40px;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
+
+.form-input.form-input-underline:focus {
+	border-bottom-color: black;
+}
+
+.form-input.form-input-inline, .form-btn.form-btn-inline {
+	width: auto;
+}
+
+.logo, .myMenu {
+	display: inline-block;
+	height: 100px;
+}
+
+.logo{
+	width: 250px;
+}
+
+.myMenu{
+	width: 180px;
+}
+
+.logo span{
+	padding: 33px 0px;
+	display: inline-block;
+}
+
+.logo>a:link, .logo>a:visited, .logo>a:hover, .logo>a:active {
+	height: 100%;
+	color: black;
+	display: inline-block;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 24px;
+	position: relative;
+}
+
+.logo img{
+	padding: 15px;
+}
+
+.loginNav {
+	border-bottom: 1px solid rgb(220, 220, 220);
+	background-color: rgb(245, 245, 245)
+}
+
+.loginNav a{
+	font-weight: bold;
+	color: block;
+	text-decoration: none;
+}
+
+.zPlane{
+	z-index: 0;
+}
+
+
+.homeBtn{
+	padding-top: 5px;
+	width: 40px;
+	height: 40px;
+	background-color: rgb(245, 245, 245);
+	font-size: 10px;
+	display: block;
+	text-align: center;
+	font-weight: bold;
+}
+
+.activeAreaMenu,.activeAreaMenu-footer, .loginNavBtn, .activeMyArea{
+	height: 40px;
+	padding: 0.5rem;
+	outline: none;
+	border: none;
+	background-color: rgb(245, 245, 245);
+	font-weight: bold;
+}
+
+.activeAreaMenu, .activeAreaMenu-footer, .activeMyArea{
+	width: 180px;
+}
+
+.loginNavBtn{
+	width: 100px;
+}
+
+.areaMenu,.areaMenu-footer, .myArea{
+	width: 180px;
+	height: 0px;
+	padding: 0.5rem;
+	outline: none;
+	border: none;
+	background-color: rgb(245, 245, 245);
+	display: none;
+	position: relative;
+	top: 0px;
+}
+
+.areaMenu,.areaMenu-footer, .areaMenu ul,.areaMenu-footer ul, .myArea, .myArea ul {
+	margin:0;
+	padding:0;
+	list-style: none;
+	background-color: rgb(245, 245, 245);
+}
+
+.areaMenu  li, .areaMenu-footer li, .myArea li {
+	font-size: 13px;
+	text-align: center;
+	font-weight: bold;
+	border: black;
+	padding: 0px;
+	display: block;
+	position: relative;
+	background-color: rgb(245, 245, 245); 
+	padding:0.5rem;
+	width:180px;
+	height: 40px;
+	z-index: 2;
+}
+
+.areaMenu ul, .areaMenu-footer ul .myArea ul {
+	display:block; 
+	position:relative;
+	left:0;
+}
+
+.areaMenu li:hover, .areaMenu ul:hover, .activeAreaMenu:hover, 
+.areaMenu-footer li:hover, .areaMenu-footer ul:hover, .activeAreaMenu-footer:hover, 
+.homeBtn:hover, .loginNavBtn:hover, .myArea li:hover, .myArea ul:hover, .activeMyArea:hover, .myMenuItem:hover{
+	background-color: lightgray;
+	cursor: pointer;
+	transition: background-color 0.2s ease-in-out;
+}
+
+.logoMain{
+	width: 200px;
+}
+
+.myMenuItem{
+	width: 100%;
+	font-size: 13px;
+	padding: 0.5rem;
+	display: inline-block;
+	height: 60px;
+	outline: none;
+	border: none;
+	background-color: rgb(245, 245, 245);
+	font-weight: bold;
+}

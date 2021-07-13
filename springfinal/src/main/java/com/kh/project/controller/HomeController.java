@@ -11,5 +11,11 @@ public class HomeController {
 		//return "/WEB-INF/views/index.jsp"; 
 		return "home"; //주소
 	}
+	@RequestMapping("/template/header") //전체 요청. 첫페이지를 의미함("/")
+	public String header() { //메소드 이름
+		//return "/WEB-INF/views/index.jsp"; 
+		return "/template/header"; //주소
+	}
+	
 	
 }

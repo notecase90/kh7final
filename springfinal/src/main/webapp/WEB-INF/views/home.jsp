@@ -133,7 +133,18 @@
 			</div>
 			</div>
 		
-		<div class="">
+		<div class="review text-center clearfix">
+			<h3>여행 후기</h3>
+			<div class="row-fluid">
+				<div class="span4">안녕하세요</div>
+				<div class="span4 offset1">안녕하세요</div>
+				<div class="span4 offset2">안녕하세요</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span4">안녕하세요</div>
+			</div>
+		
+			
 		</div>
 		
 		</div>

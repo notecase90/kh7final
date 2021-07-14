@@ -38,6 +38,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			and member_pw = #{memberPw}
 	</select>
 	
+<!-- 	개인정보보기 기존에 ? 가 해당하는게 있으면 parameterType-->
+		<select id="get" resultType="MemberDto" parameterType="int">
+			 select * from member where member_no=#{memberNo}
+		</select>
+		
+<!-- 		비밀번호 변경 -->
+<!--   정보 변경->멤버테이블에서->멤버비번(신) 변경->(조건)멤버넘버와 멤버비번(구)이 일치하는 조건에서 -->
+		<update id="changePw" parameterType="map">
+			update member  
+			set member_pw=#{newPw} 
+			where member_no=#{memberNo} and member_pw=#{curPw}
+		</update>
+	
+<!-- 		개인정보 변경 -->
+		<update id="changeInfo" parameterType="MemberDto">
+			update member
+			set 
+			member_name=#{memberName}, member_birth=#{memberBirth},
+			member_email=#{memberEmail},member_phone=#{memberPhone}
+			where
+			member_no=#{memberNo} and member_pw=#{memberPw}
+		</update>
+	
 </mapper>
 
 

@@ -36,10 +36,11 @@ public class MemberDaoMybatis implements MemberDao{
 		return sqlSession.selectOne("member.get",memberNo);
 	}
 
+	//회원탈퇴
 	@Override
 	public boolean delete(int memberNo) {
-		// TODO Auto-generated method stub
-		return false;
+		sqlSession.delete("member.exit",memberNo);
+		return true;
 	}
 
 	@Override

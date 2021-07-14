@@ -3,7 +3,6 @@
     
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
-${root}
     
     <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
     

@@ -56,7 +56,14 @@
 			<div class="header-side">
 				<div class="btn-toolbar pull-right">
 				  <div class="btn-group">
-				    <a class="btn btn-large text-white" href="#">호스트 모드로 전환</a>
+				  <c:choose>
+				  	<c:when test="${not empty hostMemberNo}">
+				  		<a class="btn btn-large text-white" href="${root}/email/certEmail">호스트 모드 생성</a>
+				  	</c:when>
+				  	<c:otherwise>
+				  		<a class="btn btn-large text-white" href="${root}/host/host-home">호스트 모드 전환</a>
+				  	</c:otherwise>
+				  </c:choose>
 				    <a class="btn text-white" href="#"><i class="fa fa-user" aria-hidden="true"></i></a>
 				     <a class="btn dropdown-toggle text-white" data-toggle="dropdown" href="#">
 				     	<i class="fa fa-bars" aria-hidden="true"></i>

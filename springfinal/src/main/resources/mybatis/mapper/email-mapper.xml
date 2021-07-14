@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="email">
+	
+	<!-- 
+		인증번호 등록 : 이메일과 인증번호를 현재시간으로 등록
+		- insert : 단순 insert, 같은 이메일에 인증번호 여러번 생성이 불가능
+		- insert2 : 최초 insert, 이후 update를 수행하도록 구문 구현
+	 -->
+	<insert id="insert" parameterType="EmailDto">
+		insert into email values(#{email}, #{emailNo}, sysdate)
+	</insert>
+	
+	<insert id="insert2" parameterType="EmailDto">
+		<!-- 
+			Email 테이블을 이용하여 merge 작업을 수행하겠습니다
+			확인해야할 조건은 EmailDto 안에 있는 email이 E(email) 에 존재하는가 입니다
+			만약 발견했다면
+				해당 이메일에 대한 인증번호와 인증시간을 갱신하고
+			만약 발견하지 못했다면
+				이메일, 인증번호, 인증시간을 신규로 등록하시기 바랍니다	
+		-->
+		merge into email E using dual on(#{email} = E.email) <!-- 집어넣을이메일 = email의 이메일 -->
+		when matched then
+			<!-- 일치할 경우의 구문(1번구문) -->
+			update set E.email_no = #{emailNo} , E.send_date = sysdate
+		when not matched then
+			<!-- 불일치할 경우의 구문(2번구문) -->
+			insert(email, email_no, send_date) values(#{email}, #{emailNo}, sysdate)
+	</insert>
+	
+	<!-- 
+		인증번호 검사 : 인증번호가 유효한지 검사
+		= 부등호 등 XHTML에서 사용할 수 없는 문자가 있을 경우 허용 구문을 추가로 작성해야 한다.
+		= <![CDATA[  구문  ]]>
+	 -->
+	<select id="check" parameterType="EmailDto" resultType="EmailDto">
+		<![CDATA[
+			select * from email
+			where 
+				email = #{email} 
+				and 
+				email_no = #{emailNo} 
+				and 
+				send_date >= sysdate - 5 / 24 / 60
+		]]>
+	</select>
+	
+	<!-- 
+		인증번호 삭제
+		1. 이메일에 해당하는 인증번호 삭제
+		2. 5분이 지난 인증번호를 삭제(스케쥴러 구동)
+	 -->
+	<delete id="deleteByEmail" parameterType="string">
+		delete email where email = #{email}
+	</delete>
+	
+	<delete id="deleteByTime">
+		<![CDATA[ 
+			delete email where send_date < sysdate - 5/24/60
+		]]>
+	</delete>
+	
+</mapper>

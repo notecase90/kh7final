@@ -48,7 +48,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</delete>
 		
 	<!-- 수정 -->
-	
+		<update id="edit" parameterType="RoomDto">
+			update room  
+			set 
+			room_name = #{roomName},
+			room_intro = #{roomIntro},
+			room_add = #{roomAdd},
+			room_capa = #{roomCapa},
+			room_in = #{roomIn},
+			room_out = #{roomOut}
+			where 
+			room_no = #{roomNo} and
+			room_host_no = #{roomHostNo}
+		</update>
 	
 	<!-- ,
 		 room_checkout = #{roomCheckOut} -->

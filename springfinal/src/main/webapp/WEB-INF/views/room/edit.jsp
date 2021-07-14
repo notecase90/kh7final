@@ -2,14 +2,15 @@
     pageEncoding="UTF-8"%>
 
 <%
-	int roomHostNo = 2;
+	int roomHostNo = 1;
 %>
 
 <h2>숙소 정보 수정하기</h2>    
 
 <form action="edit" method="post">
 	<input type="hidden" name="roomHostNo" value="<%=roomHostNo%>">
-	<div>
+	<input type="hidden" name="roomNo" value="${roomDto.roomNo}">
+	<div> 
 		<label>숙소명</label>
 		<input type="text" name="roomName" required value="${roomDto.roomName}">
 	</div>

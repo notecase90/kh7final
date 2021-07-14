@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.project.entity.RoomDto;
 import com.kh.project.repository.RoomDao;
@@ -66,7 +67,8 @@ public class RoomController {
 		return "redirect:list";
 	}
 	@GetMapping("/edit")
-	public String edit() {
+	public String edit(@RequestParam int roomNo, Model model) {
+		model.addAttribute("roomDto",roomDao.detail(roomNo));
 		return "room/edit";
 	}
 	

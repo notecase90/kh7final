@@ -41,7 +41,7 @@
 		<div class="row text-left">
 			<label>전화번호</label>
 			<input type="text" name="memberPhone" required class="form-input form-input-underline"
-						placeholder="- 를 포함하여 입력 (예 : 010-XXXX-XXXX)">
+						placeholder="- 를 제외하고 입력 (예 : 010XXXXXXXX)">
 		</div>
 		<div class="row">
 			<input type="submit" value="가입" class="form-btn form-btn-positive">

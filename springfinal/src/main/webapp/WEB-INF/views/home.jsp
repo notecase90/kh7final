@@ -58,10 +58,10 @@
 				  <div class="btn-group">
 				  <c:choose>
 				  	<c:when test="${not empty hostMemberNo}">
-				  		<a class="btn btn-large text-white" href="${root}/email/certEmail">호스트 모드 생성</a>
+				  		<a class="btn btn-large text-white" href="${root}/host/host-home">호스트 모드 전환</a>
 				  	</c:when>
 				  	<c:otherwise>
-				  		<a class="btn btn-large text-white" href="${root}/host/host-home">호스트 모드 전환</a>
+				  		<a class="btn btn-large text-white" href="${root}/email/certEmail">호스트 모드 생성</a>
 				  	</c:otherwise>
 				  </c:choose>
 				    <a class="btn text-white" href="#"><i class="fa fa-user" aria-hidden="true"></i></a>

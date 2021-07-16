@@ -39,7 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 상세보기 -->
 	<select id="detail" resultType="RoomDto" parameterType="int">
-		select * from room where room_no = #{room_no}
+		select * from room where room_no = #{roomNo}
 	</select>
 	
 	<!-- 삭제 -->

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 
 <h1>숙소 상세</h1>    
 
@@ -13,8 +14,10 @@
 	<li>체크아웃 : ${roomDto.roomOut}</li>
 </ul>
 
-<a href="${pageContext.request.contextPath}/room/delete?roomNo=${roomDto.roomNo}">삭제</a>
-<a href="${pageContext.request.contextPath}/room/edit?roomNo=${roomDto.roomNo}">수정</a>
+<a href="${root}/room/delete?roomNo=${roomDto.roomNo}">삭제</a>
+<a href="${root}/room/edit?roomNo=${roomDto.roomNo}">수정</a>
+<a href="${root}/review/insert?roomNo=${roomDto.roomNo}">리뷰쓰기</a>
+<a href="${root}/review/onelist/${roomDto.roomNo}">리뷰보기</a>
 
 <hr>
 

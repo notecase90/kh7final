@@ -5,12 +5,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @NoArgsConstructor @AllArgsConstructor
 @Builder @Data
-public class AllTypeDto {
-	private int allTypeNo;
-	private String allTypeName;
-	private String allTypeIcon;
-
+public class inFacilityDto {
+	private int inFacilityRoomNo;
+	private int bedCount;
+	private int bathCount;
+	private int balconyCount;
 }

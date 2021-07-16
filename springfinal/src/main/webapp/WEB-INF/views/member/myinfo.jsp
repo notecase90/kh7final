@@ -48,6 +48,7 @@
 		<a href="exit" class="link-btn confirm-link" data-message="정말 탈퇴하시겠습니까?">회원 탈퇴</a>
 	</div>
 	
+	<jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
 <!-- 	<div class="row text-left"> -->
 <!-- 		<h4>내가 작성한 게시글</h4> -->
 <!-- 	</div> -->

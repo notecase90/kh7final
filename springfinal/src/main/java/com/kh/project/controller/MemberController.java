@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.project.entity.MemberDto;
 import com.kh.project.repository.MemberDao;
@@ -63,10 +64,10 @@ public class MemberController {
 		@GetMapping("/logout")
 		public String logout(HttpSession session) {
 			session.removeAttribute("memberNo");
-			//session.invalidate();//세션 만료(사라짐)
+			session.invalidate();//세션 만료(사라짐)
 			return "redirect:/";
 		}
-	//내 정보 변경(단일조회)
+	//내 정보 조회(단일조회)
 		@RequestMapping("/myinfo")
 		public String myinfo(HttpSession session, Model model) {
 			int memberNo = (int)session.getAttribute("memberNo");
@@ -87,6 +88,56 @@ public class MemberController {
 			
 			return "redirect:/";
 		}
+		//비밀번호 변경
+		@GetMapping("change_pw")
+		public String change_pw() {
+			return "member/change_pw"; //WEB-INF/views/member/change_pw.jsp
+		}
 		
+		
+		@PostMapping("change_pw")
+		public String change_pw(
+						HttpSession session,
+						@RequestParam String curPw,
+						@RequestParam String newPw
+							) {
+			
+			int memberNo = (int)session.getAttribute("memberNo"); 
+			boolean result = memberDao.changePw(curPw,memberNo,newPw);
+			if(result) {
+				return "redirect:/member/myinfo";
+					
+			}
+			else {
+				return "redirect:change_pw?error";
+				
+			}
+			
+		}
+		//개인정보 변경
+				@GetMapping("/change_info")
+				public String change_info(HttpSession session, Model model) {
+					int memberNo = (int)session.getAttribute("memberNo");
+					MemberDto memberDto = memberDao.get(memberNo);
+					
+					model.addAttribute("memberDto", memberDto);
+					
+					return "member/changeInfo"; //WEB-INF/views/member/changeInfo.jsp
+				}
+				
+				@PostMapping("/change_info")
+				public String change_info(@ModelAttribute MemberDto memberDto,
+						HttpSession session) {
+					int memberNo = (int)session.getAttribute("memberNo");
+					memberDto.setMemberNo(memberNo);
+					
+					boolean result=memberDao.changeInformation(memberDto);
+					if(result) {
+						return "redirect:/member/myinfo";
+					}
+					else {
+						return "redirect:change_info?error";
+					}
+				}
 		
 }

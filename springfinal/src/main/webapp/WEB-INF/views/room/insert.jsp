@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%
-	int roomHostNo = 2;
+	int roomHostNo = 1;
 %>
 
 <h1>숙소 등록</h1>

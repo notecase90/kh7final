@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="alltype">
+	<insert id="insert" parameterType="AllTypeDto">
+		insert into alltype values(alltype_seq.nextval,#{allTypeName},#{allTypeIcon})
+	</insert>
+	
+	<select id="list" resultType="AllTypeDto">
+		select * from alltype
+	</select>
+</mapper>

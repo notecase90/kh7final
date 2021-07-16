@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 <%
-	int reviewNo = 30;
-	int reviewRoomNo = 3;
+	int reviewNo = 21;
+	int reviewRoomNo = 8;
 	int reviewMember = 22;
 %>
 

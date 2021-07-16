@@ -18,6 +18,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	
 	<!-- mybatis 클래스 별칭 설정 -->
 	<typeAliases>
+		<package name="com.kh.project.vo"/>
 		<package name="com.kh.project.entity"/>
 		<package name="com.kh.project.hostentity"/>
 		<package name="com.kh.project.roomentity"/>

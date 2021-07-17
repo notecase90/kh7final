@@ -1,6 +1,6 @@
 package com.kh.project.controller;
 
-import java.util.List;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kh.project.entity.FacilityDto;
+import com.kh.project.entity.InFacilityDto;
 import com.kh.project.entity.RoomDto;
+import com.kh.project.entity.RoomTypeDto;
 import com.kh.project.repository.RoomDao;
 
 @Controller
@@ -27,12 +30,61 @@ public class RoomController {
 	public String insert() {
 		return "room/insert";
 	}
+	@GetMapping("/insert2")
+	public String insert2() {
+		return "room/insert2";
+	}
+	@GetMapping("/insert3")
+	public String insert3() {
+		return "room/insert3";
+	}
+	@GetMapping("/insert4")
+	public String insert4() {
+		return "room/insert4";
+	}
 	
 	@PostMapping("/insert")
-	public String insert(@ModelAttribute RoomDto roomDto) {
+	public String insert(
+			@ModelAttribute RoomDto roomDto,
+			HttpSession session
+			) {
+		int roomNo = roomDao.sequence();
+		session.setAttribute("roomNo", roomNo);
+		roomDto.setRoomNo(roomNo);
 		roomDao.insert(roomDto);
+		return "redirect:insert2";
+	}
+	@PostMapping("/insert2")
+	public String insert2(
+			@ModelAttribute FacilityDto facilityDto,
+			HttpSession session) {
+		int roomNo = (int)session.getAttribute("roomNo");
+		facilityDto.setRoomNo(roomNo);
+		roomDao.insert2(facilityDto);
+		return "redirect:insert3";
+	}
+	@PostMapping("/insert3")
+	public String insert3(
+			@ModelAttribute InFacilityDto inFacilityDto,
+			HttpSession session
+			) {
+		int roomNo = (int)session.getAttribute("roomNo");
+		inFacilityDto.setInFacilityRoomNo(roomNo);
+		roomDao.insert3(inFacilityDto);
+		return "redirect:insert4";
+	}
+	@PostMapping("/insert4")
+	public String insert4(
+			@ModelAttribute RoomTypeDto roomTypeDto,
+			HttpSession session) {
+		int roomNo = (int)session.getAttribute("roomNo");
+		roomTypeDto.setRoomTypeRoomNo(roomNo);
+		roomDao.insert4(roomTypeDto);
 		return "redirect:insert_success";
 	}
+	
+	
+	
 	
 	@GetMapping("/insert_success")
 	public String insertSuccess() {
@@ -57,6 +109,9 @@ public class RoomController {
 	@GetMapping("/detail/{roomNo}")
 	public String detail(@PathVariable int roomNo, Model model) {
 		model.addAttribute("roomDto", roomDao.detail(roomNo));
+		model.addAttribute("facilityList", roomDao.facility(roomNo));
+		model.addAttribute("infacilityDto",roomDao.infacility(roomNo));
+		model.addAttribute("roomTypeVO",roomDao.roomType(roomNo));
 		return "room/detail";// "/WEB-INF/views/room/detail.jsp";
 	}
 	

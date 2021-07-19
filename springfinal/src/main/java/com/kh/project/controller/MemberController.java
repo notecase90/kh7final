@@ -1,5 +1,6 @@
 package com.kh.project.controller;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.project.entity.MemberDto;
 import com.kh.project.repository.MemberDao;
+import com.kh.project.service.FindService;
 
 @Controller
 @RequestMapping("/member")
@@ -158,6 +160,45 @@ public class MemberController {
 					if(memberDao.exits(memberId)) return "N";
 					else return "Y";
 					
+				}
+				
+				@GetMapping("find-id")
+				public String findIdPage() {
+					return "member/find-id";
+				}
+				@Autowired
+				private FindService findIdService = null;
+				@PostMapping("find-id")
+				public String findId(@ModelAttribute MemberDto memberDto) throws MessagingException {
+				try {
+					findIdService.findId(memberDto);
+					return "redirect:/member/login";
+				}
+				catch (Exception e) {
+					e.printStackTrace();
+					return "redirect:/member/findId?error";
+				}	
+					
+				}
+				@GetMapping("find-pw")
+				public String findPwPage() {
+					return "member/find-pw";
+				}
+				@PostMapping("find-pw")
+				public String findPw(@ModelAttribute MemberDto memberDto) throws MessagingException{
+				try {
+					findIdService.findPw(memberDto);
+					return "redirect:/member/login";
+				} catch (Exception e) {
+					e.printStackTrace();
+					return "redirect:/member/findPw?error";
+				}	
+				
+				
+				
+						
+				
+
 				}
 				
 				

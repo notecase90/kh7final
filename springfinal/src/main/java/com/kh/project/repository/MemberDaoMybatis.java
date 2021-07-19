@@ -63,5 +63,17 @@ public class MemberDaoMybatis implements MemberDao{
 		return count > 0;
 		
 	}
+
+	//회원가입시 아이디 중복 확인
+	@Override
+	public MemberDto idCheck(String memberId) {
+		return sqlSession.selectOne("member.idCheck", memberId);
+	}
+
+	//회원가입시 아이디 중복 확인
+	@Override
+	public boolean exits(String memberId) {
+		return sqlSession.selectOne("member.idCheck", memberId) !=null;
+	}
 		
 }

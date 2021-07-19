@@ -2,12 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="root" value="${pageContext.request.contextPath}"></c:set>
+   
     
-    <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
-    
-<h1>메인페이지!</h1>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
@@ -31,13 +27,13 @@
 .main-img {
 	width:100%;
 	height:480px;
-	background-image: url("/project/resources/img/4.jpg");
+	background-image: url("${root}/resources/img/4.jpg");
 	padding:100px;
 }
 .footer-img {
 	width:100%;
 	height:300px;
-	background-image: url("/project/resources/img/6.jpg");
+	background-image: url("${root}/resources/img/6.jpg");
 	padding:20px;
 }
 
@@ -69,8 +65,10 @@
 				     	<i class="fa fa-bars" aria-hidden="true"></i>
 				     </a>
 				     <ul class="dropdown-menu">
-    					<li><a class="btn" href="#">마이페이지</a></li>
-    					<li><a class="btn" href="#">2번메뉴</a></li>		
+    					<li><a class="btn" href="${root }/member/regist">회원가입</a></li>
+    					<li><a class="btn" href="${root }/member/login">로그인</a></li>
+    					<li><a class="btn" href="${root }/member/myinfo">마이페이지</a></li>
+    					<li><a class="btn" href="${root}/member/logout">로그아웃</a></li>		
   					 </ul>
 				  </div>
 				</div>

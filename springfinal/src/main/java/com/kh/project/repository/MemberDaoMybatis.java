@@ -76,10 +76,34 @@ public class MemberDaoMybatis implements MemberDao{
 		return sqlSession.selectOne("member.idCheck", memberId) !=null;
 	}
 
+	
+	@Override
+	public MemberDto findId(MemberDto memberDto) {
+		return sqlSession.selectOne("member.findId",memberDto);
+		
+	}
+
+	@Override
+	public boolean findPw(MemberDto memberDto) {
+		int count = sqlSession.update("member.findPw",memberDto);
+		return count>0;
+	}
+
+	@Override
+	public MemberDto checkId(MemberDto memberDto) {
+		return sqlSession.selectOne("member.checkId",memberDto);
+	}
+
+	@Override
+	public MemberDto checkEmail(MemberDto memberDto) {
+		return sqlSession.selectOne("member.checkEmail",memberDto);
+
+	}
 	//회원가입시 이메일 중복 확인
 	@Override
 	public boolean emailCheck(String memberEmail) {
 		return sqlSession.selectOne("member.emailCheck", memberEmail) !=null;
+
 	}
 		
 }

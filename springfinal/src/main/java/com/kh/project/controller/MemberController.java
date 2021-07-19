@@ -145,7 +145,7 @@ public class MemberController {
 		
 				//아이디 중복검사
 				@ResponseBody
-				@PostMapping("/test3")
+				@PostMapping("/checkId")
 				public String test3(
 						@RequestParam String memberId) {
 					
@@ -162,6 +162,7 @@ public class MemberController {
 					
 				}
 				
+
 				@GetMapping("find-id")
 				public String findIdPage() {
 					return "member/find-id";
@@ -193,14 +194,18 @@ public class MemberController {
 					e.printStackTrace();
 					return "redirect:/member/findPw?error";
 				}	
-				
-				
-				
-						
-				
 
 				}
 				
+
+				//회원 가입 이메일 중복 체크
+				@ResponseBody
+				@PostMapping("/checkEmail")
+				public String test4(@RequestParam String memberEmail) {
+					if(memberDao.emailCheck(memberEmail)) return "N";
+					else return "Y";
+				}
+
 				
 				
 				

@@ -63,7 +63,7 @@
 			var memberId = $(this).val();
 			
 			$.ajax({
-				url:"${pageContext.request.contextPath}/member/test3",
+				url:"${pageContext.request.contextPath}/member/checkId",
 				data:{
 					memberId : memberId
 				},
@@ -83,9 +83,29 @@
 		});		
 		
 		//회원가입시 이메일 중복확인
-// 		$("input [name=memberEamil]").blur(function(){
-// 			var memberEmail = $(this).val();
-// 		});
+			$("input[name=memberEmail]").blur(function(){
+			//this : 입력창
+			var memberEmail = $(this).val();
+			
+			$.ajax({
+				url:"${pageContext.request.contextPath}/member/checkEmail",
+				data:{
+					memberEmail : memberEmail
+				},
+				type:"post",
+				success:function(resp){//"Y"는 사용가능, "N"은 사용중으로 처리
+					if(resp === "Y") {
+						$("input[name=memberEmail] + span").text("사용 가능한 이메일 주소입니다");
+						$("input[name=memberEmail] + span").css('color','green');
+					}
+					else if(resp === "N"){
+						$("input[name=memberEmail] + span").text("이미 사용중인 이메일 주소입니다");
+						$("input[name=memberEmail] + span").css('color','red');
+					}
+				}
+			});
+			
+		});		
 		
 		
 	//마지막 괄호	
@@ -133,6 +153,7 @@
 		<div class="row text-left">
 			<label>이메일</label>
 			<input type="text" name="memberEmail" class="form-input form-input-underline">
+			<span></span>
 		</div>
 		
 		<div class="row text-left">

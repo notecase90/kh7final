@@ -65,10 +65,19 @@
 				     	<i class="fa fa-bars" aria-hidden="true"></i>
 				     </a>
 				     <ul class="dropdown-menu">
-    					<li><a class="btn" href="${root }/member/regist">회원가입</a></li>
-    					<li><a class="btn" href="${root }/member/login">로그인</a></li>
-    					<li><a class="btn" href="${root }/member/myinfo">마이페이지</a></li>
-    					<li><a class="btn" href="${root}/member/logout">로그아웃</a></li>		
+				     <c:choose>
+				     	<c:when test="${isLogin}">
+	    					<li><a class="btn" href="${root }/member/myinfo">마이페이지</a></li>
+	    					<li><a class="btn" href="${root}/member/logout">로그아웃</a></li>		
+				     	</c:when>
+						
+						<c:otherwise>
+	    					<li><a class="btn" href="${root }/member/regist">회원가입</a></li>
+	    					<li><a class="btn" href="${root }/member/login">로그인</a></li>
+						</c:otherwise>
+						
+				     </c:choose>
+				     
   					 </ul>
 				  </div>
 				</div>

@@ -75,6 +75,7 @@ public class MemberDaoMybatis implements MemberDao{
 	public boolean exits(String memberId) {
 		return sqlSession.selectOne("member.idCheck", memberId) !=null;
 	}
+
 	
 	@Override
 	public MemberDto findId(MemberDto memberDto) {
@@ -96,6 +97,13 @@ public class MemberDaoMybatis implements MemberDao{
 	@Override
 	public MemberDto checkEmail(MemberDto memberDto) {
 		return sqlSession.selectOne("member.checkEmail",memberDto);
+
+	}
+	//회원가입시 이메일 중복 확인
+	@Override
+	public boolean emailCheck(String memberEmail) {
+		return sqlSession.selectOne("member.emailCheck", memberEmail) !=null;
+
 	}
 		
 }

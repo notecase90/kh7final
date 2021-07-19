@@ -46,6 +46,9 @@
 		<a href="change_pw" class="link-btn">비밀번호 변경</a>
 		<a href="change_info" class="link-btn">개인정보 변경</a>
 		<a href="exit" class="link-btn confirm-link" data-message="정말 탈퇴하시겠습니까?">회원 탈퇴</a>
+		<br>
+		<a href="${pageContext.request.contextPath}" class="link-btn confirm-link" >메인으로</a>
+		
 	</div>
 	
 	<jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

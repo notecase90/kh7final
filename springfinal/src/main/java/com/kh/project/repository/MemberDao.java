@@ -13,4 +13,5 @@ public interface MemberDao {
 	boolean changeInformation(MemberDto memberDto); //개인정보변경
 	MemberDto idCheck(String memberId); //회원가입시 아이디 중복 확인 -1
 	boolean exits(String memberId); //회원가입시 아이디 중복 확인-2
+	boolean emailCheck(String memberEmail); //회원가입시 이메일 중복 체크
 }

@@ -143,7 +143,7 @@ public class MemberController {
 		
 				//아이디 중복검사
 				@ResponseBody
-				@PostMapping("/test3")
+				@PostMapping("/checkId")
 				public String test3(
 						@RequestParam String memberId) {
 					
@@ -160,6 +160,13 @@ public class MemberController {
 					
 				}
 				
+				//회원 가입 이메일 중복 체크
+				@ResponseBody
+				@PostMapping("/checkEmail")
+				public String test4(@RequestParam String memberEmail) {
+					if(memberDao.emailCheck(memberEmail)) return "N";
+					else return "Y";
+				}
 				
 				
 				

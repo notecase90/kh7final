@@ -23,12 +23,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		2. 동적 바인딩 : 데이터를 형태에 맞게 해석하여 따옴표 등을 처리한 뒤 구문에 할당(데이터)
 			사용법 : #{데이터}
 	 -->
-	
+	<!-- 시퀀스 알아오기 -->
+	<select id="sequence" resultType="int">
+		select room_seq.nextval from dual
+	</select>
 	<!-- 숙소 등록 -->
 	<insert id="insert" parameterType="RoomDto">
 		insert into room values(
-			room_seq.nextval, #{roomHostNo}, #{roomName}, #{roomIntro}, #{roomAdd},
+			#{roomNo}, #{roomHostNo}, #{roomName}, #{roomIntro}, #{roomAdd},
 			#{roomCapa}, #{roomIn}, #{roomOut}
+		)
+	</insert>
+	
+	<!-- 숙소 등록-편의시설등록 -->
+	<insert id="insert2" parameterType="FacilityDto">
+		<foreach collection="optionNo" item="optionNo" open="insert all" close="select * from dual" separator=" ">
+			into facility values(
+			#{roomNo}, #{optionNo}
+			)
+		</foreach>
+	</insert>
+	
+	<!-- 숙소등록-내부시설등록 -->
+	<insert id="insert3" parameterType="InFacilityDto">
+		insert into INFACILITY values(
+			#{inFacilityRoomNo}, #{bedCount}, #{bathCount}, #{balconyCount}
+		)
+	</insert>
+	
+	<!-- 숙소등록-숙소종류등록 -->
+	<insert id="insert4" parameterType="RoomTypeDto">
+		insert into roomType values (
+			#{roomTypeRoomNo}, #{allTypeNo}
 		)
 	</insert>
 	
@@ -62,8 +88,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			room_host_no = #{roomHostNo}
 		</update>
 	
-	<!-- ,
-		 room_checkout = #{roomCheckOut} -->
+	<!-- 편의시설 옵션 불러오기 -->
+	<select id="facility" resultType="FacilityOptionDto">
+		select * from facilityOption
+	</select>
+	<!-- 전체숙소종류 불러오기 -->
+	<select id="allType" resultType="AlltypeDto">
+		select * from allType
+	</select>
+	
+	
+<!-- 	<insert id="?"> -->
+<!-- 		insert all  -->
+<!-- 			into 테이블명(형식) values(데이터) -->
+<!-- 			into 테이블명(형식) values(데이터) -->
+<!-- 			into 테이블명(형식) values(데이터) -->
+<!-- 			into 테이블명(형식) values(데이터) -->
+<!-- 			into 테이블명(형식) values(데이터) -->
+<!-- 			into 테이블명(형식) values(데이터) -->
+<!-- 		select * from dual -->
+<!-- 	</insert> -->
+	
+	<!-- 디테일페이지에서 편의시설 불러오기 (DB view추가해야함)-->
+	<select id="facilityDetail" resultType="FacilityVO" parameterType="int">
+		select * from room_facility where facility_room_no = #{roomNo}
+	</select>
+	
+	<!-- 디테일페이지에서 내부시설 불러오기 -->
+	<select id="infacilityDetail" resultType="InFacilityDto" parameterType="int">
+		select * from INFACILITY where infacility_room_no = #{inFacilityRoomNo}
+	</select>
+	
+	<!-- 디테일페이지에서 숙소종류 불러오기 (DB view추가해야함)-->
+	<select id="roomTypeDetail" resultType="RoomTypeVO" parameterType="int">
+		select * from room_type where roomType_room_no = #{roomNo}
+	</select>
 </mapper>
 
 

@@ -10,11 +10,11 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>내가 만든 홈페이지</title>
-	<link rel="stylesheet" type="text/css" href="${root}/css/common.css">
-	<link rel="stylesheet" type="text/css" href="${root}/css/menu.css">
-	<link rel="stylesheet" type="text/css" href="${root}/css/layout.css">
-	<link rel="stylesheet" type="text/css" href="${root}/css/test.css">
+	<title>내가 만든 홈페이지</title>	
+	<link rel="stylesheet" type="text/css" href="${root}/resources/css/common.css">
+	<link rel="stylesheet" type="text/css" href="${root}/resources/css/menu.css">
+	<link rel="stylesheet" type="text/css" href="${root}/resources/css/layout.css">
+	<link rel="stylesheet" type="text/css" href="${root}/resources/css/test.css">
 	<style>
 		
 	</style>

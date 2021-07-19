@@ -1,7 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="${root}/resources/css/common.css">
+	<link rel="stylesheet" type="text/css" href="${root}/resources/css/menu.css">
+	<link rel="stylesheet" type="text/css" href="${root}/resources/css/layout.css">
+	
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+<h1>숙소종류</h1>
+	숙소종류이름 : ${roomTypeVO.allTypeName} <br>
+	숙소종류아이콘명 : ${roomTypeVO.allTypeIcon}
+	아이콘 : <i class="${roomTypeVO.allTypeIcon}"></i>
 
 <h1>숙소 상세</h1>    
 
@@ -89,12 +105,17 @@ geocoder.addressSearch('${roomDto.roomAdd}', function(result, status) {
 <hr>
 
 <h1>편의시설</h1>
+	<c:forEach var="facilityVO" items="${facilityList}">
+		${facilityVO.optionName}
+	</c:forEach>
 
 <hr>
 
 <h1>내부시설</h1>
-
+	침실 수 : ${infacilityDto.bedCount} 개 <br>
+	욕실 수 : ${infacilityDto.bathCount} 개 <br>
+	발코니  : ${infacilityDto.balconyCount} 개
 <hr>
 
-<h1>숙소종류</h1>
+
 

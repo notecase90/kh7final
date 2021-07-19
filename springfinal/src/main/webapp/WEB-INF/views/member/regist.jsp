@@ -81,6 +81,14 @@
 			});
 			
 		});		
+		
+		//회원가입시 이메일 중복확인
+// 		$("input [name=memberEamil]").blur(function(){
+// 			var memberEmail = $(this).val();
+// 		});
+		
+		
+	//마지막 괄호	
 	});
 		</script>
 

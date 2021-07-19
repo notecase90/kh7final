@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="${root}/resources/css/common.css">
@@ -28,8 +30,10 @@
 	<li>체크아웃 : ${roomDto.roomOut}</li>
 </ul>
 
-<a href="${pageContext.request.contextPath}/room/delete?roomNo=${roomDto.roomNo}">삭제</a>
-<a href="${pageContext.request.contextPath}/room/edit?roomNo=${roomDto.roomNo}">수정</a>
+<a href="${root}/room/delete?roomNo=${roomDto.roomNo}">삭제</a>
+<a href="${root}/room/edit?roomNo=${roomDto.roomNo}">수정</a>
+<a href="${root}/review/insert?roomNo=${roomDto.roomNo}">리뷰쓰기</a>
+<a href="${root}/review/onelist/${roomDto.roomNo}">리뷰보기</a>
 
 <hr>
 

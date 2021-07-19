@@ -11,4 +11,6 @@ public interface MemberDao {
 	boolean delete(int memberNo);
 	boolean changePw (String curPw,int memberNo,String newPw);
 	boolean changeInformation(MemberDto memberDto); //개인정보변경
+	MemberDto idCheck(String memberId); //회원가입시 아이디 중복 확인 -1
+	boolean exits(String memberId); //회원가입시 아이디 중복 확인-2
 }

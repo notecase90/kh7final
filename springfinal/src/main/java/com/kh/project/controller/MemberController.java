@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.project.entity.MemberDto;
 import com.kh.project.repository.MemberDao;
@@ -140,4 +141,26 @@ public class MemberController {
 					}
 				}
 		
+				//아이디 중복검사
+				@ResponseBody
+				@PostMapping("/test3")
+				public String test3(
+						@RequestParam String memberId) {
+					
+//					테스트실행
+//					if(memberId.equals("admin1234")) return "N";
+//					else return "Y";
+					
+//					실제 파라미터값 적용
+//					데이터베이스에 존재하면 사용 중, 아니면 가능
+//					boolean이라서 if/else 로 적용
+//					그럼 일반 Dto에 get은 뭘로 적용??
+					if(memberDao.exits(memberId)) return "N";
+					else return "Y";
+					
+				}
+				
+				
+				
+				
 }

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%
-	int roomHostNo = 1;
+	int roomHostNo = 21;
 %>
 
 <h2>숙소 정보 수정하기</h2>    
@@ -36,7 +36,7 @@
 		<input type="time" name="roomOut" class="timepicker" value="${roomDto.roomOut}">
 	</div>
 	<div>
-		<input type="submit" value="등록">
+		<input type="submit" value="수정">
   	 	<input type="reset" value="취소">
 	</div>
 </form>    

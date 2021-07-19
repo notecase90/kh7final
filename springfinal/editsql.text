@@ -1,0 +1,24 @@
+create sequence alltype_seq; /*시퀀스추가*/
+
+/*더미데이터*/
+insert into alltype values(alltype_seq.nextval,'한옥','testicon');
+insert into alltype values(alltype_seq.nextval,'빌라','fa fa-home fa-3x');
+insert into alltype values(alltype_seq.nextval,'아파트','fa fa-building fa-3x');
+commit;
+
+/*편의시설 이름 join 하는 view*/
+create or replace view Room_facility as 
+select 
+f.facility_room_no,
+f.facility_option_no,
+FO.option_name
+from facility F left outer join facilityOption FO on f.facility_option_no = fo.option_no;
+
+/*숙소종류 이름,아이콘 join 하는 view*/
+create or replace view Room_Type as
+select
+rt.alltype_room_no,
+rt.roomtype_room_no,
+at.alltype_name,
+at.alltype_icon
+from roomType RT left outer join alltype AT on RT.alltype_room_no = AT.alltype_no;

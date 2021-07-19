@@ -29,8 +29,9 @@ public class Test01 {
 		MemberDto memberDto = new MemberDto();
 		
 		memberDto.setMemberEmail("jun4451@naver.com");
-		memberDto.setMemberName("주주주");
+		memberDto.setMemberName( "주주주");
 		findIdService.findId(memberDto);
+		
 		
 	}
 	

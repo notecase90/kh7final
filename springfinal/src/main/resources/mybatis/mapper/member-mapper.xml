@@ -66,6 +66,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			delete member where member_no=#{memberNo}
 		</delete>
 	
+<!-- 	회원가입시 아이디 중복 검사 -->
+	<select id="idCheck" parameterType="String" resultType="MemberDto">
+		select * from member where member_id=#{memberId}
+	</select>
+	
+	
 </mapper>
 
 

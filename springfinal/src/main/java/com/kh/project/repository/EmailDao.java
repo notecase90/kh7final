@@ -6,4 +6,5 @@ public interface EmailDao {
 	void insert(EmailDto emailDto);
 	boolean check(EmailDto emailDto); //이메일과 인증번호
 	void deleteByEmail(String email);
+	
 }

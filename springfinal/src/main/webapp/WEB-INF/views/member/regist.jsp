@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+    <!-- 부트 스트랩 적용 -->
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/regist.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+    
+    <!-- 끝 -->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script>
 	$(function(){
@@ -63,7 +72,7 @@
 			var memberId = $(this).val();
 			
 			$.ajax({
-				url:"${pageContext.request.contextPath}/member/test3",
+				url:"${pageContext.request.contextPath}/member/checkId",
 				data:{
 					memberId : memberId
 				},
@@ -83,66 +92,123 @@
 		});		
 		
 		//회원가입시 이메일 중복확인
-// 		$("input [name=memberEamil]").blur(function(){
-// 			var memberEmail = $(this).val();
-// 		});
+			$("input[name=memberEmail]").blur(function(){
+			//this : 입력창
+			var memberEmail = $(this).val();
+			
+			$.ajax({
+				url:"${pageContext.request.contextPath}/member/checkEmail",
+				data:{
+					memberEmail : memberEmail
+				},
+				type:"post",
+				success:function(resp){//"Y"는 사용가능, "N"은 사용중으로 처리
+					if(resp === "Y") {
+						$("input[name=memberEmail] + span").text("사용 가능한 이메일 주소입니다");
+						$("input[name=memberEmail] + span").css('color','green');
+					}
+					else if(resp === "N"){
+						$("input[name=memberEmail] + span").text("이미 사용중인 이메일 주소입니다");
+						$("input[name=memberEmail] + span").css('color','red');
+					}
+				}
+			});
+			
+		});		
 		
 		
 	//마지막 괄호	
 	});
 		</script>
 
-<div class="container-600">
+<div class="container-800">
 	<div class="row">
 		<h2>가입 정보 입력</h2>
 	</div>
 	
+			<!-- 부트스트랩 적용 도전-->
+	<div class="container-1000">
+	<div class="card bg-light">
+<article class="card-body mx-auto" style="max-width: 800px;">
+	<h4 class="card-title mt-3 text-center">계정 생성하기</h4>
+	<p class="text-center">자유롭게 계정을 생성해보세요</p>
+	
+	<!-- 아이디 구분선 -->
+	
+	
+	<!-- 부트스트랩 끝 -->
+	
 	<form action="regist" method="post">
-		<div class="row text-left">
-			<label>아이디</label>
-			<input type="text" name="memberId" id="id-input" required class="form-input form-input-underline"
-						placeholder="아이디">
+		<div class="form-group input-group">
+			<div class="input-group-prepend">
+				  <span class="input-group-text"> <i class="fa fa-id-card"></i> </span>
+				  		 </div>
+			<input type="text" name="memberId" id="id-input" required class="form-control"
+						placeholder="아이디를 입력하세요">
 			<span></span>
 		</div>
 		
 		
-		<div class="row text-left">
-			<label>비밀번호</label>
-			<input type="password" name="memberPw" id="pw-input"required class="form-input form-input-underline"
+		<div class="form-group input-group">
+			<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+				</div>
+			<input type="password" name="memberPw" id="pw-input"required class="form-control"
 						placeholder="비밀번호">
 		</div>
 		
 		
-		<div class="row text-left">
-			<label>비밀번호 재확인</label>
-			<input type="password" id="pw-reInput" class="form-input form-input-underline"
+		<div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+		</div>
+			<input type="password" id="pw-reInput" class="form-control"
 						placeholder="동일한 비밀번호를 한번 더 입력">
 						<span id="pwCheck"></span>
 		</div>
 		
-		<div class="row text-left">
-			<label>이름</label>
-			<input type="text" name="memberName" id="name-input" required class="form-input form-input-underline"
+		
+		<div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+		 </div>
+			<input type="text" name="memberName" id="name-input" required class="form-control"
 						placeholder="이름">
 		</div>
-		<div class="row text-left">
-			<label>생년월일</label>
-			<input type="date" name="memberBirth" required class="form-input form-input-underline">
+		
+		
+		<div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-birthday-cake"></i> </span>
+		 </div>
+			<input type="date" name="memberBirth" required class="form-control" placeholder="생년월일">
 		</div>
 		
-		<div class="row text-left">
-			<label>이메일</label>
-			<input type="text" name="memberEmail" class="form-input form-input-underline">
+		
+		<div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+		 </div>
+			<input type="text" name="memberEmail" class="form-control" required placeholder="이메일 주소 입력">
+			<span></span>
 		</div>
 		
-		<div class="row text-left">
-			<label>전화번호</label>
-			<input type="text" name="memberPhone" required class="form-input form-input-underline"
+		
+		<div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-phone" aria-hidden="true"></i> </span>
+		 </div>
+			<input type="text" name="memberPhone" required class="form-control"
 						placeholder="- 를 제외하고 입력 (예 : 010XXXXXXXX)">
 		</div>
-		<div class="row">
-			<input type="submit" value="가입" class="form-btn form-btn-positive">
+		
+		
+		
+		<div class="form-group">
+			<input type="submit" value="가입하기" class="btn btn-primary btn-block">
 		</div>
+		
+		<p class="text-center">이미 계정이 있으신가요? <a href="${pageContext.request.contextPath}/member/login"">로그인하기</a> </p> 
 	</form>
 </div>
-
+	</div>

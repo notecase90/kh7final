@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.kh.project.entity.FacilityDto;
 import com.kh.project.entity.InFacilityDto;
 import com.kh.project.entity.RoomDto;
+import com.kh.project.entity.RoomPriceDto;
 import com.kh.project.entity.RoomTypeDto;
 import com.kh.project.repository.RoomDao;
 
@@ -41,6 +42,10 @@ public class RoomController {
 	@GetMapping("/insert4")
 	public String insert4() {
 		return "room/insert4";
+	}
+	@GetMapping("/insert5")
+	public String insert5() {
+		return "room/insert5";
 	}
 	
 	@PostMapping("/insert")
@@ -80,10 +85,17 @@ public class RoomController {
 		int roomNo = (int)session.getAttribute("roomNo");
 		roomTypeDto.setRoomTypeRoomNo(roomNo);
 		roomDao.insert4(roomTypeDto);
+		return "redirect:insert5";
+	}
+	@PostMapping("/insert5")
+	public String insert5(
+			@ModelAttribute RoomPriceDto roomPriceDto,
+			HttpSession session) {
+		int roomNo= (int)session.getAttribute("roomNo");
+		roomPriceDto.setRoomOrigin(roomNo);
+		roomDao.insert5(roomPriceDto);
 		return "redirect:insert_success";
 	}
-	
-	
 	
 	
 	@GetMapping("/insert_success")
@@ -112,6 +124,7 @@ public class RoomController {
 		model.addAttribute("facilityList", roomDao.facility(roomNo));
 		model.addAttribute("infacilityDto",roomDao.infacility(roomNo));
 		model.addAttribute("roomTypeVO",roomDao.roomType(roomNo));
+		model.addAttribute("roomPriceDto",roomDao.price(roomNo));
 		return "room/detail";// "/WEB-INF/views/room/detail.jsp";
 	}
 	

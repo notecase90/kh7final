@@ -58,6 +58,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
+	<!-- 숙소등록-가격등록 -->
+	<insert id="insert5" parameterType="RoomPriceDto">
+		insert into roomPrice values(
+			#{roomPriceNo}, #{roomOrigin}, #{dayPrice}
+		)
+	</insert>
+	
 	<!-- 목록 -->
 	<select id="list" resultType="RoomDto">
 		select * from room
@@ -122,6 +129,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 디테일페이지에서 숙소종류 불러오기 (DB view추가해야함)-->
 	<select id="roomTypeDetail" resultType="RoomTypeVO" parameterType="int">
 		select * from room_type where roomType_room_no = #{roomNo}
+	</select>
+	
+	<!-- 디테일페이지에서 숙소가격 불러오기 -->
+	<select id="roomPriceDetail" resultType="roomPriceDto" parameterType="int">
+		select * from room_price where room_origin = #{roomOrigin}
 	</select>
 </mapper>
 

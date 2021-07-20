@@ -8,6 +8,7 @@ import com.kh.project.entity.FacilityOptionDto;
 import com.kh.project.entity.FacilityVO;
 import com.kh.project.entity.InFacilityDto;
 import com.kh.project.entity.RoomDto;
+import com.kh.project.entity.RoomPriceDto;
 import com.kh.project.entity.RoomTypeDto;
 import com.kh.project.entity.RoomTypeVO;
 
@@ -25,10 +26,11 @@ public interface RoomDao {
 	void insert2(FacilityDto facilityDto); //편의시설 등록
 	void insert3(InFacilityDto inFacilityDto); //내부시설 등록
 	void insert4(RoomTypeDto roomTypeDto); //숙소종류 등록
+	void insert5(RoomPriceDto roomPriceDto); //숙소가격 등록
 	
 	
 	List<FacilityVO> facility(int roomNo); // 편의시설 불러오기(디테일페이지)
 	InFacilityDto infacility(int inFacilityRoomNo); //내부시설 불러오기(디테일페이지)
 	RoomTypeVO roomType(int roomNo);
-	
+	RoomPriceDto price(int roomOrigin); // 가격 불러오기
 }

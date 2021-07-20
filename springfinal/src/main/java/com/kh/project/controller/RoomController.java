@@ -42,6 +42,10 @@ public class RoomController {
 	public String insert4() {
 		return "room/insert4";
 	}
+	@GetMapping("/insert6")
+	public String insert6() {
+		return "room/insert6";
+	}
 	
 	@PostMapping("/insert")
 	public String insert(
@@ -80,7 +84,7 @@ public class RoomController {
 		int roomNo = (int)session.getAttribute("roomNo");
 		roomTypeDto.setRoomTypeRoomNo(roomNo);
 		roomDao.insert4(roomTypeDto);
-		return "redirect:insert_success";
+		return "redirect:insert6";
 	}
 	
 	

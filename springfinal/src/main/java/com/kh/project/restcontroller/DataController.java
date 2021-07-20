@@ -1,5 +1,6 @@
 package com.kh.project.restcontroller;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,5 +16,13 @@ public class DataController {
 			) {
 			if(memberId.equals("admin1234")) return "N";
 			else return "Y";
+	}
+	
+	@GetMapping("/test")
+	public String test(
+				@RequestParam int a,
+				@RequestParam int b
+			) {
+		return String.valueOf(a *(100 - b) / 100);
 	}
 }

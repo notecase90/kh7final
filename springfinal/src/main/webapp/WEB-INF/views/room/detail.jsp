@@ -28,6 +28,7 @@
 	<li>수용인원 : ${roomDto.roomCapa}</li>
 	<li>체크인 : ${roomDto.roomIn}</li>
 	<li>체크아웃 : ${roomDto.roomOut}</li>
+	<li>숙소가 : ${roomPriceDto.dayPrice}원 (1박기준)</li>
 </ul>
 
 <a href="${root}/room/delete?roomNo=${roomDto.roomNo}">삭제</a>

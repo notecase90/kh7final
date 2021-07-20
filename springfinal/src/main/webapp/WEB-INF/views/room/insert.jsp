@@ -2,14 +2,13 @@
     pageEncoding="UTF-8"%>
 
 <%
-	int roomNo = 10;
-	int roomHostNo = 21;
+	int roomHostNo = 1;
 %>
 
 <h1>숙소 등록</h1>
    
 <form action="insert" method="post">
-	<input type="hidden" name="roomNo" value="<%=roomNo%>">
+
 	<input type="hidden" name="roomHostNo" value="<%=roomHostNo%>">
 	<div>
 		<label>숙소명</label>

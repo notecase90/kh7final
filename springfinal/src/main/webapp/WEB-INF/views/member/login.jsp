@@ -17,5 +17,7 @@
 		<input type="reset" value="취소">		
 	</div>
 	</form>
+	<a href="find-id">아이디찾기</a>
+	<a href="find-pw">비밀번호찾기</a>
 
 </div>

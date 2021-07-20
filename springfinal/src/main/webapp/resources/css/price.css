@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+
+        #price {
+            width: 100%;
+            border: medium none;
+            outline: currentColor none medium;
+            padding: 0px;
+            margin: 12px;
+            min-height: 1px;
+            background-color: transparent;
+            font-size: 32px;
+            font-weight: 600;
+            line-height: 38px;
+            appearance: none;
+            text-align: inherit;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .price-btn{
+            width: 40px;
+            height: 40px;
+            flex-grow: 0;
+            flex-shrink: 0;
+            cursor: pointer;
+            display: inline-flex;
+            margin: 0px;
+            padding: 0px;
+            text-align: center;
+            text-decoration: none;
+            color: rgb(113, 113, 113);
+            outline: currentColor none medium;
+            align-items: center;
+            justify-content: center;
+            background: rgb(255, 255, 255) none repeat scroll 0% 0%;
+            border-radius: 50%;
+        }
+        .price-box{
+            -moz-box-align: center;
+            -moz-box-pack: justify;
+            display: inline-flex;
+            align-items: center;
+            width: unset;
+            height: unset;
+            color: rgb(34, 34, 34);
+        }

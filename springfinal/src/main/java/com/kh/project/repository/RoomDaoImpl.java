@@ -17,6 +17,7 @@ import com.kh.project.entity.FacilityOptionDto;
 import com.kh.project.entity.FacilityVO;
 import com.kh.project.entity.InFacilityDto;
 import com.kh.project.entity.RoomDto;
+import com.kh.project.entity.RoomPriceDto;
 import com.kh.project.entity.RoomPicDto;
 import com.kh.project.entity.RoomTypeDto;
 import com.kh.project.entity.RoomTypeVO;
@@ -100,6 +101,15 @@ public class RoomDaoImpl implements RoomDao {
 	}
 
 	@Override
+	public void insert5(RoomPriceDto roomPriceDto) {
+		sqlSession.insert("room.insert5", roomPriceDto);
+	}
+
+	@Override
+	public RoomPriceDto price(int roomOrigin) {
+		return sqlSession.selectOne("room.roomPriceDetail", roomOrigin);
+	}
+
 	public RoomPicDto addPic(RoomPicDto roomPicDto) {
 		int roomPicNo = sqlSession.selectOne("room.picSequence");
 		roomPicDto.setRoomPicNo(roomPicNo);
@@ -126,7 +136,5 @@ public class RoomDaoImpl implements RoomDao {
 		ByteArrayResource resource = new ByteArrayResource(data);
 		return resource;
 	}
-
-	
 
 }

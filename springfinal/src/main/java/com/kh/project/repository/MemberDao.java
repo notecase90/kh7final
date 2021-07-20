@@ -16,8 +16,9 @@ public interface MemberDao {
 
 	MemberDto findId(MemberDto memberDto);
 	boolean findPw(MemberDto memberDto);
-	MemberDto checkId(MemberDto memberDto);
-	MemberDto checkEmail(MemberDto memberDto);
+	int checkId(MemberDto memberDto);
+	int checkEmail(MemberDto memberDto);
+	int checkName(MemberDto memberDto);
 
 	boolean emailCheck(String memberEmail); //회원가입시 이메일 중복 체크
 

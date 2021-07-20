@@ -25,16 +25,28 @@ public class FindServiceImpl implements FindService{
 	@Override
 	public void findId(MemberDto memberDto) throws MessagingException {
 	MemberDto memberId = memberDao.findId(memberDto);
+	int memberEmail = memberDao.checkEmail(memberDto);
+	int memberName = memberDao.checkName(memberDto);
 			
 	MimeMessage message = sender.createMimeMessage();
 	MimeMessageHelper helper = new MimeMessageHelper(message,false,"UTF-8");
 	
-
+	if(memberEmail == 0) {
+		log.error("존재하지않는이메일");
+	}
+	else if(memberName == 0) {
+		log.error("존재하지않는이름");
+	}
+	else {
 		helper.setTo(memberDto.getMemberEmail());
 		helper.setSubject("찾으시는아이디");
 		helper.setText(memberId.getMemberId());
 		
 		sender.send(message);
+		log.info("메일전송완료");
+	}
+
+		
 	
 	}
 		
@@ -44,13 +56,13 @@ public class FindServiceImpl implements FindService{
 	public void findPw(MemberDto memberDto) throws MessagingException {
 		MimeMessage message = sender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(message,false,"UTF-8");
-		MemberDto checkId = memberDao.checkId(memberDto);
-		MemberDto checkEmail = memberDao.checkEmail(memberDto);
+		int checkId = memberDao.checkId(memberDto);
+		int checkEmail = memberDao.checkEmail(memberDto);
 			
-			if(checkId == null) {
+			if(checkId == 0) {
 				log.info("아이디가틀렸음");
 			}
-			else if(checkEmail == null) {
+			else if(checkEmail == 0) {
 				log.info("이메일이틀렸음");
 			}
 			else {

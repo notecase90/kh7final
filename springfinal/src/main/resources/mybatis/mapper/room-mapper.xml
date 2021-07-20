@@ -135,8 +135,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="roomPriceDetail" resultType="roomPriceDto" parameterType="int">
 		select * from room_price where room_origin = #{roomOrigin}
 	</select>
-</mapper>
 
-
-
-
+	<!-- 파일업로드 -->
+	<!-- roomPicNo생성 -->
+	<select id="picSequence" resultType="int">
+		select room_pic_seq.nextval from dual
+	</select>
+	
+	<!-- 사진등록 -->
+	<insert id="addPic" parameterType="RoomPicDto">
+		insert into room_pic(
+			room_pic_no,
+			room_no,
+			room_pic_upload_name,
+			room_pic_save_name,
+			room_pic_content_type,
+			room_pic_file_size
+		)
+		values(
+			#{roomPicNo},
+			#{roomNo},
+			#{roomPicUploadName},
+			#{roomPicSaveName},
+			#{roomPicContentType},
+			#{roomPicFileSize}
+		)		
+	</insert>
+	
+	<!-- 사진파일 다운로드 -->
+	<select id="getPic" resultType="RoomPicDto" parameterType="int">
+		select * from ROOM_PIC where room_pic_no = #{roomPicNo}
+	</select>
+</mapper> 

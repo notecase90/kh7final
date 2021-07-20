@@ -47,6 +47,10 @@ public class RoomController {
 	public String insert5() {
 		return "room/insert5";
 	}
+	@GetMapping("/insert6")
+	public String insert6() {
+		return "room/insert6";
+	}
 	
 	@PostMapping("/insert")
 	public String insert(
@@ -94,7 +98,7 @@ public class RoomController {
 		int roomNo= (int)session.getAttribute("roomNo");
 		roomPriceDto.setRoomOrigin(roomNo);
 		roomDao.insert5(roomPriceDto);
-		return "redirect:insert_success";
+		return "redirect:insert6";
 	}
 	
 	

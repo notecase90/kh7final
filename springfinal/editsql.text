@@ -22,3 +22,15 @@ rt.roomtype_room_no,
 at.alltype_name,
 at.alltype_icon
 from roomType RT left outer join alltype AT on RT.alltype_room_no = AT.alltype_no;
+
+/*review_detail_view 뷰*/
+create view detail_view as   
+select  
+     member_no , member_name,
+     review_no, review_room_no, review_content, review_member, review_date, review_star,
+     room_no, room_name
+from review 
+inner join member
+    on review_member = member_no
+inner join room
+    on review_room_no = room_no;

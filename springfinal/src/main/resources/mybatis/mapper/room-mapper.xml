@@ -31,7 +31,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insert" parameterType="RoomDto">
 		insert into room values(
 			#{roomNo}, #{roomHostNo}, #{roomName}, #{roomIntro}, #{roomAdd},
-			#{roomCapa}, #{roomIn}, #{roomOut}
+			#{roomCapa}, #{roomIn}, #{roomOut}, #{roomInsertComplete}
 		)
 	</insert>
 	
@@ -61,13 +61,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 숙소등록-가격등록 -->
 	<insert id="insert5" parameterType="RoomPriceDto">
 		insert into roomPrice values(
-			#{roomPriceNo}, #{roomOrigin}, #{dayPrice}
+			roomPrice_seq.nextval, #{roomOrigin}, #{dayPrice}
 		)
 	</insert>
 	
+	<update id="insertSuccess" parameterType="RoomDto">
+		update room set room_insert_complete = #{roomInsertComplete} where room_no = #{roomNo}
+	</update>
+	
 	<!-- 목록 -->
 	<select id="list" resultType="RoomDto">
-		select * from room
+		select * from room where room_insert_complete = 1
 	</select>
 	
 	<!-- 상세보기 -->

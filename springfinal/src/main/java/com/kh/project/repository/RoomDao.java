@@ -32,7 +32,7 @@ public interface RoomDao {
 	void insert3(InFacilityDto inFacilityDto); //내부시설 등록
 	void insert4(RoomTypeDto roomTypeDto); //숙소종류 등록
 	void insert5(RoomPriceDto roomPriceDto); //숙소가격 등록
-	
+	void insertComplete(RoomDto roomDto); //숙소등록 완료구분컬럼
 	
 	List<FacilityVO> facility(int roomNo); // 편의시설 불러오기(디테일페이지)
 	InFacilityDto infacility(int inFacilityRoomNo); //내부시설 불러오기(디테일페이지)

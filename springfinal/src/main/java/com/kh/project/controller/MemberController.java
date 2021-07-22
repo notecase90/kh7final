@@ -15,8 +15,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.project.entity.MemberDto;
 import com.kh.project.repository.MemberDao;
+import com.kh.project.repository.WishDao;
 import com.kh.project.service.FindService;
+import com.kh.project.vo.WishVo;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @RequestMapping("/member")
 public class MemberController {
@@ -205,6 +210,20 @@ public class MemberController {
 					if(memberDao.emailCheck(memberEmail)) return "N";
 					else return "Y";
 				}
+				
+				@Autowired
+				private WishDao wishDao;
+				@GetMapping("wish-list")
+				public String wishList(Model model,HttpSession session) {
+					log.info("나와라");
+					int memberNo =(int)session.getAttribute("memberNo");
+					
+					model.addAttribute("list",wishDao.mywish(memberNo));
+					return "member/wish-list";
+				
+				}	
+			
+			
 
 				
 				

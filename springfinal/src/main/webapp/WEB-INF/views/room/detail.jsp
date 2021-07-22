@@ -3,8 +3,10 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <!-- icon 사용을 위한 CSS 의존성 등록(font awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 	<link rel="stylesheet" type="text/css" href="${root}/resources/css/common.css">
 	<link rel="stylesheet" type="text/css" href="${root}/resources/css/menu.css">
 	<link rel="stylesheet" type="text/css" href="${root}/resources/css/layout.css">
@@ -12,8 +14,87 @@
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
-
+<style>
+        .fa-heart {
+           color:red;
+           cursor: pointer;
+         }
+    </style>
+    <script>
+        $(function(){
+            //좋아요가 선택되어 있는지를 먼저 비동기 통신으로 확인 --> 초기 상태를 설정
+            
+            
+            //그 다음에 누르면 어떻게 할지 이벤트 등을 설정
+            $.ajax({
+                url:"${pageContext.request.contextPath}/wish-check",
+                method :"get",
+                data : { 
+                        roomNo : ${roomDto.roomNo}, memberNo : ${memberNo}
+                       },
+                success : function(resp){
+                    console.log("체크");
+                    if(resp){//값이 있을경우					
+                        $(".nowish-btn").show();//꽉찬하트를 보여준다
+                        $(".wish-btn").hide();
+                    }		    
+                    else{
+                        $(".wish-btn").show();
+                        $(".nowish-btn").hide();
+                    } 
+                }
+            });
+            
+                        $(".nowish-btn").click(function(){//꽉찬하트 클릭시 function
+                            console.log("삭제2");
+                            $.ajax({
+                                
+                                url :"${pageContext.request.contextPath}/wish-delete",
+                                method : "get",
+                                data : {
+                                        roomNo : ${roomDto.roomNo}, memberNo : ${memberNo}
+                                       },
+                                       
+                                success : function(resp){
+                                    console.log("삭제1");
+                                    $(".wish-btn").show();//성공시 꽉찬하트를 숨기고
+                                    $(".nowish-btn").hide();//빈하트를 보여준다
+                                }
+                            });
+                            
+                        });
+                        
+                        $(".wish-btn").click(function(){	
+                            console.log("좋아요");
+                            $.ajax({
+                                url :"${pageContext.request.contextPath}/wish-insert",
+                                method : "get",				
+                                data : {
+                                        roomNo : ${roomDto.roomNo}, memberNo : ${memberNo}
+                                       },
+                                       
+                                success : function(resp){
+                                    $(".wish-btn").hide();
+                                    $(".nowish-btn").show();
+                                }
+                            });
+                            });
+            
+                
+            
+                
+            });
+            
+        
+    </script>
+ <div>
+        <!-- 체크확인 -->
+        <i class="wish-btn  far fa-heart fa-3x"  data-roomNo="${roomDto.roomNo}"></i>
+        <!--빈하트 -->
+                        
+        <i class="nowish-btn fas fa-heart fa-3x"  data-roomNo="${roomDto.roomNo}"></i>
+        <!-- 꽉찬하트 -->
+  </div>
 <h1>숙소종류</h1>
 	숙소종류이름 : ${roomTypeVO.allTypeName} <br>
 	숙소종류아이콘명 : ${roomTypeVO.allTypeIcon}

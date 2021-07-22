@@ -65,7 +65,8 @@
 				     <c:choose>
 				     	<c:when test="${isLogin}">
 	    					<li><a class="btn" href="${root }/member/myinfo">마이페이지</a></li>
-	    					<li><a class="btn" href="${root}/member/logout">로그아웃</a></li>		
+	    					<li><a class="btn" href="${root}/member/logout">로그아웃</a></li>
+	    					<li><a class="btn" href="${root}/member/wish-list">위시리스트</a></li>		
 				     	</c:when>
 						
 						<c:otherwise>

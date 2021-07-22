@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.project.entity.MemberDto;
 import com.kh.project.repository.MemberDao;
+import com.kh.project.repository.WishDao;
 import com.kh.project.service.FindService;
 
 @Controller
@@ -205,6 +206,10 @@ public class MemberController {
 					if(memberDao.emailCheck(memberEmail)) return "N";
 					else return "Y";
 				}
+				
+				
+			
+			
 
 				
 				

@@ -17,5 +17,5 @@ public class RoomDto {
 	private int roomCapa; //수용인원
 	private String roomIn;
 	private String roomOut;
-	
+	private int roomInsertComplete;
 }

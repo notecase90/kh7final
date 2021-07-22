@@ -137,4 +137,9 @@ public class RoomDaoImpl implements RoomDao {
 		return resource;
 	}
 
+	@Override
+	public void insertComplete(RoomDto roomDto) {
+		sqlSession.insert("room.insertSuccess",roomDto);
+	}
+
 }

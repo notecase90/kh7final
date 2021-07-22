@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <h1>ajax로 업로드 후 다운로드로 preview 보이기</h1>
 
 <input type="file" name="f" accept=".jpg,.png,.gif" multiple>
@@ -36,3 +37,5 @@ $(function(){
 	});	
 });
 </script>
+
+<button><a href="insert_success">완료</a></button>

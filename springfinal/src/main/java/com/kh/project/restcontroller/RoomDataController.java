@@ -1,4 +1,4 @@
-package com.kh.project.controller;
+package com.kh.project.restcontroller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

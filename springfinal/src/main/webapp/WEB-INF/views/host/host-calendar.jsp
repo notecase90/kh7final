@@ -1,32 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.css" integrity="sha256-RCJT6YvohmGy+rWQe3hpPZez8iaPnirFVfiwaBVCk1k=" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.js" integrity="sha256-6l5QOXZ6Mkg+2tOaJgs8yT7xx2WapaIPQl7qpB55/V0=" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales/ko.js" integrity="sha256-yIkhdy13r6x8Vo7wiayPFIBbHGMwLRbDgNTfsp2TRQI=" crossorigin="anonymous"></script>
+ <head>
+    <meta charset='utf-8' />
+<!--     <link href='fullcalendar-scheduler/main.css' rel='stylesheet' /> -->
+<!--     <script src='fullcalendar-scheduler/main.js'></script> -->
+    <script>
 
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        
 
-<script src="./jquery-ui-1.12.1/datepicker-ko.js"></script>
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          locale:'ko',
+          selectable: true,
+          headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+          },
+//           dateClick: function(info) {
+//             alert('clicked ' + info.dateStr);
+//           },
+          select: function(info) {
+            alert('selected ' + info.startStr + ' to ' + info.endStr);
+          }
+        });
+       
+        
+        	
 
-<script type="text/javascript">
+        calendar.render();
+      });
 
-$(function(){
-
-    $("#date1").datepicker();
-
-});
-
-</script>
-
-
-
-
-
-
-
-
-
-
-<body>    
-</body>
+    </script>
+  </head>
+  <body>
+    <div id='calendar'></div>
+  </body>
+</html>

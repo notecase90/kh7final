@@ -103,7 +103,13 @@ public class RoomController {
 	
 	
 	@GetMapping("/insert_success")
-	public String insertSuccess() {
+	public String insertSuccess(HttpSession session) {
+		int roomNo = (int)session.getAttribute("roomNo");
+		RoomDto roomDto = RoomDto.builder()
+								.roomNo(roomNo)
+								.roomInsertComplete(1)
+							.build();
+		roomDao.insertComplete(roomDto);
 		return "room/insertSuccess";
 	}
 	

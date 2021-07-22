@@ -9,6 +9,6 @@
 		주소 : ${roomDto.roomAdd}
 		수용인원 : ${roomDto.roomCapa}
 		체크인 : ${roomDto.roomIn}
-		체크아웃 : ${roomDto.roomOut}
+		체크아웃 : ${roomDto.roomOut}		
 	</c:forEach>
 </div>

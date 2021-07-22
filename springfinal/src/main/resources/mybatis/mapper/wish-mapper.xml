@@ -15,6 +15,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from wish where member_no=#{memberNo} and room_no=#{roomNo}
 	</select>
 	<select id="mywish" parameterType="int" resultType="WishVo">
-		select * from wish_view where member_no={memberNo}
+		select * from wish_view where member_no=#{memberNo}
 	</select>
 </mapper>

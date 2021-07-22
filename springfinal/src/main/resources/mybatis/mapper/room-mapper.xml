@@ -61,7 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 숙소등록-가격등록 -->
 	<insert id="insert5" parameterType="RoomPriceDto">
 		insert into roomPrice values(
-			#{roomPriceNo}, #{roomOrigin}, #{dayPrice}
+			roomPrice_seq.nextval, #{roomOrigin}, #{dayPrice}
 		)
 	</insert>
 	

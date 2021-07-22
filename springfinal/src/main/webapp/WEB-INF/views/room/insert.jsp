@@ -1,45 +1,72 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 <%
 	int roomHostNo = 1;
 %>
 
-<h1>숙소 등록</h1>
+<link rel="stylesheet" href="${root}/resources/css/basic.css">
+<style>
+	.room-info{
+		width: 60%;
+            border: medium none;
+            padding: 10px;
+            margin: 12px;
+            font-size: 32px;
+            font-weight: 600;
+            line-height: 38px;
+            box-sizing: border-box;
+            text-align: center;
+            outline-style: auto;
+	}
+	.btn-box{
+		 display: inline-flex;
+         align-items: center;
+         align-content: center;
+         flex-wrap: wrap;
+         justify-content: center;
+	}
+</style>   
    
-<form action="insert" method="post">
-
-	<input type="hidden" name="roomHostNo" value="<%=roomHostNo%>">
-	<div>
-		<label>숙소명</label>
-		<input type="text" name="roomName" required placeholder="숙소명을 입력해주세요">
+<div id="first">
+	<div class="s" id="left">
+    	<div class="logo">
+                <a href="#">
+                    <img src="http://placehold.it/50x50?text=logo">
+                </a>
+            </div>
+            <div class="comment-box">
+                <span class="comment">숙소정보를 입력하실 차례입니다</span>
+            </div>
 	</div>
-    <div>
-		<label>숙소소개</label>
-		<input type="text" name="roomIntro" required placeholder="숙소소개를 입력해주세요">
+	<div class="s" id="right">
+    <form action="insert" method="post">
+		<input type="hidden" name="roomHostNo" value="<%=roomHostNo%>">
+		<div class="btn-box">
+			<input type="text" name="roomName" required placeholder="숙소명을 입력해주세요" class="room-info">
+			<input type="text" name="roomIntro" required placeholder="숙소소개를 입력해주세요" class="room-info">
+			<input type="text" id="sample5_address" name="roomAdd" placeholder="주소" class="room-info">
+	        <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
+			<input type="number" min="1" name="roomCapa" required placeholder="숙소인원" class="room-info">
+			<div>
+				<input type="time" name="roomIn" class="timepicker">
+				<input type="time" name="roomOut" class="timepicker">
+			</div>
+		</div>
+		 <div class="footer">
+	                <div id="footer-back-btn">
+	                    <button type="button" class="footer-btn"id="back-btn"onclick="history.back()">뒤로</button>
+	                </div>
+	                <div id="footer-next-btn">
+	                    <button type="submit" class="footer-btn"id="next-btn">다음</button>
+	                </div>             
+	            </div>
+    </form>
 	</div>
-    <div>
-        <label>숙소주소</label>
-		<input type="text" id="sample5_address" name="roomAdd" placeholder="주소">
-        <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
-	</div>
-    <div>
-		<label>수용가능인원</label>
-		<input type="number" min="1" name="roomCapa" required placeholder="숙소인원">
-	</div>
-	<div>
-		<label>체크인시간</label>
-		<input type="time" name="roomIn" class="timepicker">
-	</div>
-	<div>
-		<label>체크아웃시간</label>
-		<input type="time" name="roomOut" class="timepicker">
-	</div>
-	<div>
-		<input type="submit" value="등록">
-  	 	<input type="reset" value="취소">
-	</div>
-</form>    
+</div>   
+   
+    
 
 <div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
 

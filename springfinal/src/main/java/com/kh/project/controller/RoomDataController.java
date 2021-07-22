@@ -5,6 +5,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
@@ -45,9 +47,10 @@ public class RoomDataController {
 	
 	@PostMapping("/homePic")
 	public RoomPicDto homePic(
-			@RequestParam MultipartFile f
+			@RequestParam MultipartFile f,
+			HttpSession session
 			) throws IllegalStateException, IOException {
-		int roomNo = 25;
+		int roomNo = (int)session.getAttribute("roomNo");
 		RoomPicDto roomPicDto = RoomPicDto.builder()
 												.roomNo(roomNo)
 												.roomPicUploadName(f.getOriginalFilename())

@@ -2,44 +2,103 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="root" value="${pageContext.request.contextPath}"></c:set>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="${root}/resources/css/common.css">
+	<link rel="stylesheet" type="text/css" href="${root}/resources/css/menu.css">
+	<link rel="stylesheet" type="text/css" href="${root}/resources/css/layout.css">
 
 
-<div class="container-600">
-	<div class="row">
-		<h2>나의 정보</h2>
-	</div>
-	<div class="row">
-		<table class="table table-border">
-			<tr>
-				<th width="25%">회원번호</th>
-				<td>${memberDto.memberNo}</td>
-			</tr>
-			<tr>
-				<th>아이디</th>
-				<td>${memberDto.memberId}</td>
-			</tr>
-			<tr>
-				<th>이름</th>
-				<td>${memberDto.memberName}</td>
-			</tr>
-			<tr>
-				<th>생년월일</th>
-				<td>${memberDto.memberBirth}</td>
-			</tr>
-			<tr>
-				<th>이메일</th>
-				<td>${memberDto.memberEmail}</td>
-			</tr>
-			<tr>
-				<th>연락처</th>
-				<td>${memberDto.memberPhone}</td>
-			</tr>
-			<tr>
-				<th>가입일</th>
-				<td>${memberDto.memberJoin}</td>
-			</tr>
-		</table>
-	</div>
+
+	
+	
+<!-- 	스타일 시작 -->
+<style>
+.link-btn
+  {
+ background-color: #56baed;
+  border: none;
+  color: white;
+  padding: 10px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 13px;
+  border-radius: 3px 3px 3px 3px;
+  margin: 5px 5px 5px 5px;
+}
+.title{
+font-weight: bolder;
+text-align: left;
+}
+.row{
+text-align: left;
+}
+
+</style>
+<!-- 스타일 끝 -->
+
+	
+	
+	<div class="container-600">
+	
+					<div class="row text-center" >
+						<h2 >나의 정보</h2>
+					</div>
+	
+				<div class="row title">
+					<span>회원번호</span>
+				</div>
+				<div class="row">
+					<span class="form-input form-input-underline">${memberDto.memberNo}</span>
+				</div>
+				
+				<div class="row title">
+				<span>아이디</span>
+				</div>
+				<div class="row">
+					<span class="form-input form-input-underline">${memberDto.memberId}</span>
+				</div>
+				
+				<div class="row title">
+				<span >이름</span>
+				</div>
+				<div class="row">
+					<span class="form-input form-input-underline">${memberDto.memberName}</span>
+				</div>
+				
+				<div class="row title">
+				<span>생년월일</span>
+				</div>
+				<div class="row">
+					<span class="form-input form-input-underline">${memberDto.memberBirth}</span>
+				</div>
+				
+				<div class="row title">
+				<span>이메일</span>
+				</div>
+				<div class="row">
+					<span class="form-input form-input-underline">${memberDto.memberEmail}</span>
+				</div>
+				
+				<div class="row title">
+				<span>연락처</span>
+				</div>
+				<div class="row">
+					<span class="form-input form-input-underline">${memberDto.memberPhone}</span>
+				</div>
+				
+				<div class="row title">
+				<span>가입입</span>
+				</div>
+				<div class="row">
+					<span class="form-input form-input-underline">${memberDto.memberJoin}</span>
+				</div>
+				
 	
 	<!-- 이용 가능한 메뉴 구성 -->
 	<div class="row">
@@ -50,36 +109,11 @@
 		<a href="${pageContext.request.contextPath}" class="link-btn confirm-link" >메인으로</a>
 		
 	</div>
-	
+		
+		
+		
 	<jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
-<!-- 	<div class="row text-left"> -->
-<!-- 		<h4>내가 작성한 게시글</h4> -->
-<!-- 	</div> -->
-<!-- 	<div class="row text-left"> -->
-<!-- 		<ul class="my-board-list"> -->
-<%-- 			<c:forEach var="boardListDto" items="${myBoardList}"> --%>
-<!-- 			<li> -->
-<%-- 				<a href="${pageContext.request.contextPath}/board/boardDetail.jsp?boardNo=${boardListDto.boardNo}"> --%>
-<%-- 					${boardListDto.boardTitle} --%>
-<!-- 				</a> -->
-<!-- 			</li> -->
-<%-- 			</c:forEach> --%>
-<!-- 		</ul> -->
 	</div>
 	
-<!-- 	<div class="row text-left"> -->
-<!-- 		<h4>내가 좋아요한 게시글</h4> -->
-<!-- 	</div> -->
-<!-- 	<div class="row text-left"> -->
-<!-- 		<ul class="my-board-list"> -->
-<%-- 			<c:forEach var="boardListDto" items="${myLikeList}"> --%>
-<!-- 			<li> -->
-<%-- 				<a href="${pageContext.request.contextPath}/board/boardDetail.jsp?boardNo=${boardListDto.boardNo}"> --%>
-<%-- 					${boardListDto.boardTitle} --%>
-<!-- 				</a> -->
-<!-- 			</li> -->
-<%-- 			</c:forEach> --%>
-<!-- 		</ul> -->
-<!-- 	</div> -->
 </div>
 

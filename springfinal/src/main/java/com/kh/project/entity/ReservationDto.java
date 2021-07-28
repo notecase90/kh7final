@@ -1,4 +1,4 @@
-package com.kh.project.reservationentity;
+package com.kh.project.entity;
 
 import java.sql.Date;
 
@@ -7,17 +7,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data @AllArgsConstructor @NoArgsConstructor @Builder
+@NoArgsConstructor @AllArgsConstructor
+@Data @Builder
 public class ReservationDto {
 	private int reservationNo;
 	private int reservationMemberNo;
 	private int reservationRoomNo;
-	private String reservationState;	
+	private String reservationState;
 	private Date reservationDate;
-	private Date reservationCheckIn;
-	private Date reservationCheckOut;
-	private boolean checkPayment;
-
-	
-	
+	private Date reservationCheckin;
+	private Date reservationCheckout;
+	private int reservationGuest;
+	private int reservationTotalAmount;
 }

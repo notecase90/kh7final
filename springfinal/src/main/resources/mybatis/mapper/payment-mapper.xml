@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="payment">
+	<insert id="ready" parameterType="PaymentDto">
+		insert into PAYMENT values (
+		#{paymentReservationNo},
+		#{paymentMemberNo},
+		#{paymentTid},
+		'준비',
+		sysdate
+		)
+	</insert>
+	
+	<update id="approve" parameterType="int">
+	update PAYMENT
+	set
+	payment_status ='승인'
+	where
+	payment_reservation_no = #{paymentReservationNo}
+	</update>
+	
+	<select id="detail" parameterType="int" resultType="PaymentVO">
+		select * from paymentDetail where payment_reservation_no = #{paymentNo}
+	</select>
+	
+	<update id="cancel" parameterType="int">
+		update PAYMENT set payment_status ='취소' where payment_reservation_no = #{paymentNo}
+	</update>
+	
+	<select id="get" parameterType="int" resultType="PaymentDto">
+		select * from payment where payment_reservation_no = #{paymentNo}
+	</select>
+	
+	<select id="list" parameterType="int" resultType="PaymentVO">
+		select * from paymentDetail where member_no = #{memberNo}
+	</select>
+</mapper>

@@ -55,8 +55,8 @@ CREATE TABLE room (
 	room_intro	varchar2(3000)	NOT NULL,
 	room_add	varchar2(300)	NOT NULL,
 	room_capa	number(10)	NOT NULL,
-	room_checkIn	varchar2(30)	NOT NULL, -- 체크인
-	room_checkOut	varchar2(30)	NOT NULL, -- 체크아웃
+	room_in	varchar2(30)	NOT NULL, -- 체크인
+	room_out	varchar2(30)	NOT NULL, -- 체크아웃
     room_insert_complete number(10) not null --insert완료여부
 );
 
@@ -79,3 +79,73 @@ insert into facilityOption values (option_seq.nextval,'주차장', 'fa fa-car fa
 insert into facilityOption values (option_seq.nextval,'욕조', 'fas fa-bath fa-3x');
 insert into facilityOption values (option_seq.nextval,'주방시설', 'fas fa-utensils fa-3x');
 commit;
+
+);
+
+
+예약 테이블
+DROP TABLE "RESERVATION" CASCADE CONSTRAINTS;
+CREATE TABLE reservation ( 
+	reservation_no	number(19)	primary key,
+	reservation_member_no references member(member_no) on delete cascade,
+	reservation_room_no	 references room(room_no) on delete cascade,
+	reservation_state	varchar2(50)	NOT NULL,
+	reservation_date	date default sysdate NOT NULL,
+	reservation_checkIn	date	NOT NULL,
+	reservation_checkOut	 date	NOT NULL,
+    reservation_guest number(19) not null,
+    reservation_total_amount number(19) not null
+);
+create sequence reservation_seq;
+
+--결제테이블
+create TABLE payment (
+    payment_reservation_no number(19) primary key,
+    payment_member_no references member(member_no) on delete set null,
+    payment_tid varchar2(4000) not null,
+    payment_status varchar2(30) not null,
+    payment_time date default sysdate not null
+);
+
+--예약+숙소정보 조회용 view  (reservationVO)
+create or replace view reservationDetail as
+select
+rs.reservation_no,
+rs.reservation_member_no,
+rs.reservation_date,
+rs.reservation_checkin,
+rs.reservation_checkout,
+rs.reservation_guest,
+rs.reservation_total_amount,
+r.room_host_no,
+r.room_name,
+r.room_intro,
+r.room_add,
+r.room_capa,
+r.room_in,
+r.room_out
+from
+RESERVATION RS
+left outer join Room R on r.room_no = rs.reservation_room_no;
+
+--결제+위의 view 정보 조회용 view (paymentVO)
+create or replace view paymentDetail as
+select
+p.payment_reservation_no,
+p.payment_status,
+p.payment_time,
+m.member_no,
+m.member_id,
+m.member_name,
+r.reservation_checkin,
+r.reservation_checkout,
+r.reservation_guest,
+r.reservation_total_amount,
+rd.room_name,
+rd.room_host_no
+from
+PAYMENT P 
+left outer join MEMBER M on P.payment_member_no = M.member_no
+left outer join RESERVATION R on R.reservation_no = P.payment_reservation_no
+left outer join RESERVATIONDETAIL RD on rd.reservation_no = p.payment_reservation_no
+where payment_status = '승인' or payment_status = '취소';

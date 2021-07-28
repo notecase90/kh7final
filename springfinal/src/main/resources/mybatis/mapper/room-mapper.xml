@@ -137,7 +137,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 디테일페이지에서 숙소가격 불러오기 -->
 	<select id="roomPriceDetail" resultType="roomPriceDto" parameterType="int">
-		select * from room_price where room_origin = #{roomOrigin}
+		select * from ROOMPRICE where room_origin = #{roomOrigin}
 	</select>
 
 	<!-- 파일업로드 -->

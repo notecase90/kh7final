@@ -1,6 +1,7 @@
 package com.kh.project.controller;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.project.entity.EmailDto;
+import com.kh.project.entity.MemberDto;
 import com.kh.project.hostentity.HostDto;
 import com.kh.project.repository.HostDao;
+import com.kh.project.repository.MemberDao;
 import com.kh.project.service.EmailService;
 
 
@@ -67,9 +70,17 @@ public class EmailController {
 	}
 	
 	@PostMapping("/certSuccess")
-	public String certSuccess(@ModelAttribute HostDto hostDto) {
+	public String certSuccess(@ModelAttribute HostDto hostDto, HttpSession session) {
 		hostDao.registHost(hostDto);
-		return "redirect:/";
+		HostDto find = hostDao.login(hostDto);
+		if(find != null) {
+			session.setAttribute("hostNo", find.getHostNo());
+			return "redirect:/host/host-home"; 
+		}
+		else {
+			return "redirect:/email/certEmail";
+		}
+		
 	}
 	///////////////////////////////////////////////
 	//회원가입 인증

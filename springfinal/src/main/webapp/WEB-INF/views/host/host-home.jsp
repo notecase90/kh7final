@@ -58,3 +58,7 @@ $(function(){
 	});
 });
 </script>
+
+<div class="container footer-img">
+			호스트 번호 : ${hostNo}
+</div>

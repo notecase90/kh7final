@@ -8,6 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 <c:set var="isLogin" value="${not empty memberNo}"></c:set>
+<c:set var="isHost" value="${not empty hostNo}"></c:set>
 
 <!DOCTYPE html>
 <html>
@@ -50,12 +51,17 @@
 				<div class="btn-toolbar pull-right">
 				  <div class="btn-group">
 				  <c:choose>
-				  	<c:when test="${not empty hostMemberNo}">
-				  		<a class="btn btn-large text-white" href="${root}/host/host-home">호스트 모드 전환</a>
+				  	<c:when test="${!isLogin}"> <!-- 비회원일때 -->
+				  		<a class="btn btn-large text-white" href="${root}/member/regist">호스트 모드 생성</a>
 				  	</c:when>
-				  	<c:otherwise>
+					<c:otherwise>
+					<c:if test="${isHost}">
+						<a class="btn btn-large text-white" href="${root}/host/host-home">호스트 모드 전환</a>
+					</c:if>
+				  	<c:if test="${!isHost}">
 				  		<a class="btn btn-large text-white" href="${root}/email/certEmail">호스트 모드 생성</a>
-				  	</c:otherwise>
+				  	</c:if>			
+					</c:otherwise>
 				  </c:choose>
 				    <a class="btn text-white" href="#"><i class="fa fa-user" aria-hidden="true"></i></a>
 				     <a class="btn dropdown-toggle text-white" data-toggle="dropdown" href="#">

@@ -11,4 +11,5 @@ public class FacilityVO {
 	private int facilityRoomNo;
 	private int facilityOptionNo;
 	private String optionName;
+	private String optionIcon;
 }

@@ -1,0 +1,156 @@
+@charset "UTF-8";
+
+	/*
+		숙소타입 css
+	*/
+	
+	*{
+            position: relative;
+        }
+        body{
+            margin: 0px;
+        }
+        #first{
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+        .s{         
+            height: 100%;
+            display: inline-block;
+        }
+        #left{
+            background-color: darkblue;
+            justify-content: center ;
+            height: 100%;
+            width: 50%;
+        }
+        #right{
+            width: 50%;
+        }
+        
+         .comment{
+            font-size: 48px;
+            align-items: center;
+            font-weight: 600;
+            color: white;
+            margin-top: 220px;
+            word-break: keep-all;
+        }
+        .comment-box{
+            margin: auto;
+            max-width: 75% ;
+            text-align: center;
+            width: 100%;
+            display: flex;    
+        }
+        .logo{
+            display: inline;
+            z-index: 1 ;
+            top: 45px ;
+            left: 50px ;
+            box-sizing: border-box; 
+            position: fixed;
+        } 
+        
+        /*
+        	하단
+        */
+        .footer{
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           margin-top: 150px;
+       }
+       #footer-back-btn{
+           margin-left: 48px;
+       }
+       #footer-next-btn{
+           margin-right: 48px;
+       }
+       #back-btn{
+           cursor: pointer;
+           border-color: black;
+           touch-action: manipulation;
+           border-width: 1px;
+           padding: 10px 10px;
+           margin-left: -10px;
+           text-decoration: underline;
+           background: transparent;
+       }
+       #next-btn:disabled{
+           cursor: not-allowed;
+           opacity: 1;
+           border: none;
+           background: black;
+            background: #DDDDDD;
+           color: white;
+       }
+       #next-btn{
+           text-decoration: none;
+           width: auto;
+           padding-top: 14px;
+           padding-bottom: 14px;
+           padding-left: 24px;
+           padding-right: 24px;
+           background: black;
+           color: white;
+       }
+       .footer-btn{
+            position: relative;
+            line-height: 20px;
+           font-weight: 600;
+           border-radius: 8px;
+           outline: none;
+           font-size: 16px;
+           display: inline-block;
+           text-align: center;
+           border: none;
+       }
+       
+       /*
+       		-- basic.css 끝
+       */
+
+	.roomType{
+			display: flex;
+		    flex-direction: column;
+		    align-items: center;
+		    margin-top: 180px;
+		    font-size: 25px;
+		}
+	#fa-1{
+				margin-left: 5px;
+		    	margin-right: 7px;
+			}	
+		
+	 @media screen and (max-width: 744px){
+    		#first{
+    			flex-direction: column;
+    		}
+			#left{
+            background-color: darkblue;
+            height: 50%;
+            width: 100%;
+           }
+           #right{
+             width: 100%;
+    		height: auto;
+   			 margin-top: 0;         
+           }
+           .roomType{
+           	margin-top: 20px;
+           }
+           .footer{
+               margin-top: 13px;
+           }
+           .comment-box{
+               margin: 0px;
+           }
+           .comment{
+                margin-top: 220px;
+                word-break: keep-all;
+                font-size: 26px;
+                margin-left: 30px;
+           }
+      }

@@ -6,12 +6,12 @@ insert into alltype values(alltype_seq.nextval,'빌라','fa fa-home fa-3x');
 insert into alltype values(alltype_seq.nextval,'아파트','fa fa-building fa-3x');
 commit;
 
-/*편의시설 이름 join 하는 view*/
+/*편의시설 이름 join 하는 view + 아이콘 추가*/
 create or replace view Room_facility as 
 select 
 f.facility_room_no,
 f.facility_option_no,
-FO.option_name
+FO.option_name, FO.option_icon
 from facility F left outer join facilityOption FO on f.facility_option_no = fo.option_no;
 
 /*숙소종류 이름,아이콘 join 하는 view*/
@@ -60,6 +60,25 @@ CREATE TABLE room (
     room_insert_complete number(10) not null --insert완료여부
 );
 
+/편의시설 테이블 아이콘 컬럼 추가*/
+drop table facilityoption;
+drop sequence option_seq;
+create sequence option_seq;
+-- 편의시설 옵션
+CREATE TABLE facilityoption (
+	option_no	number(19) primary key,
+	option_name	varchar2(30)	not NULL,
+    option_icon	varchar2(4000)	not NULL
+);
+
+insert into facilityOption values (option_seq.nextval,'수영장', 'fa fa-swimming-pool fa-3x');
+insert into facilityOption values (option_seq.nextval,'TV', 'fa fa-tv fa-3x');
+insert into facilityOption values (option_seq.nextval,'와이파이', 'fa fa-wifi fa-3x');
+insert into facilityOption values (option_seq.nextval,'에어컨', 'fa fa-snowflake fa-3x');
+insert into facilityOption values (option_seq.nextval,'주차장', 'fa fa-car fa-3x');
+insert into facilityOption values (option_seq.nextval,'욕조', 'fas fa-bath fa-3x');
+insert into facilityOption values (option_seq.nextval,'주방시설', 'fas fa-utensils fa-3x');
+commit;
 
 예약 테이블
 DROP TABLE "RESERVATION" CASCADE CONSTRAINTS;
@@ -112,6 +131,7 @@ select
 p.payment_reservation_no,
 p.payment_status,
 p.payment_time,
+m.member_no,
 m.member_id,
 m.member_name,
 r.reservation_checkin,
@@ -125,4 +145,4 @@ PAYMENT P
 left outer join MEMBER M on P.payment_member_no = M.member_no
 left outer join RESERVATION R on R.reservation_no = P.payment_reservation_no
 left outer join RESERVATIONDETAIL RD on rd.reservation_no = p.payment_reservation_no
-where payment_status = '승인';
+where payment_status = '승인' or payment_status = '취소';

@@ -10,8 +10,18 @@
 <link rel="stylesheet" type="text/css" href="${root}/resources/css/common.css">
 	<link rel="stylesheet" type="text/css" href="${root}/resources/css/menu.css">
 	<link rel="stylesheet" type="text/css" href="${root}/resources/css/layout.css">
+	<script>
+$(function(){
+	$("#delete").on("click",function(e){
+		var choice= window.confirm("정말 탈퇴하시겠습니까??");
+			if(!choice){
+			//return false; //이렇게만 하면 코드가 마무리되서 다른 코드를 입력하지 못한다
+				e.preventDefault(); //return false 와 같은 기능이지만 이후에 추가 코드 작성이 가능
+			}
+		});
+	});
 
-
+	</script>
 
 	
 	
@@ -104,7 +114,7 @@ text-align: left;
 	<div class="row">
 		<a href="change_pw" class="link-btn">비밀번호 변경</a>
 		<a href="change_info" class="link-btn">개인정보 변경</a>
-		<a href="exit" class="link-btn confirm-link" data-message="정말 탈퇴하시겠습니까?">회원 탈퇴</a>
+		<a href="exit" class="link-btn confirm-link" id="delete">회원 탈퇴</a>
 		<br>
 		<a href="${pageContext.request.contextPath}" class="link-btn confirm-link" >메인으로</a>
 		

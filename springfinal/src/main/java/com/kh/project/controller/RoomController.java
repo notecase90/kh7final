@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.project.entity.FacilityDto;
 import com.kh.project.entity.InFacilityDto;
+import com.kh.project.entity.ReservationDto;
 import com.kh.project.entity.RoomDto;
 import com.kh.project.entity.RoomPriceDto;
 import com.kh.project.entity.RoomTypeDto;
+import com.kh.project.repository.ReservationDao;
 import com.kh.project.repository.RoomDao;
 
 @Controller
@@ -160,6 +162,24 @@ public class RoomController {
 	@GetMapping("/edit_success")
 	public String editSuccess() {
 		return "room/editSuccess";
+	}
+	
+	@Autowired
+	private ReservationDao reservationDao;
+	
+	@PostMapping("/detail")
+	public String reservation(
+			@ModelAttribute ReservationDto reservationDto,
+			HttpSession session
+			) {
+		int memberNo = (int)session.getAttribute("memberNo");
+		reservationDto.setReservationMemberNo(memberNo);
+		
+		int reservationNo = reservationDao.sequence();
+		reservationDto.setReservationNo(reservationNo);
+		
+		reservationDao.insert(reservationDto);
+		return "redirect:/reservation/reservation?reservationNo="+reservationDto.getReservationNo();
 	}
 	
 }

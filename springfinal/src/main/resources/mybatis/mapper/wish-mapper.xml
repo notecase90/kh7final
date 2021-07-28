@@ -8,13 +8,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<delete id="delete" parameterType="WishDto">
-		delete wish where member_no=#{memberNo} and room_no=#{roomNo}
+		delete wish where wish_member_no=#{memberNo} and wish_room_no=#{roomNo}
 	</delete>
 	
 	<select id="check" parameterType="WishDto" resultType="WishDto">
-		select * from wish where member_no=#{memberNo} and room_no=#{roomNo}
+		select * from wish where wish_member_no=#{memberNo} and wish_room_no=#{roomNo}
 	</select>
 	<select id="mywish" parameterType="int" resultType="WishVo">
-		select * from wish_view where member_no=#{memberNo}
+		select * from wish_view where wish_member_no=#{memberNo}
 	</select>
 </mapper>

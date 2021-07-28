@@ -22,7 +22,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<package name="com.kh.project.entity"/>
 		<package name="com.kh.project.hostentity"/>
 		<package name="com.kh.project.roomentity"/>
-		<package name="com.kh.project.reservationentity"/>
 	</typeAliases>	
 	
 </configuration>

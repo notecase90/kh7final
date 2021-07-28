@@ -6,12 +6,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="reservation">
 	<insert id="insert" parameterType="ReservationDto">
-		insert into reservation values(reservation_seq.nextval,)
+		insert into RESERVATION values(
+		#{reservationNo},
+		#{reservationMemberNo},
+		#{reservationRoomNo},
+		'대기',
+		sysdate,
+		#{reservationCheckin},
+		#{reservationCheckout},
+		#{reservationGuest},
+		#{reservationTotalAmount}
+		)
 	</insert>
 	
-	<select id="list" resultType="ReservationDto">
-		select*from reservation
+	<select id="get" parameterType="int" resultType="ReservationVO">
+		select * from reservationDetail 
+		where 
+		reservation_no = #{reservationNo}
 	</select>
+	
+	<select id="sequence" resultType="int">
+		select reservation_seq.nextval from dual 
+	</select>
+	
+	<update id="reservation" parameterType="int">
+		update RESERVATION
+		set
+		reservation_state = '예약중'
+		where
+		reservation_no = #{reservationNo}
+	</update>
 </mapper>
 
 

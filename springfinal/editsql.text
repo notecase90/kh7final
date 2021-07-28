@@ -58,6 +58,7 @@ CREATE TABLE room (
 	room_checkIn	varchar2(30)	NOT NULL, -- 체크인
 	room_checkOut	varchar2(30)	NOT NULL, -- 체크아웃
     room_insert_complete number(10) not null --insert완료여부
+
 );
 
 
@@ -113,6 +114,7 @@ select
 p.payment_reservation_no,
 p.payment_status,
 p.payment_time,
+m.member_no,
 m.member_id,
 m.member_name,
 r.reservation_checkin,
@@ -126,4 +128,4 @@ PAYMENT P
 left outer join MEMBER M on P.payment_member_no = M.member_no
 left outer join RESERVATION R on R.reservation_no = P.payment_reservation_no
 left outer join RESERVATIONDETAIL RD on rd.reservation_no = p.payment_reservation_no
-where payment_status = '승인';
+where payment_status = '승인' or payment_status = '취소';

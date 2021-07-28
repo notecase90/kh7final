@@ -22,6 +22,6 @@ public class ReservationVO {  //reservationDetail view 전용
 	private String roomIntro;
 	private String roomAdd;
 	private int roomCapa;
-	private String roomCheckin;
-	private String roomCheckout;
+	private String roomIn;
+	private String roomOut;
 }

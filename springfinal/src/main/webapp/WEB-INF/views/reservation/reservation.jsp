@@ -9,8 +9,8 @@
 	<li>숙소소개 : ${ReservationVO.roomIntro}</li>
 	<li>숙소주소 : ${ReservationVO.roomAdd}</li>
 	<li>수용인원 : ${ReservationVO.roomCapa}</li>
-	<li>숙소 체크인 : ${ReservationVO.roomCheckin}</li>
-	<li>숙소 체크아웃 : ${ReservationVO.roomCheckout}</li>
+	<li>숙소 체크인 : ${ReservationVO.roomIn}</li>
+	<li>숙소 체크아웃 : ${ReservationVO.roomOut}</li>
 </ul>
 <hr>
 <ul>

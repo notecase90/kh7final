@@ -86,6 +86,19 @@
             
         
     </script>
+<style>
+	.title{
+		font-size: 25px;
+		font-weight: bold;
+	}
+	.content-box{
+		display: flex;
+    	flex-direction: column;
+	}
+	.content{
+		padding: 5px;
+	}
+</style>
  <div>
         <!-- 체크확인 -->
         <i class="wish-btn  far fa-heart fa-3x"  data-roomNo="${roomDto.roomNo}"></i>
@@ -94,22 +107,38 @@
         <i class="nowish-btn fas fa-heart fa-3x"  data-roomNo="${roomDto.roomNo}"></i>
         <!-- 꽉찬하트 -->
   </div>
-<h1>숙소종류</h1>
-	숙소종류이름 : ${roomTypeVO.allTypeName} <br>
-	숙소종류아이콘명 : ${roomTypeVO.allTypeIcon}
-	아이콘 : <i class="${roomTypeVO.allTypeIcon}"></i>
 
-<h1>숙소 상세</h1>    
 
-<ul>
-	<li>숙소명 : ${roomDto.roomName}</li>
-	<li>숙소소개 : ${roomDto.roomIntro}</li>
-	<li>주소 : ${roomDto.roomAdd}</li>
-	<li>수용인원 : ${roomDto.roomCapa}</li>
-	<li>체크인 : ${roomDto.roomIn}</li>
-	<li>체크아웃 : ${roomDto.roomOut}</li>
-	<li>숙소가 : ${roomPriceDto.dayPrice}원 (1박기준)</li>
-</ul>
+<div>
+	<div class="title">
+		${roomDto.roomName}
+	</div>
+	<div>최대 인원  ${roomDto.roomCapa}명 · 침실 ${infacilityDto.bedCount}개 · 욕실 ${infacilityDto.bathCount}개 · 발코니 ${infacilityDto.balconyCount}개</div>
+	<hr>
+	
+	<div class="content-box">
+		<div class="content">
+			<i class="${roomTypeVO.allTypeIcon}"></i>
+			${roomTypeVO.allTypeName}
+		</div>
+		<div class="content">
+			${roomDto.roomIntro}
+		</div>
+		<div class="content">
+			${roomDto.roomAdd}
+		</div>
+		<div class="content">
+			체크인 : ${roomDto.roomIn}
+		</div>
+		<div class="content">
+			체크아웃 : ${roomDto.roomOut}
+		</div>
+		<div class="content">
+			숙소가 : ${roomPriceDto.dayPrice}원 (1박기준)
+		</div>
+	</div>
+</div>
+
 
 <a href="${root}/room/delete?roomNo=${roomDto.roomNo}">삭제</a>
 <a href="${root}/room/edit?roomNo=${roomDto.roomNo}">수정</a>
@@ -118,11 +147,40 @@
 
 <hr>
 
-<h1>주변 관광 api 불러오기</h1>
+
 <style>
+body{
+	padding: 0 60px;
+}
 .thumnail {
 	width:250px;
 	height:250px;
+}
+.test{
+	display: flex;
+	flex-wrap: wrap;
+}
+.test3{
+	width: 33%;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+}
+.text{
+	padding: 5px;
+    width: fit-content;
+}
+.option-box{
+	display: flex;
+}
+.option{
+	display: flex;
+    align-items: center;
+    padding: 2px 8px;
+}
+.fa-3x{
+	padding-left: 5px;
 }
 </style>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1038b1ced14e22e17b2cd601ec877523&libraries=services"></script>
@@ -168,7 +226,7 @@ geocoder.addressSearch('${roomDto.roomAdd}', function(result, status) {
 						var contentStr = "";
 						var contentImgUrl = "";
 						$(xmlData).each(function(){					
-							contentStr += "title : "+$(this).find("title").text()+"<img class='thumnail' src="+$(this).find("firstimage").text()+"><br>";
+							contentStr += "<div class='test3'><img class='thumnail' src="+$(this).find("firstimage").text()+">"+"<div class='text'>"+$(this).find("title").text()+"</div>"+"</div>";
 						});
 						$(".test").append(contentStr);
 					}
@@ -180,23 +238,27 @@ geocoder.addressSearch('${roomDto.roomAdd}', function(result, status) {
 
 </script>
 
-<div class="test">
-</div>
+
+<div class="test"></div>
+
 
 <hr>
 
 <h1>편의시설</h1>
+<div class="option-box">
 	<c:forEach var="facilityVO" items="${facilityList}">
-		${facilityVO.optionName}
+		<div class="option">
+			${facilityVO.optionName}
+			<i class="${facilityVO.optionIcon}"></i>
+		</div>
 	</c:forEach>
-
+</div>
 <hr>
 
-<h1>내부시설</h1>
-	침실 수 : ${infacilityDto.bedCount} 개 <br>
-	욕실 수 : ${infacilityDto.bathCount} 개 <br>
-	발코니  : ${infacilityDto.balconyCount} 개
-<hr>
+<div>
+	<!-- 리뷰 -->
+</div>
+
 
 <script>
 $(function(){

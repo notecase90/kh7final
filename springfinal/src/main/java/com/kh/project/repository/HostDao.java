@@ -4,4 +4,5 @@ import com.kh.project.hostentity.HostDto;
 
 public interface HostDao {
 	void registHost(HostDto hostDto);
+	HostDto login(HostDto hostDto); 
 }

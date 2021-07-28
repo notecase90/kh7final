@@ -6,12 +6,12 @@ insert into alltype values(alltype_seq.nextval,'빌라','fa fa-home fa-3x');
 insert into alltype values(alltype_seq.nextval,'아파트','fa fa-building fa-3x');
 commit;
 
-/*편의시설 이름 join 하는 view*/
+/*편의시설 이름 join 하는 view + 아이콘 추가*/
 create or replace view Room_facility as 
 select 
 f.facility_room_no,
 f.facility_option_no,
-FO.option_name
+FO.option_name, FO.option_icon
 from facility F left outer join facilityOption FO on f.facility_option_no = fo.option_no;
 
 /*숙소종류 이름,아이콘 join 하는 view*/
@@ -55,9 +55,30 @@ CREATE TABLE room (
 	room_intro	varchar2(3000)	NOT NULL,
 	room_add	varchar2(300)	NOT NULL,
 	room_capa	number(10)	NOT NULL,
-	room_checkIn	varchar2(30)	NOT NULL, -- 체크인
-	room_checkOut	varchar2(30)	NOT NULL, -- 체크아웃
+	room_in	varchar2(30)	NOT NULL, -- 체크인
+	room_out	varchar2(30)	NOT NULL, -- 체크아웃
     room_insert_complete number(10) not null --insert완료여부
+);
+
+/편의시설 테이블 아이콘 컬럼 추가*/
+drop table facilityoption;
+drop sequence option_seq;
+create sequence option_seq;
+-- 편의시설 옵션
+CREATE TABLE facilityoption (
+	option_no	number(19) primary key,
+	option_name	varchar2(30)	not NULL,
+    option_icon	varchar2(4000)	not NULL
+);
+
+insert into facilityOption values (option_seq.nextval,'수영장', 'fa fa-swimming-pool fa-3x');
+insert into facilityOption values (option_seq.nextval,'TV', 'fa fa-tv fa-3x');
+insert into facilityOption values (option_seq.nextval,'와이파이', 'fa fa-wifi fa-3x');
+insert into facilityOption values (option_seq.nextval,'에어컨', 'fa fa-snowflake fa-3x');
+insert into facilityOption values (option_seq.nextval,'주차장', 'fa fa-car fa-3x');
+insert into facilityOption values (option_seq.nextval,'욕조', 'fas fa-bath fa-3x');
+insert into facilityOption values (option_seq.nextval,'주방시설', 'fas fa-utensils fa-3x');
+commit;
 
 );
 
@@ -79,10 +100,9 @@ create sequence reservation_seq;
 
 --결제테이블
 create TABLE payment (
-    payment_no number(19) primary key,
-    payment_tid varchar2(4000) not null,
-    payment_room_no references room(room_no) on delete set null,
+    payment_reservation_no number(19) primary key,
     payment_member_no references member(member_no) on delete set null,
+    payment_tid varchar2(4000) not null,
     payment_status varchar2(30) not null,
     payment_time date default sysdate not null
 );
@@ -102,8 +122,8 @@ r.room_name,
 r.room_intro,
 r.room_add,
 r.room_capa,
-r.room_checkin,
-r.room_checkout
+r.room_in,
+r.room_out
 from
 RESERVATION RS
 left outer join Room R on r.room_no = rs.reservation_room_no;

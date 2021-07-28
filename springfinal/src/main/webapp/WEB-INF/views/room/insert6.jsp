@@ -1,11 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<h1>ajax로 업로드 후 다운로드로 preview 보이기</h1>
+<c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 
-<input type="file" name="f" accept=".jpg,.png,.gif" multiple>
-<br>
-<img id="preview" width="200">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script> 
 $(function(){
@@ -38,4 +35,39 @@ $(function(){
 });
 </script>
 
-<button><a href="insert_success">완료</a></button>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+<link rel="stylesheet" href="${root}/resources/css/room/roomPic.css">
+
+<div id="first">
+	<div class="s" id="left">
+		<div class="logo">
+			<a href="#">
+				<i class="fab fa-airbnb fa-2x"></i>
+			</a>
+		</div>
+		<div class="comment-box">
+			<span class="comment">이제 숙소 사진을 올려주세요</span>
+		</div>
+	</div>
+	<div class="s" id="right">   
+
+			<div class="file-box">
+				<div class="filebox">
+					<label for="file-upload">업로드</label>
+					<input type="file"id="file-upload"name="f" accept=".jpg,.png,.gif" multiple>
+				</div>  
+				<div>
+					<img id="preview">
+				</div>  
+			</div>    
+				<div class="footer">
+					<div id="footer-back-btn">
+			                <button type="button" class="footer-btn"id="back-btn"onclick="history.back()">뒤로</button>
+					</div>
+					<div id="footer-next-btn">
+						<button type="submit" class="footer-btn"id="next-btn"><a href="insert_success" id="a-next">다음</a></button>
+					</div>             
+				</div>
+
+	</div>
+</div>

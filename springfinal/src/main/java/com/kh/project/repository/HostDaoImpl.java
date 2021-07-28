@@ -17,4 +17,9 @@ public class HostDaoImpl implements HostDao {
 		sqlSession.insert("host.regist", hostDto);
 	}
 
+	@Override
+	public HostDto login(HostDto hostDto) {
+		return sqlSession.selectOne("host.login", hostDto);
+	}
+
 }

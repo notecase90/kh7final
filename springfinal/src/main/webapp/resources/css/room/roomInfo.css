@@ -1,0 +1,245 @@
+@charset "UTF-8";
+
+		/*
+			숙소정보 css
+		*/
+		
+		*{
+            position: relative;
+        }
+        body{
+            margin: 0px;
+        }
+        #first{
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+        .s{         
+            height: 100%;
+            display: inline-block;
+        }
+        #left{
+            background-color: darkblue;
+            justify-content: center ;
+            height: 100%;
+            width: 50%;
+        }
+        #right{
+            width: 100%;
+        }
+        
+         .comment{
+            font-size: 48px;
+            align-items: center;
+            font-weight: 600;
+            color: white;
+            margin-top: 220px;
+            word-break: keep-all;
+        }
+        .comment-box{
+            margin: auto;
+            max-width: 75% ;
+            text-align: center;
+            width: 100%;
+            display: flex;    
+        }
+        .logo{
+            display: inline;
+            z-index: 1 ;
+            top: 45px ;
+            left: 50px ;
+            box-sizing: border-box; 
+            position: fixed;
+        } 
+        
+        /*
+        	하단
+        */
+        .footer{
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           margin-top: 150px;
+       }
+       #footer-back-btn{
+           margin-left: 48px;
+       }
+       #footer-next-btn{
+           margin-right: 48px;
+       }
+       #back-btn{
+           cursor: pointer;
+           border-color: black;
+           touch-action: manipulation;
+           border-width: 1px;
+           padding: 10px 10px;
+           margin-left: -10px;
+           text-decoration: underline;
+           background: transparent;
+       }
+       #next-btn:disabled{
+           cursor: not-allowed;
+           opacity: 1;
+           border: none;
+           background: black;
+            background: #DDDDDD;
+           color: white;
+       }
+       #next-btn{
+           text-decoration: none;
+           width: auto;
+           padding-top: 14px;
+           padding-bottom: 14px;
+           padding-left: 24px;
+           padding-right: 24px;
+           background: black;
+           color: white;
+       }
+       .footer-btn{
+            position: relative;
+            line-height: 20px;
+           font-weight: 600;
+           border-radius: 8px;
+           outline: none;
+           font-size: 16px;
+           display: inline-block;
+           text-align: center;
+           border: none;
+       }
+       
+       /*
+       		-- basic.css 끝
+       */
+       
+	#left{
+		width: 100%;
+	}
+	
+	.room-info{
+			width: 50%;
+	        border: medium none;
+	        padding: 10px;
+	        margin: 8px;
+	        font-size: 13px;
+	        font-weight: 600;            
+	        box-sizing: border-box;
+	        text-align: center;
+	        outline-style: auto;
+		}
+	.btn-box{
+		 display: inline-flex;
+         align-items: center;
+         align-content: center;
+         flex-wrap: wrap;
+         justify-content: center;
+         margin-top: 10px;
+	}
+	.footer{
+		margin-top: 90px;
+	}
+	#sample5_address{
+		
+	}
+	#like-back-btn{
+		border: none;
+		cursor: pointer;
+           padding: 10px 10px;
+           margin-left: -5px;
+           text-decoration: underline;
+           background: transparent;
+           font-weight: bold;
+	}
+	#test{
+		width: 12%;
+	    border: medium none;
+	    padding: 10px;
+	    margin: 8px;
+	    font-size: 13px;
+	    font-weight: 600;
+	    box-sizing: border-box;
+	    text-align: center;
+	    outline-style: auto;
+	}
+	#text-2{
+           font-size: 13px;
+       }
+    .time-box{
+    	margin-top: 10px;
+    }
+    .map-box{
+    	text-align: center;
+    	display: contents;
+    }
+    #map{
+    	width:100%;
+    	height:260px;
+    	margin-left:2px;
+    	margin-top:2px;
+    	margin-bottom:5px;
+    	display:flex
+    }
+    #test-box{
+    	display: flex;
+    }
+    #test-margin{
+    	margin-top: 30px;
+    }
+    /*
+    	반응형
+    */
+
+    
+    @media screen and (max-width: 744px){
+    		#first{
+    			flex-direction: column;
+    		}
+           #left{
+            background-color: darkblue;
+            height: 50%;
+            width: 100%;
+           }
+           #right{
+               width: 100%;      
+               margin-top: 0;
+               height: auto; 
+           }      
+           .room-info{
+           		margin: 4px;
+           		padding: 8px;
+           }
+           .footer{
+               margin-top: 10px;
+           }
+           .comment-box{
+               margin: 0px;
+           }
+           .comment{
+                margin-top: 220px;
+                word-break: keep-all;
+                font-size: 26px;
+                margin-left: 30px;
+           }
+           #test-box{
+           	display: flex;
+           }
+           #map{
+           		width:150px;
+		    	height:150px;
+		    	margin-left:2px;
+		    	margin-top:2px;
+		    	margin-bottom:3px;
+           }
+           #test{
+           		width: 10%;
+           		margin: 3px;
+    			padding: 8px;
+           }
+           .time-box {
+			    margin-top: 5px;
+			}
+			#test-margin{
+				margin-top: 7px;
+			}
+          
+       }

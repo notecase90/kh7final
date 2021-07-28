@@ -59,3 +59,23 @@ CREATE TABLE room (
 	room_checkOut	varchar2(30)	NOT NULL, -- 체크아웃
     room_insert_complete number(10) not null --insert완료여부
 );
+
+/편의시설 테이블 아이콘 컬럼 추가*/
+drop table facilityoption;
+drop sequence option_seq;
+create sequence option_seq;
+-- 편의시설 옵션
+CREATE TABLE facilityoption (
+	option_no	number(19) primary key,
+	option_name	varchar2(30)	not NULL,
+    option_icon	varchar2(4000)	not NULL
+);
+
+insert into facilityOption values (option_seq.nextval,'수영장', 'fa fa-swimming-pool fa-3x');
+insert into facilityOption values (option_seq.nextval,'TV', 'fa fa-tv fa-3x');
+insert into facilityOption values (option_seq.nextval,'와이파이', 'fa fa-wifi fa-3x');
+insert into facilityOption values (option_seq.nextval,'에어컨', 'fa fa-snowflake fa-3x');
+insert into facilityOption values (option_seq.nextval,'주차장', 'fa fa-car fa-3x');
+insert into facilityOption values (option_seq.nextval,'욕조', 'fas fa-bath fa-3x');
+insert into facilityOption values (option_seq.nextval,'주방시설', 'fas fa-utensils fa-3x');
+commit;

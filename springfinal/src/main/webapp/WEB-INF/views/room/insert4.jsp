@@ -20,7 +20,7 @@ $(function(){
 		success:function(resp){
 			for(var i=0; i<resp.length; i++) {
 				$(".roomType").append(
-						"<div><label for='fa-1'>"+resp[i].allTypeName+"</label><input type='radio' id='fa-1' name='allTypeNo' value="+resp[i].allTypeNo+"><i class='"+resp[i].allTypeIcon+"'></i><br></div>"
+						"<div><label for='fa-1'>"+resp[i].allTypeName+"</label> <input type='radio' id='fa-1' name='allTypeNo' value="+resp[i].allTypeNo+"> <i class='"+resp[i].allTypeIcon+"'></i><br></div>"
 						);
 			}
 		}
@@ -30,13 +30,14 @@ $(function(){
 	
 })
 </script>
-<link rel="stylesheet" href="${root}/resources/css/basic.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+<link rel="stylesheet" href="${root}/resources/css/room/roomType.css">
 
 <div id="first">
         <div class="s" id="left">
         	<div class="logo">
                 <a href="#">
-                    <img src="http://placehold.it/50x50?text=logo">
+                    <i class="fab fa-airbnb fa-2x"></i>
                 </a>
             </div>
             <div class="comment-box">
@@ -44,10 +45,10 @@ $(function(){
             </div>   
         </div>
         <div class="s" id="right">
-            <form class="roomType" action="insert4" method="post">
-				
-			</form>   
-			<div class="footer">
+            <form action="insert4" method="post">
+	            <div class="roomType">
+	            </div>
+				<div class="footer">
 	                <div id="footer-back-btn">
 	                    <button type="button" class="footer-btn"id="back-btn"onclick="history.back()">뒤로</button>
 	                </div>
@@ -55,8 +56,6 @@ $(function(){
 	                    <button type="submit" class="footer-btn"id="next-btn">다음</button>
 	                </div>             
            		</div>
+			</form>   			
         </div>
 </div>
-
-
-

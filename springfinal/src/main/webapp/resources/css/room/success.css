@@ -1,0 +1,160 @@
+@charset "UTF-8";
+
+ 		*{
+            position: relative;
+        }
+        body{
+            margin: 0px;
+        }
+        #first{
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+        .s{         
+            height: 100%;
+            display: inline-block;
+        }
+        #left{
+            width: 50%;
+            height: 100%;
+        }
+        #right{
+            width: 50%;
+            background-color: black;
+            word-break: keep-all;
+            height: 100%;
+        }
+        .all-box{
+        	width: 100%;
+		    display: flex;
+		    flex-direction: column;
+		    align-items: center;
+		    margin-top: 88px;
+		    margin-bottom: 82px;
+        }
+         .comment{
+            font-size: 48px;
+            line-height: 48px;
+            word-break: keep-all;
+        }
+        .comment-box{
+            margin: auto;
+            text-align: center;
+
+            display: flex;    
+            color: white;
+        }
+        .span-box{
+        	margin: auto;
+            max-width: 75% ;
+            text-align: center;
+            width: 100%;
+            display: flex;    
+            color: white;
+        }        
+        .logo{
+            display: inline;
+            z-index: 1 ;
+            top: 45px ;
+            left: 50px ;
+            box-sizing: border-box; 
+            position: fixed;
+        }        
+        
+        /*
+        	하단
+        */
+        .footer{
+           display: flex;
+           justify-content: flex-end;
+           align-items: center;
+           margin-top: 195px;
+       }
+       #footer-next-btn{
+           margin-right: 48px;
+       }
+       #next-btn{
+           text-decoration: none;
+           width: auto;
+           padding-top: 14px;
+           padding-bottom: 14px;
+           padding-left: 24px;
+           padding-right: 24px;
+           background: #db0b64;
+           color: white;
+       }
+       .footer-btn{
+            position: relative;
+            line-height: 20px;
+           font-weight: 600;
+           border-radius: 8px;
+           outline: none;
+           font-size: 16px;
+           display: inline-block;
+           text-align: center;
+           border: none;
+       }
+      /*
+      	상단 나가기 버튼
+      */ 
+       .host-box{
+       		margin-top: 30px;
+		    margin-right: 25px;
+		    height: 40px;
+		    display: flex;
+		    justify-content: flex-end;
+       }
+       #host-btn{
+           cursor: pointer;
+           padding: 10px 10px;
+           border: medium none #222222;
+           background-color: #222222;
+           border-radius: 32px;
+       }
+       #host-btn-a{
+       		text-align: center;
+       		color: white;
+       		font-size: 14px;
+       		line-height: 16px;
+       		font-weight: 550;
+       }       
+
+	/*
+    	반응형
+    */
+  
+    @media screen and (max-width: 744px){
+    		#first{
+    			flex-direction: column;
+    		}	         
+           #left{
+            width: 100%;
+            height: 50%;
+           }
+           #right{
+               width: 100%;
+               margin-top: 0;       
+               height: 50%;
+           }      
+           .footer{
+               margin-top: 30px;
+           }
+           .comment-box{
+               margin: 0px;
+               font-size: 36px;
+                   width: auto;
+           }
+           .comment{
+                word-break: keep-all;
+                font-size: 35px;
+           }
+          .all-box{
+          		margin-top: 0;
+          		margin-bottom: 0;
+          		padding-right: 0;
+          }
+          .host-box{
+          	margin-top: 20px;
+          }
+       }  

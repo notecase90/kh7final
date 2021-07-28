@@ -6,34 +6,15 @@
 	int roomHostNo = 1;
 %>
 
-<link rel="stylesheet" href="${root}/resources/css/basic.css">
-<style>
-	.room-info{
-		width: 60%;
-            border: medium none;
-            padding: 10px;
-            margin: 12px;
-            font-size: 32px;
-            font-weight: 600;
-            line-height: 38px;
-            box-sizing: border-box;
-            text-align: center;
-            outline-style: auto;
-	}
-	.btn-box{
-		 display: inline-flex;
-         align-items: center;
-         align-content: center;
-         flex-wrap: wrap;
-         justify-content: center;
-	}
-</style>   
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+<link rel="stylesheet" href="${root}/resources/css/room/roomInfo.css">
+  
    
 <div id="first">
 	<div class="s" id="left">
-    	<div class="logo">
+    		<div class="logo">
                 <a href="#">
-                    <img src="http://placehold.it/50x50?text=logo">
+                    <i class="fab fa-airbnb fa-2x"></i>
                 </a>
             </div>
             <div class="comment-box">
@@ -41,16 +22,23 @@
             </div>
 	</div>
 	<div class="s" id="right">
-    <form action="insert" method="post">
+    <form action="insert" method="post" id="test-margin">
 		<input type="hidden" name="roomHostNo" value="<%=roomHostNo%>">
 		<div class="btn-box">
-			<input type="text" name="roomName" required placeholder="숙소명을 입력해주세요" class="room-info">
-			<input type="text" name="roomIntro" required placeholder="숙소소개를 입력해주세요" class="room-info">
-			<input type="text" id="sample5_address" name="roomAdd" placeholder="주소" class="room-info">
-	        <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
-			<input type="number" min="1" name="roomCapa" required placeholder="숙소인원" class="room-info">
-			<div>
+			<div id="test-box">
+				<input type="text" name="roomName" required placeholder="숙소명을 입력해주세요" class="room-info" autocomplete="off">
+				<input type="text" name="roomIntro" required placeholder="숙소소개를 입력해주세요" class="room-info" autocomplete="off">
+			</div>
+			<div class="map-box">
+				<input type="number" min="1"max="12" name="roomCapa" required placeholder="인원수" id="test">
+				<input type="text" id="sample5_address" name="roomAdd" placeholder="주소" class="room-info" autocomplete="off">
+	       		<input type="button" onclick="sample5_execDaumPostcode()" value="검색" id="like-back-btn">
+	        	<div id="map"></div>
+			</div>
+			<div class="time-box">
+				<label id="text-2">체크인시간</label>
 				<input type="time" name="roomIn" class="timepicker">
+				<label id="text-2">체크아웃시간</label>
 				<input type="time" name="roomOut" class="timepicker">
 			</div>
 		</div>
@@ -65,10 +53,6 @@
     </form>
 	</div>
 </div>   
-   
-    
-
-<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
 
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=85fe8068e18976f1917f5b69d1e95020&libraries=services"></script>

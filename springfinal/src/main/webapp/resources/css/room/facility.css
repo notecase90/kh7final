@@ -1,6 +1,10 @@
 @charset "UTF-8";
 
- 	*{
+	/*
+		편의시설 css
+	*/
+
+ 		*{
             position: relative;
         }
         body{
@@ -18,13 +22,13 @@
         #left{
             background-color: darkblue;
             justify-content: center ;
-            height: 608.771px;
+            height: 100%;
             width: 50%;
         }
         #right{
             width: 50%;
-        }
-        
+            height: 100%;
+        }     
          .comment{
             font-size: 48px;
             align-items: center;
@@ -48,7 +52,6 @@
             box-sizing: border-box; 
             position: fixed;
         } 
-        
         /*
         	하단
         */
@@ -56,7 +59,7 @@
            display: flex;
            justify-content: space-between;
            align-items: center;
-           margin-top: 150px;
+           margin-top: 215px;
        }
        #footer-back-btn{
            margin-left: 48px;
@@ -103,3 +106,66 @@
            text-align: center;
            border: none;
        }
+       
+       /*
+       		-- basic.css 끝
+       */
+        
+        	.icon{
+				width: 45%;
+				text-align: center;
+				margin: 10px;
+			}
+			.facility{
+				display: flex;
+		    	flex-wrap: wrap;
+			}
+			#facility-box{
+				margin-top: 20px;
+			}
+			#fa-1{
+				margin-left: 5px;
+		    	margin-right: 7px;
+			}
+             
+       
+       /*
+       		반응형
+       */
+       @media screen and (max-width: 744px){
+    		#first{
+    			flex-direction: column;
+    		}
+			#left{
+            background-color: darkblue;
+            height: 50%;
+            width: 100%;
+           }
+           #right{
+               width: 100%;
+               margin-top: 0;       
+               height: auto;
+           }
+           .facility{
+           		justify-content: center;
+           }
+           #facility-box{
+           		margin-top: 20px;
+           }
+          .icon{
+          		width: 25%;
+          		margin: 5px;
+          }
+           .footer{
+               margin-top: 25px;
+           }
+           .comment-box{
+               margin: 0px;
+           }
+           .comment{
+                margin-top: 220px;
+                word-break: keep-all;
+                font-size: 26px;
+                margin-left: 30px;
+           }
+       }     

@@ -18,5 +18,5 @@ public class MemberDto {
 	private String memberEmail;
 	private String memberPhone;
 	private Date memberJoin;
-
+	
 }

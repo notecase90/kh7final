@@ -27,6 +27,10 @@ public class RoomController {
 	private RoomDao roomDao;
 	
 	// 숙소등록
+	@GetMapping("/insert_start")
+	public String insert_start() {
+		return "room/insertStart";
+	}
 	@GetMapping("/insert")
 	public String insert() {
 		return "room/insert";
@@ -52,6 +56,7 @@ public class RoomController {
 		return "room/insert6";
 	}
 	
+
 	@PostMapping("/insert")
 	public String insert(
 			@ModelAttribute RoomDto roomDto,

@@ -22,14 +22,14 @@
 	});
 	
 </script>
-<link rel="stylesheet" href="${root}/resources/css/basic.css">
-<link rel="stylesheet" href="${root}/resources/css/price.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+<link rel="stylesheet" href="${root}/resources/css/room/price.css">
        
 <div id="first">
         <div class="s" id="left">
             <div class="logo">
                 <a href="#">
-                    <img src="http://placehold.it/50x50?text=logo">
+                    <i class="fab fa-airbnb fa-2x"></i>
                 </a>
             </div>
             <div class="comment-box">
@@ -49,14 +49,9 @@
                     <button type="button" class="footer-btn"id="back-btn"onclick="history.back()">뒤로</button>
                 </div>
                 <div id="footer-next-btn">
-                    <button type="submit" disabled="true" class="footer-btn"id="next-btn">다음</button>
+                    <button type="submit" class="footer-btn"id="next-btn">다음</button>
                 </div>             
             </div>
         </form>
-        </div>
-  
+        </div> 
     </div>
-
-
-
-

@@ -1,0 +1,183 @@
+@charset "UTF-8";
+
+	/*
+		내부시설 css
+	*/
+	
+	*{
+            position: relative;
+        }
+        body{
+            margin: 0px;
+        }
+        #first{
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+        .s{         
+            height: 100%;
+            display: inline-block;
+        }
+        #left{
+            background-color: darkblue;
+            justify-content: center ;
+            height: 100%;
+            width: 50%;
+        }
+        #right{
+            width: 50%;
+            height: 100%;
+        }      
+         .comment{
+            font-size: 48px;
+            align-items: center;
+            font-weight: 600;
+            color: white;
+            margin-top: 220px;
+            word-break: keep-all;
+        }
+        .comment-box{
+            margin: auto;
+            max-width: 75% ;
+            text-align: center;
+            width: 100%;
+            display: flex;    
+        }
+        .logo{
+            display: inline;
+            z-index: 1 ;
+            top: 45px ;
+            left: 50px ;
+            box-sizing: border-box; 
+            position: fixed;
+        } 
+        
+        /*
+        	하단
+        */
+        .footer{
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           margin-top: 137px;
+       }
+       #footer-back-btn{
+           margin-left: 48px;
+       }
+       #footer-next-btn{
+           margin-right: 48px;
+       }
+       #back-btn{
+           cursor: pointer;
+           border-color: black;
+           touch-action: manipulation;
+           border-width: 1px;
+           padding: 10px 10px;
+           margin-left: -10px;
+           text-decoration: underline;
+           background: transparent;
+       }
+       #next-btn:disabled{
+           cursor: not-allowed;
+           opacity: 1;
+           border: none;
+           background: black;
+            background: #DDDDDD;
+           color: white;
+       }
+       #next-btn{
+           text-decoration: none;
+           width: auto;
+           padding-top: 14px;
+           padding-bottom: 14px;
+           padding-left: 24px;
+           padding-right: 24px;
+           background: black;
+           color: white;
+       }
+       .footer-btn{
+            position: relative;
+            line-height: 20px;
+           font-weight: 600;
+           border-radius: 8px;
+           outline: none;
+           font-size: 16px;
+           display: inline-block;
+           text-align: center;
+           border: none;
+       }   
+
+		/*
+			-- basic.css 끝
+		*/
+		
+       .text-box{
+            display: inline-flex;
+            align-items: center;
+            align-content: center;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 200px;
+       }
+       .text{
+            width: 35%;
+            border: medium none;
+            padding: 10px;
+            margin: 12px;
+            font-size: 20px;
+            font-weight: 400;
+            box-sizing: border-box;
+            text-align: center;
+            outline-style: auto;
+       }
+       #text-3{
+            margin-right: 16px;
+            margin-left: 16px;
+       }
+       #text-2{
+            margin-right: 18px;
+       }
+       .group{
+           display: flex;
+            justify-content: space-around;
+            align-items: center;
+       }
+       .font-size{
+        font-size: 30px;
+        font-weight: 700;
+       }
+       
+       /*
+       		반응형
+       */
+       @media screen and (max-width: 744px){
+    		#first{
+    			flex-direction: column;
+    		}           
+           #left{
+            background-color: darkblue;
+            height: 50%;
+            width: 100%;
+           }
+           #right{
+               width: 100%;
+               margin-top: 0;        
+               height: auto;  
+           }
+           .text-box{
+           	margin-top: 30px;
+           }
+           .footer{
+               margin-top: 10px;
+           }
+           .comment-box{
+               margin: 0px;
+           }
+           .comment{
+                margin-top: 220px;
+                word-break: keep-all;
+                font-size: 26px;
+                margin-left: 30px;
+           }
+       }

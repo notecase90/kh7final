@@ -51,7 +51,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 한 숙소에 대한 리뷰목록 -->
 	<select id="onelist" parameterType="int" resultType="reviewDto">
-		select * from detail_view
+		select * from review_view
 		where room_no = #{RoomNo} order by review_no asc
 	</select>
 	

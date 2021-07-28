@@ -6,12 +6,12 @@ insert into alltype values(alltype_seq.nextval,'빌라','fa fa-home fa-3x');
 insert into alltype values(alltype_seq.nextval,'아파트','fa fa-building fa-3x');
 commit;
 
-/*편의시설 이름 join 하는 view*/
+/*편의시설 이름 join 하는 view + 아이콘 추가*/
 create or replace view Room_facility as 
 select 
 f.facility_room_no,
 f.facility_option_no,
-FO.option_name
+FO.option_name, FO.option_icon
 from facility F left outer join facilityOption FO on f.facility_option_no = fo.option_no;
 
 /*숙소종류 이름,아이콘 join 하는 view*/

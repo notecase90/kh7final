@@ -32,6 +32,8 @@
         }
         .list{
             width: 60%;
+            display: flex;
+    		flex-direction: column;
         }
         .map{
             background-color: burlywood;
@@ -56,9 +58,12 @@
 			</div>
 		</c:forEach>
 	</div>
+	<!-- 
 	<div>
 		<a href="insert">등록하기</a>
-	</div>
+	</div>	
+	 -->
+
 	
 	<div class="map">
 

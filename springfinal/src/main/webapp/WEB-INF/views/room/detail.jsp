@@ -282,6 +282,7 @@ $(function(){
 	});
 		            	
    $(".check.checkIn").datepicker({
+	   minDate: "+1D",
 	   onClose:function(selectedDate) {
 		   var curDate = $(".checkIn").datepicker("getDate");  // Date return
 		   curDate.setDate( curDate.getDate() + 1 );

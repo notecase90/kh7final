@@ -17,7 +17,6 @@ import com.kh.project.entity.MemberDto;
 import com.kh.project.repository.MemberDao;
 import com.kh.project.repository.WishDao;
 import com.kh.project.service.FindService;
-import com.kh.project.vo.WishVo;
 
 import lombok.extern.slf4j.Slf4j;
 

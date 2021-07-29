@@ -14,10 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.project.entity.MemberDto;
+import com.kh.project.hostentity.HostDto;
+import com.kh.project.repository.HostDao;
 import com.kh.project.repository.MemberDao;
 import com.kh.project.repository.WishDao;
 import com.kh.project.service.FindService;
-import com.kh.project.vo.WishVo;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,6 +29,7 @@ public class MemberController {
 	
 	@Autowired
 	private MemberDao memberDao;
+	private HostDao hostDao;
 	
 
 	//회원가입 
@@ -55,7 +57,7 @@ public class MemberController {
 	@PostMapping("/login")
 		public String login(@ModelAttribute MemberDto memberDto,HttpSession session) {
 		MemberDto find = memberDao.login(memberDto);
-		if(find !=null) { //성공
+		if(find !=null ) { //성공
 			session.setAttribute("memberNo", find.getMemberNo());
 			return "redirect:/";
 		}

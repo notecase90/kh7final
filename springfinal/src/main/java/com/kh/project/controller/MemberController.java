@@ -57,7 +57,7 @@ public class MemberController {
 		MemberDto find = memberDao.login(memberDto);
 		if(find !=null) { //성공
 			session.setAttribute("memberNo", find.getMemberNo());
-			return "redirect:login_success";
+			return "redirect:/";
 		}
 		
 		else { //실패

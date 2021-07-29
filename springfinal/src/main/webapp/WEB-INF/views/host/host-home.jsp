@@ -9,7 +9,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 
-<link rel="stylesheet" href="${root}/resources/css/price.css">
+<link rel="stylesheet" href="${root}/resources/css/room/price.css">
 <style>
 	#price{
 	width: 60%;
@@ -21,7 +21,7 @@
 	}
 </style>
 
-<a href="room-type">숙소 등록</a>
+<a href="${pageContext.request.contextPath}/room/insert_start">숙소 등록</a>
 <a href="room-manage">숙소 관리</a>
 <a>메세지</a>
 

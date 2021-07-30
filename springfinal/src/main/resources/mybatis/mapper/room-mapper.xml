@@ -139,6 +139,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="roomPriceDetail" resultType="roomPriceDto" parameterType="int">
 		select * from ROOMPRICE where room_origin = #{roomOrigin}
 	</select>
+	
+	<!-- 디테일페이지에서 해당숙소 리뷰 불러오기 (DB view추가해야함) -->
+	<select id="onelist" parameterType="int" resultType="reviewVo">
+		select * from review_view
+		where review_room_no = #{reviewRoomNo} 
+	</select>
+	
+	<!-- 디테일페이지에서 호스트정보 불러오기 -->
+	<select id="hostInfo" resultType="hostVo" parameterType="int">
+		select * from host_info where room_no = #{roomNo}
+	</select>
 
 	<!-- 파일업로드 -->
 	<!-- roomPicNo생성 -->

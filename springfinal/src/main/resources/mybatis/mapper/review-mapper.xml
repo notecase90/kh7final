@@ -50,8 +50,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 한 숙소에 대한 리뷰목록 -->
-	<select id="onelist" parameterType="int" resultType="reviewDto">
-		select * from review_view
+	<select id="onelist" parameterType="int" resultType="reviewVo">
+		select * from detail_view
 		where room_no = #{RoomNo} order by review_no asc
 	</select>
 	
@@ -64,7 +64,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="delete" parameterType="int">
 		delete review 
 		where 
-		review_member = #{reviewMember} 
+		review_no = #{reviewNo} 
 	</delete>
 	
 </mapper>

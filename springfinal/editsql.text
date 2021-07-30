@@ -35,6 +35,7 @@ inner join member
 inner join room
     on review_room_no = room_no;
 
+<<<<<<< HEAD
 /*가격 테이블*/
 -- 숙소가격 테이블
 CREATE TABLE roomPrice (
@@ -43,6 +44,15 @@ CREATE TABLE roomPrice (
    day_price   number(19)   not NULL
 );
 create sequence roomPrice_seq;
+=======
+/*디테일 페이지에서 필요한 리뷰 view*/
+create view review_view as
+select 
+    room_no , room_name,
+    review_no, review_room_no, review_content, review_star, review_member, review_date
+from room 
+    inner join review on room_no = review_room_no;
+>>>>>>> refs/remotes/origin/main
 
 /*detail 페이지 가격 view*/
 create view room_price as

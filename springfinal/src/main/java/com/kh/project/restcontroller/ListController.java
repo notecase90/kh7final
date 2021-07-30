@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.kh.project.entity.AllTypeDto;
 import com.kh.project.entity.WishDto;
 import com.kh.project.repository.AllTypeDao;
+import com.kh.project.repository.MessageDao;
 import com.kh.project.repository.WishDao;
+import com.kh.project.vo.MessageVo;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,6 +25,9 @@ import lombok.extern.slf4j.Slf4j;
 public class ListController {
 	@Autowired
 	private AllTypeDao allTypeDao = null;
+	
+	@Autowired
+	private MessageDao messageDao;
 	
 	@GetMapping("type-list")
 	public List<AllTypeDto> typeList() {
@@ -56,8 +61,11 @@ public class ListController {
 				   						   .roomNo(roomNo).build();
 
 		return wishDao.check(wishDto);
+	
+	}
+	@GetMapping("message-list")
+	public List<MessageVo> list(@RequestParam String chatName){
 		
-		
-		
+		return messageDao.list(chatName);
 	}
 }

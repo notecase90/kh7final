@@ -63,7 +63,7 @@ CREATE TABLE room (
 	room_intro	varchar2(3000)	NOT NULL,
 	room_add	varchar2(300)	NOT NULL,
 	room_capa	number(10)	NOT NULL,
-	room_in	varchar2(30)	NOT NULL, -- 체크인
+	room_in		varchar2(30)	NOT NULL, -- 체크인
 	room_out	varchar2(30)	NOT NULL, -- 체크아웃
     room_insert_complete number(10) not null --insert완료여부
 );
@@ -87,9 +87,6 @@ insert into facilityOption values (option_seq.nextval,'주차장', 'fa fa-car fa
 insert into facilityOption values (option_seq.nextval,'욕조', 'fas fa-bath fa-3x');
 insert into facilityOption values (option_seq.nextval,'주방시설', 'fas fa-utensils fa-3x');
 commit;
-
-);
-
 
 예약 테이블
 DROP TABLE "RESERVATION" CASCADE CONSTRAINTS;

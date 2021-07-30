@@ -21,8 +21,8 @@
 	}
 </style>
 
-<a href="room-type">숙소 등록</a>
-<a href="room-manage">숙소 관리</a>
+<a href="${root}/room/insert_start">숙소 등록</a>
+<a href="hostRoomList">숙소 관리</a>
 <a>메세지</a>
 
 <br><br>

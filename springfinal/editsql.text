@@ -35,6 +35,15 @@ inner join member
 inner join room
     on review_room_no = room_no;
 
+/*가격 테이블*/
+-- 숙소가격 테이블
+CREATE TABLE roomPrice (
+   roomPrice_no   number(19)   primary key,
+   room_origin   references room(room_no) on delete cascade,
+   day_price   number(19)   not NULL
+);
+create sequence roomPrice_seq;
+
 /*detail 페이지 가격 view*/
 create view room_price as
 select

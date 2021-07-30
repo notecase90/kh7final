@@ -36,6 +36,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			host_member_no = #{hostMemberNo}
 	</select>
 	
+	<select id="list" parameterType="int" resultType="RoomDto">
+		select * from room
+		where
+		room_host_no = #{hostNo}
+	</select>
+	
 </mapper>
 
 

@@ -1,15 +1,16 @@
 package com.kh.project.hostcontroller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.kh.project.hostentity.HostDto;
+import com.kh.project.entity.RoomDto;
 import com.kh.project.repository.HostDao;
 
 
@@ -29,8 +30,20 @@ public class HostController {
 		return "host/host-calendar";
 	}
 	
-	//예약내역 페이지
-	//
+	@Autowired
+	private HostDao hostDao;
+	
+	//숙소내역 페이지
+	@GetMapping("/hostRoomList")
+	public String hostRoomList(HttpSession session, Model model) {
+		
+		int hostNo = (int)session.getAttribute("hostNo");
+		
+		List<RoomDto> hostRoomList = hostDao.hostRoomList(hostNo);
+		model.addAttribute("HostRoomList",hostRoomList);
+		
+		return "host/hostRoomList";
+	}
 	
 	//메세지 페이지
 	

@@ -306,6 +306,9 @@ $(function(){
 	});
 });
 </script>
+<c:set var="RoomHostNo" value="${roomDto.roomHostNo}"></c:set>
+<c:set var="SessionHostNo" value="${hostNo}"></c:set>
+<c:if test="${RoomHostNo ne SessionHostNo}"></c:if>
 <div class="reservation">
 	<label>₩${roomPriceDto.dayPrice} / 박</label>
 	<form action="${root}/room/detail" method="post">

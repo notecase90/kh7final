@@ -7,13 +7,13 @@
 </p>
 
 
-<c:forEach var="reviewDto" items="${list}">
+<c:forEach var="reviewVo" items="${list}">
 	<div>
 		<ul>	
-			<li>작성회원 : ${reviewDto.reviewMember}</li>
-			<li>작성일자 : ${reviewDto.reviewDate}</li>
-			<li>작성내용 : ${reviewDto.reviewContent}</li>
-			<li>별점 : ${reviewDto.reviewStar}</li>
+			<li>작성회원 : ${reviewVo.memberName}</li>
+			<li>작성일자 : ${reviewVo.reviewDate}</li>
+			<li>작성내용 : ${reviewVo.reviewContent}</li>
+			<li>별점 : ${reviewVo.reviewStar}</li>
 		</ul>		
 	</div>
 </c:forEach>

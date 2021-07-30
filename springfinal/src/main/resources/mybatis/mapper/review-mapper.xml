@@ -64,7 +64,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="delete" parameterType="int">
 		delete review 
 		where 
-		review_member = #{reviewMember} 
+		review_no = #{reviewNo} 
 	</delete>
 	
 </mapper>

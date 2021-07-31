@@ -36,6 +36,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			host_member_no = #{hostMemberNo}
 	</select>
 	
+	<select id="check" parameterType="HostVo" resultType="HostVo">
+		select * from test_v
+		where
+			member_id = #{memberId}
+	</select>
+	
 </mapper>
 
 

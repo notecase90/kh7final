@@ -4,8 +4,8 @@
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 <%
 	int reviewNo = 2;
-	int reviewRoomNo = 3;
-	int reviewMember = 22;
+	int reviewMember = (int)session.getAttribute("memberNo");
+	int roomNo = Integer.parseInt(request.getParameter("roomNo"));
 %>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script>
@@ -31,7 +31,7 @@ $(function(){
 
 <form action="insert" method="post">
 	<input type="hidden" name="reviewNo" value="<%=reviewNo%>">
-	<input type="hidden" name="reviewRoomNo" value="<%=reviewRoomNo%>">
+	<input type="hidden" name="reviewRoomNo" value="<%=roomNo%>">
 	<div>
 		<img src="${root}/resources/img/star-on.png" style="width:30px;height:30px;" id="star1" class="star">
 		<img src="${root}/resources/img/star-off.png" style="width:30px;height:30px;" id="star2" class="star">

@@ -32,7 +32,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override
-	public List<ReviewDto> onelist(int roomNo) {
+	public List<ReviewVo> onelist(int roomNo) {
 		return sqlSession.selectList("review.onelist", roomNo);
 	}
 

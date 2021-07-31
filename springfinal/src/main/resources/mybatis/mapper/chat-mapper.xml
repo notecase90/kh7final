@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="message">
+	<insert id="insert" parameterType="MessageVo">
+		insert into message values(message_seq.nextval,#{memberNo},sysdate,#{message},#{chatName})
+	</insert>
+
+	<select id="select" parameterType="String" resultType="MessageVo">
+		select * from message_view where chat_name=#{chatName}
+	</select>
+	
+	<insert id="insertChat" parameterType="chatVo">
+		insert into chatRoom values(#{chatName})
+	</insert>
+	
+	<delete id="delete" parameterType="String">
+	
+		delete message where chat_name=#{chatName}
+		
+	</delete>
+</mapper>	

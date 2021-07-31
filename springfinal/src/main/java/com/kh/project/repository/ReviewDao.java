@@ -16,7 +16,7 @@ public interface ReviewDao {
 	// 리뷰 수정
 	void edit(ReviewDto reviewDto);
 	// 한숙소에 대한 리뷰목록
-	List<ReviewDto> onelist(int roomNo);
+	List<ReviewVo> onelist(int roomNo);
 	// 리뷰 삭제
 	void delete(int reviewNo);
 }

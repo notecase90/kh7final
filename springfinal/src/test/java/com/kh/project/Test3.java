@@ -14,8 +14,10 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.kh.project.entity.MemberDto;
 import com.kh.project.entity.WishDto;
+import com.kh.project.repository.MessageDao;
 import com.kh.project.repository.WishDao;
 import com.kh.project.service.FindService;
+import com.kh.project.vo.ChatVo;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -33,6 +35,8 @@ public class Test3 {
 	private SqlSession sqlSeesion;
 	@Autowired
 	private WishDao wishDao;
+	@Autowired
+	private MessageDao messageDao;
 	
 //	@Test
 //	public void test()  {
@@ -41,10 +45,12 @@ public class Test3 {
 //		wishDao.insert(wishDto);
 //		
 //	}
-	@Test
-	public void test1() {
-		WishDto wishDto = WishDto.builder().memberNo(43).roomNo(61).build();
-		
-		wishDao.delete(wishDto);
-	}
+//	@Test
+//	public void test1() {
+//		WishDto wishDto = WishDto.builder().memberNo(43).roomNo(61).build();
+//		
+//		wishDao.delete(wishDto);
+//	}
+//	
+	
 }

@@ -24,15 +24,17 @@
 	    		<div id="collapse${PaymentVO.paymentReservationNo}" class="accordion-body collapse in">
 			    	<div class="accordion-inner text-left">
 			        	<span class="badge badge-info">결제일</span> 
-			        	<label>${PaymentVO.paymentTime}</label><br>
+			        	<label>${PaymentVO.paymentTime}</label><br>			        	
 			        	<span class="badge badge-info">희망 체크인 시간</span> 
 			        	<label>${PaymentVO.reservationCheckin}</label><br>
 			        	<span class="badge badge-info">희망 체크아웃 시간</span> 
 			        	<label>${PaymentVO.reservationCheckout}</label><br>
 			        	<span class="badge badge-info">게스트 수</span> 
 			        	<label>${PaymentVO.reservationGuest}</label><br>
-			        	<span class="badge badge-info">총 금액</span> 
-			        	<label>${PaymentVO.reservationTotalAmount} 원</label><br>        	
+			        	<span class="badge badge-primary">총 금액</span> 
+			        	<label>${PaymentVO.reservationTotalAmount} 원</label><br>
+			        	<span class="badge badge-primary">결제상태</span>
+			        	<label>${PaymentVO.paymentStatus}</label>        	
 			    	</div>
 	   			</div>
    			</div>

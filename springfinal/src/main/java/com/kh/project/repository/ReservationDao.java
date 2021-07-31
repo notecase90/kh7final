@@ -11,5 +11,6 @@ public interface ReservationDao {
 	
 	ReservationVO get(int reservationNo); //단일 조회
 	void reservation(int reservationNo);
+	void reservationCancel(int paymentReservationNo);
 	
 }

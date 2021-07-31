@@ -157,6 +157,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select room_pic_seq.nextval from dual
 	</select>
 	
+	<!-- 디테일페이지에서 이미지 다운로드하기 -->
+	<select id="preview" parameterType="int" resultType="RoomPicDto">
+		select * from room_pic where room_no = #{roomNo}
+	</select>
+	
 	<!-- 사진등록 -->
 	<insert id="addPic" parameterType="RoomPicDto">
 		insert into room_pic(

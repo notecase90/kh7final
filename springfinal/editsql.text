@@ -35,16 +35,6 @@ inner join member
 inner join room
     on review_room_no = room_no;
 
-<<<<<<< HEAD
-/*가격 테이블*/
--- 숙소가격 테이블
-CREATE TABLE roomPrice (
-   roomPrice_no   number(19)   primary key,
-   room_origin   references room(room_no) on delete cascade,
-   day_price   number(19)   not NULL
-);
-create sequence roomPrice_seq;
-=======
 /*디테일 페이지에서 필요한 리뷰 view*/
 create view review_view as
 select 
@@ -52,7 +42,6 @@ select
     review_no, review_room_no, review_content, review_star, review_member, review_date
 from room 
     inner join review on room_no = review_room_no;
->>>>>>> refs/remotes/origin/main
 
 /*detail 페이지 가격 view*/
 create view room_price as
@@ -165,3 +154,11 @@ left outer join MEMBER M on P.payment_member_no = M.member_no
 left outer join RESERVATION R on R.reservation_no = P.payment_reservation_no
 left outer join RESERVATIONDETAIL RD on rd.reservation_no = p.payment_reservation_no
 where payment_status = '승인' or payment_status = '취소';
+
+-- 로그아웃하고 로그인하면 호스트번호 세션관련 뷰      
+create view host_member_view as
+select
+    member_no , member_name, member_id,
+   host_no, host_member_no
+from member 
+    inner join host on member_no = host_member_no;

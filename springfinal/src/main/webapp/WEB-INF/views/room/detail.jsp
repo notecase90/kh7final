@@ -7,12 +7,13 @@
 <c:set var="isHost" value="${not empty hostNo}"></c:set>
 
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- icon 사용을 위한 CSS 의존성 등록(font awesome) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>	
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
@@ -133,6 +134,12 @@
 	    padding: 14 24;
 	    border: 0;
 	}
+	.preview{
+		width:400px;
+		height:300px;
+	}
+	.carousel-control-prev-icon { background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E"); } 
+	.carousel-control-next-icon { background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E"); }
 </style>
 
 <div>
@@ -150,6 +157,29 @@
 	<div>최대 인원  ${roomDto.roomCapa}명 · 침실 ${infacilityDto.bedCount}개 · 욕실 ${infacilityDto.bathCount}개 · 발코니 ${infacilityDto.balconyCount}개</div>
 	<hr>
 	
+<div class="roomImage">
+	<h2 class="title">숙소 이미지</h2>
+	<div id="roomImage" class="carousel slide" data-ride="carousel">
+		<div class="carousel-inner">
+			<div class="carousel-item active text-center">
+				<img class="preview" src="${root}/data/room/download/${roomPicDto[0].roomPicNo}">
+			</div>
+			<c:forEach var="roomPicDto" items="${roomPicDto}" begin="1">
+			<div class="carousel-item text-center">
+			     <img class="preview" src="${root}/data/room/download/${roomPicDto.roomPicNo}">  
+			</div>
+			</c:forEach>
+			  <a class="carousel-control-prev" href="#roomImage" role="button" data-slide="prev">
+			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			    <span class="sr-only">Previous</span>
+			  </a>
+			  <a class="carousel-control-next" href="#roomImage" role="button" data-slide="next">
+			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			    <span class="sr-only">Next</span>
+			  </a>
+	</div>
+</div>
+<hr>
 <div class="test-box">
 	<div class="content-box">
 		<div class="content">
@@ -170,6 +200,9 @@
 		</div>
 	</div>
 	
+	<c:set var="RoomHostNo" value="${roomDto.roomHostNo}"></c:set>  <!-- 세션의 hostNo와 숙소페이지의 hostNo가 같으면 예약창을 감춘다. -->
+	<c:set var="SessionHostNo" value="${hostNo}"></c:set>
+	<c:if test="${RoomHostNo ne SessionHostNo}">
 	<!-- 예약 -->
 	<div class="reservation">
 		<label>₩${roomPriceDto.dayPrice} / 박</label>
@@ -192,15 +225,18 @@
 				</div>
 			</form>
 	</div>
+	</c:if>
 </div>
 
 </div>
 
-
+<c:if test="${RoomHostNo eq SessionHostNo}">
 <a href="${root}/room/delete?roomNo=${roomDto.roomNo}">삭제</a>
 <a href="${root}/room/edit?roomNo=${roomDto.roomNo}">수정</a>
+</c:if>
+<c:if test="${RoomHostNo ne SessionHostNo}">
 <a href="${root}/review/insert?roomNo=${roomDto.roomNo}">리뷰쓰기</a>
-
+</c:if>
 <hr>
 
 
@@ -471,19 +507,6 @@ $(function(){
 });
 </script>
 
-<c:set var="RoomHostNo" value="${roomDto.roomHostNo}"></c:set>
-<c:set var="SessionHostNo" value="${hostNo}"></c:set>
-<c:if test="${RoomHostNo ne SessionHostNo}"></c:if>
-<div class="reservation">
-	<label>₩${roomPriceDto.dayPrice} / 박</label>
-	<form action="${root}/room/detail" method="post">
-		<input type="hidden" name="reservationRoomNo" value="${roomDto.roomNo}">
-		<label>체크인 :</label><input type="text" class="check checkIn" name="reservationCheckin" readonly>
-		<label>체크아웃 :</label><input type="text" class="check checkOut" name="reservationCheckout" readonly>
-		<label>인원 : </label><input type="number" class="guest" name="reservationGuest" min="1" value="1"><br>
-		<label>총 금액 : </label><input type="text" class="totalAmount" name="reservationTotalAmount" readonly> 원<br>
-		<input type="submit" value="예약하기"> 
-	</form>
 
 <style>
 	.host-box{
@@ -538,6 +561,7 @@ $(function(){
 	</div>
 
 </div>
+
 
 
 

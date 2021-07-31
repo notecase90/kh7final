@@ -144,6 +144,7 @@ public class RoomController {
 		model.addAttribute("roomPriceDto",roomDao.price(roomNo));
 		model.addAttribute("reviewVo",roomDao.onelist(roomNo));
 		model.addAttribute("hostVo", roomDao.hostInfo(roomNo));
+		model.addAttribute("roomPicDto",roomDao.preview(roomNo));
 		return "room/detail";// "/WEB-INF/views/room/detail.jsp";
 	}
 	

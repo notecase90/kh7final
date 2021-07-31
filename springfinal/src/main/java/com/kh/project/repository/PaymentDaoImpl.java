@@ -45,4 +45,9 @@ public class PaymentDaoImpl implements PaymentDao {
 		return sqlSession.selectList("payment.list",memberNo);
 	}
 
+	@Override
+	public List<PaymentVO> list2(int roomNo) {
+		return sqlSession.selectList("payment.list2",roomNo);
+	}
+
 }

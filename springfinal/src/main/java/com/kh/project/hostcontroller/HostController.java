@@ -9,9 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.kh.project.entity.RoomDto;
 import com.kh.project.repository.HostDao;
+import com.kh.project.repository.PaymentDao;
+import com.kh.project.vo.HostRoomVO;
+import com.kh.project.vo.PaymentVO;
 
 
 @Controller
@@ -38,11 +41,30 @@ public class HostController {
 	public String hostRoomList(HttpSession session, Model model) {
 		
 		int hostNo = (int)session.getAttribute("hostNo");
+
+		List<HostRoomVO> hostRoomList = hostDao.hostRoomList(hostNo);
 		
-		List<RoomDto> hostRoomList = hostDao.hostRoomList(hostNo);
+		
 		model.addAttribute("HostRoomList",hostRoomList);
 		
 		return "host/hostRoomList";
+	}
+	
+	@Autowired
+	private PaymentDao paymentDao;
+	
+	//예약내역 페이지
+	@GetMapping("/hostReservationDetail")
+	public String hostReservationDetail(
+			@RequestParam int roomNo,
+			Model model
+			) {
+		
+		List<PaymentVO> reservationList = paymentDao.list2(roomNo);
+		
+		model.addAttribute("ReservationList",reservationList);
+		
+		return "host/hostReservationDetail";
 	}
 	
 	//메세지 페이지

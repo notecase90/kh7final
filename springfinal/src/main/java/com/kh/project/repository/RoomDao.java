@@ -2,6 +2,7 @@ package com.kh.project.repository;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,14 +19,16 @@ import com.kh.project.entity.RoomTypeDto;
 import com.kh.project.entity.RoomTypeVO;
 import com.kh.project.vo.HostVo;
 import com.kh.project.vo.ReviewVo;
+import com.kh.project.vo.RoomVo;
 
 public interface RoomDao {
 	void insert(RoomDto roomDto);
-	List<RoomDto> list();
+	List<RoomVo> list();
 	RoomDto detail(int roomNo);
 	void edit(RoomDto roomDto);
 	void delete(int roomNo);
 	int sequence(); //roomNo 시퀀스 알아내기
+	int count();
 	
 	List<FacilityOptionDto> facility(); //DB 저장되어있는 편의시설 리스트
 	List<AllTypeDto> allType(); //DB에 저장되어있는 전체숙소종류 리스트

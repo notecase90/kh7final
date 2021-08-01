@@ -70,8 +70,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 목록 -->
-	<select id="list" resultType="RoomDto">
-		select * from room where room_insert_complete = 1
+	<select id="list" resultType="RoomVo">
+		select * from listDetail where room_insert_complete = 1
 	</select>
 	
 	<!-- 상세보기 -->
@@ -181,4 +181,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getPic" resultType="RoomPicDto" parameterType="int">
 		select * from ROOM_PIC where room_pic_no = #{roomPicNo}
 	</select>
+	
 </mapper> 

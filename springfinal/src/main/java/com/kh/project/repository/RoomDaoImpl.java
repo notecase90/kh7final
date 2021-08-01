@@ -23,6 +23,7 @@ import com.kh.project.entity.RoomTypeDto;
 import com.kh.project.entity.RoomTypeVO;
 import com.kh.project.vo.HostVo;
 import com.kh.project.vo.ReviewVo;
+import com.kh.project.vo.RoomVo;
 
 @Repository
 public class RoomDaoImpl implements RoomDao {
@@ -38,7 +39,7 @@ public class RoomDaoImpl implements RoomDao {
 	}
 
 	@Override
-	public List<RoomDto> list() {
+	public List<RoomVo> list() {
 		return sqlSession.selectList("room.list");
 	}
 
@@ -153,5 +154,11 @@ public class RoomDaoImpl implements RoomDao {
 	public HostVo hostInfo(int roomNo) {
 		return sqlSession.selectOne("room.hostInfo", roomNo);
 	}
+
+	@Override
+	public int count() {
+		return sqlSession.selectOne("room.count");
+	}
+
 
 }

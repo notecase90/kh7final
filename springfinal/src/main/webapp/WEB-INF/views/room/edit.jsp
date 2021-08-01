@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%
-	int roomHostNo = 21;
+	int roomHostNo = (int)session.getAttribute("hostNo");
 %>
 
 <h2>숙소 정보 수정하기</h2>    

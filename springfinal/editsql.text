@@ -154,3 +154,11 @@ left outer join MEMBER M on P.payment_member_no = M.member_no
 left outer join RESERVATION R on R.reservation_no = P.payment_reservation_no
 left outer join RESERVATIONDETAIL RD on rd.reservation_no = p.payment_reservation_no
 where payment_status = '승인' or payment_status = '취소';
+
+-- 로그인할때 호스트번호 체크 view
+create view host_member_view as
+select
+    member_no , member_name, member_id,
+   host_no, host_member_no
+from member 
+    inner join host on member_no = host_member_no;

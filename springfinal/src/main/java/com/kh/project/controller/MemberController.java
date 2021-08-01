@@ -32,6 +32,7 @@ public class MemberController {
 	
 	@Autowired
 	private MemberDao memberDao;
+	private HostDao hostDao;
 	
 	@Autowired
 	private HostDao hostDao;
@@ -61,6 +62,7 @@ public class MemberController {
 	@PostMapping("/login")
 		public String login(@ModelAttribute MemberDto memberDto, @ModelAttribute HostVo hostVo,HttpSession session) {
 		MemberDto find = memberDao.login(memberDto);
+		if(find !=null ) { //성공
 		HostVo find1 = hostDao.check(hostVo);
 		if(find !=null) { //성공
 			session.setAttribute("memberNo", find.getMemberNo());

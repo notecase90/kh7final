@@ -154,4 +154,9 @@ public class RoomDaoImpl implements RoomDao {
 		return sqlSession.selectOne("room.hostInfo", roomNo);
 	}
 
+	@Override
+	public List<RoomPicDto> preview(int roomNo) {
+		return sqlSession.selectList("room.preview",roomNo);
+	}
+
 }

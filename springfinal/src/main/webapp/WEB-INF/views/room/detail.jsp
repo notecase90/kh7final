@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	
 <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>	
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
@@ -21,13 +21,14 @@
         $(function(){
             //좋아요가 선택되어 있는지를 먼저 비동기 통신으로 확인 --> 초기 상태를 설정
             
-          	var roomNo = ${roomDto.roomNo}
+          	var memberNo = ${memberNo};
+          	var roomNo = ${roomDto.roomNo};
             //그 다음에 누르면 어떻게 할지 이벤트 등을 설정
             $.ajax({
                 url:"${pageContext.request.contextPath}/wish-check",
                 method :"get",
                 data : { 
-                        roomNo : roomNo, memberNo : ${memberNo}
+                        roomNo : roomNo, memberNo : memberNo
                        },
                 success : function(resp){
                     console.log("체크");
@@ -41,7 +42,7 @@
                     } 
                 }
             });
-            
+            		
                         $(".nowish-btn").click(function(){//꽉찬하트 클릭시 function
                             console.log("삭제2");
                             $.ajax({
@@ -49,7 +50,7 @@
                                 url :"${pageContext.request.contextPath}/wish-delete",
                                 method : "get",
                                 data : {
-                                        roomNo : roomNo, memberNo : ${memberNo}
+                                        roomNo : roomNo, memberNo : memberNo
                                        },
                                        
                                 success : function(resp){
@@ -67,7 +68,7 @@
                                 url :"${pageContext.request.contextPath}/wish-insert",
                                 method : "get",				
                                 data : {
-                                        roomNo : roomNo, memberNo : ${memberNo}
+                                        roomNo : roomNo, memberNo :memberNo
                                        },
                                        
                                 success : function(resp){
@@ -557,7 +558,7 @@ $(function(){
 
 
 	<div class="a-box">
-		<a href="#" id="contact">호스트에게 연락하기</a>
+		<a href="${pageContext.request.contextPath}/chat/${roomDto.roomName}" id="contact">호스트에게 연락하기</a>
 	</div>
 
 </div>

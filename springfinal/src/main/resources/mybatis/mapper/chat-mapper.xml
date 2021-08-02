@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 
 	<select id="select" parameterType="String" resultType="MessageVo">
-		select * from message_view where chat_name=#{chatName}
+		select * from message_view where chat_name = #{chatName}
 	</select>
 	
 	<insert id="insertChat" parameterType="chatVo">

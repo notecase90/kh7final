@@ -6,4 +6,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="login" parameterType="adminDto" resultType="adminDto">
 		select * from admin where admin_id=#{adminId} and admin_pw=#{adminPw}
 	</select>
+		
+	<insert id="gongjiInsert" parameterType="GongjiVo">
+		insert into gongji values(gongji_seq.nextval,#{gongjiContent},sysdate,#{adminNo})
+	</insert>
+	
+	<select id="gongjiList" resultType="gongjiVo">
+		select * from gongji_view order by gongji_no desc
+	</select>
+	
+	<select id="hostList" resultType="HostVo">
+		select *from host_list
+	</select>
+
+	
 </mapper>

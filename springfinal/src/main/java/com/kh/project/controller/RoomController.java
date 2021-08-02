@@ -1,9 +1,8 @@
 package com.kh.project.controller;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +21,7 @@ import com.kh.project.entity.ReservationDto;
 import com.kh.project.entity.RoomDto;
 import com.kh.project.entity.RoomPriceDto;
 import com.kh.project.entity.RoomTypeDto;
+import com.kh.project.repository.HostDao;
 import com.kh.project.repository.ReservationDao;
 import com.kh.project.repository.RoomDao;
 import com.kh.project.vo.RoomVo;
@@ -32,6 +32,9 @@ public class RoomController {
 	
 	@Autowired
 	private RoomDao roomDao;
+	
+	@Autowired
+	private HostDao hostDao;
 	
 	// 숙소등록
 	@GetMapping("/insert_start")
@@ -128,7 +131,15 @@ public class RoomController {
 	// 숙소명 리스트
 	@GetMapping("/list")
 	public String list(Model model) {
-		model.addAttribute("list", roomDao.list());
+		
+		List<RoomVo> roomList = roomDao.list();
+		
+		ArrayList<Integer> roomPicNo = new ArrayList<>();
+		for(int i=0;i<roomList.size();i++) {
+			roomPicNo.add(i,roomDao.getRoomPicNo(roomList.get(i).getRoomNo()));
+		}
+		model.addAttribute("list", roomList);
+		model.addAttribute("roomPicNo",roomPicNo);
 		return "room/roomList2";
 	}
 	

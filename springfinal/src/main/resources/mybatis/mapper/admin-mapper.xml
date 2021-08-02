@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="hostList" resultType="HostVo">
-		select *from host_list
+		select * from host_list
 	</select>
 
 	

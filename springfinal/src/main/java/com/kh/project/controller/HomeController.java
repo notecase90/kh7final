@@ -14,7 +14,9 @@ public class HomeController {
 	private AdminDao adminDao;
 	@GetMapping("/")
 	public String gongji(Model model) {
-		model.addAttribute("gongji",adminDao.list().get(0));
+		if(adminDao.list().size()!=0) {
+			model.addAttribute("gongji",adminDao.list().get(0));
+		}
 		return "home";
 	}
 	@RequestMapping("/template/header") //전체 요청. 첫페이지를 의미함("/")

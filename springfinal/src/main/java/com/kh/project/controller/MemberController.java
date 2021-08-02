@@ -67,16 +67,12 @@ public class MemberController {
        if(find1 != null) {
           session.setAttribute("hostNo", find1.getHostNo());
        }
-       return "redirect:login_success";
+       return "redirect:/";
     }      
     else { //실패
        return "redirect:login?error";
     }
  }
-   @GetMapping("/login_success")
-   public String loginSuccess() {
-   return "/member/loginSuccess";
-}
    //로그아웃
       @GetMapping("/logout")
       public String logout(HttpSession session) {

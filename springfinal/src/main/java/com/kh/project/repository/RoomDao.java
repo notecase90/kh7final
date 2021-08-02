@@ -23,7 +23,11 @@ import com.kh.project.vo.RoomVo;
 
 public interface RoomDao {
 	void insert(RoomDto roomDto);
+
+
+	List<RoomDto> list(int hostNo); //호스트페이지에서 불러오기
 	List<RoomVo> list();
+
 	RoomDto detail(int roomNo);
 	void edit(RoomDto roomDto);
 	void delete(int roomNo);
@@ -53,6 +57,8 @@ public interface RoomDao {
 	RoomPicDto get(int roomPicNo);
 	ByteArrayResource getPic(String fileName) throws IOException;
 	List<RoomPicDto> preview(int roomNo);
+	
+	int getRoomPicNo(int roomNo); //roomNo로 업로드한 사진의 pk를 DB에서 조회해서 얻어옴
 
 	
 }

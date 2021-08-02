@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 <c:set var="isLogin" value="${not empty memberNo}"></c:set>
 <c:set var="isHost" value="${not empty hostNo}"></c:set>
@@ -9,8 +10,8 @@
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <style>
         *{
             position: relative;
@@ -99,9 +100,12 @@
 			width: fit-content;
 			color: black;
 		}
+		#map{
+			z-index:3;
+		}
 </style>   
 
-
+<div class="container">
 <div class="logo-box">
 	<div class="logo">
             <a href="${root}" style="text-decoration: none;">
@@ -135,11 +139,12 @@
 			<div style="border-bottom-width: 1px; border-bottom-color: rgb(235,235,235); border-bottom-style: solid;">	
 			</div>
 		</div>
-		<c:forEach var="roomVo" items="${list}">
+		<c:forEach var="roomVo" items="${list}" varStatus="status">
 			<div class="roombox">
+				<input type="hidden" value="${roomVo.roomAdd}">
 				<div class="img">
 					<a href="detail/${roomVo.roomNo}" style="text-decoration: none;color: black;">
-						<img class="preview" src="${root}/data/room/download/${roomVo.roomPicNo}">	
+						<img class="preview" src="${root}/data/room/download/${roomPicNo[status.index]}">	
 					</a>		
 				</div>
 				<div class="roomInfo">
@@ -175,50 +180,69 @@
 	
 	<div id="map"></div>
 </div>
-
+</div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1038b1ced14e22e17b2cd601ec877523&libraries=services"></script>
 <script>
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
-mapOption = { 
-    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-    level: 3 // 지도의 확대 레벨
-};
-
+var mapContainer = document.getElementById('map'); // 지도를 표시할 div  
+var mapOption = { 
+	    center: new kakao.maps.LatLng(37, 127), // 지도의 중심좌표
+	    level: 13 // 지도의 확대 레벨
+		};
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-//마커를 표시할 위치와 title 객체 배열입니다 
-var positions = [
-{
-    latlng: new kakao.maps.LatLng(33.450705, 126.570677)
-},
-{
-    latlng: new kakao.maps.LatLng(33.450936, 126.569477)
-},
-{
-    latlng: new kakao.maps.LatLng(33.450879, 126.569940)
-},
-{
-    latlng: new kakao.maps.LatLng(33.451393, 126.570738)
-}
-];
 
-//마커 이미지의 이미지 주소입니다
+var addList = [
+<c:forEach var="list" items="${list}">
+	'${list.roomAdd}',
+</c:forEach>	
+] 
+
 var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
 
-for (var i = 0; i < positions.length; i ++) {
-
-// 마커 이미지의 이미지 크기 입니다
 var imageSize = new kakao.maps.Size(24, 35); 
 
-// 마커 이미지를 생성합니다    
 var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
 
-// 마커를 생성합니다
-var marker = new kakao.maps.Marker({
-    map: map, // 마커를 표시할 지도
-    position: positions[i].latlng, // 마커를 표시할 위치
-    title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-    image : markerImage // 마커 이미지 
-});
+var geocoder = new kakao.maps.services.Geocoder();
+
+var coords;
+for(var i=0;i<addList.length;i++){
+
+geocoder.addressSearch(addList[i], function(result, status) {
+	  	
+	     if (status === kakao.maps.services.Status.OK) {
+	        coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+	        console.log(result[0].x);
+	        console.log(result[0].y);
+	     }	     
+	     var marker = new kakao.maps.Marker({
+	    	    map: map, // 마커를 표시할 지도
+	    	    position: coords, // 마커를 표시할 위치
+	    	    image : markerImage // 마커 이미지 
+	    });
+	  
+	});
 }
+
+$(function(){
+	$(".roombox").click(function(){
+// 		console.log("호버완료");
+		var address = $(this).children('input').val();
+// 		console.log(address);
+		geocoder.addressSearch(address, function(result, status) {
+
+		    // 정상적으로 검색이 완료됐으면 
+		     if (status === kakao.maps.services.Status.OK) {
+
+		        var xy = new kakao.maps.LatLng(result[0].y, result[0].x);
+				console.log(xy);
+		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+		        map.setCenter(xy);
+		        map.panTo(xy);
+		        map.setLevel(5);
+		        map.setZoomable(zoomable);
+		    } 
+		});
+	});
+});
 </script>

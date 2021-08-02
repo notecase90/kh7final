@@ -71,7 +71,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 목록 -->
 	<select id="list" resultType="RoomVo">
-		select * from listDetail where room_insert_complete = 1
+		select 
+		room_no,room_name,room_add,infacility_room_no,bed_count,bath_count,balcony_count
+		from listDetail
+		group by
+		room_no,room_name,room_add,infacility_room_no,bed_count,bath_count,balcony_count
+	</select>
+	
+	<!-- 호스트가 등록중/등록완료 한 숙소 목록 -->
+	<select id="hostRoomList" parameterType="int" resultType="RoomDto">
+		select * from room where room_host_no = #{hostNo}
 	</select>
 	
 	<!-- 상세보기 -->

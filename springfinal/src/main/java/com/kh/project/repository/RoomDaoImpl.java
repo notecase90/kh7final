@@ -162,6 +162,15 @@ public class RoomDaoImpl implements RoomDao {
 	}
 
 	@Override
+	public List<RoomDto> list(int hostNo) {
+		return sqlSession.selectList("room.hostRoomList",hostNo);
+	}
+
+	@Override
+	public int getRoomPicNo(int roomNo) {
+		return sqlSession.selectOne("host.roomPicNo",roomNo);
+	}
+
 	public int count() {
 		return sqlSession.selectOne("room.count");
 	}

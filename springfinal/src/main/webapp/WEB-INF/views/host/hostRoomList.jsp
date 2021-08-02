@@ -25,14 +25,14 @@
 				<th>메뉴</th>
 			</tr>	
 		</thead>
-	<c:forEach var="HostRoomList" items="${HostRoomList}">
+	<c:forEach var="HostReservationList" items="${HostReservationList}">
 		<tbody>
-			<td>${HostRoomList.roomNo}</td>
-			<td><a href="${root}/room/detail/${HostRoomList.roomNo}">${HostRoomList.roomName}</a></td>
-			<td>${HostRoomList.roomAdd}</td>
-			<td>${HostRoomList.count}</td>
+			<td>${HostReservationList.roomNo}</td>
+			<td><a href="${root}/room/detail/${HostReservationList.roomNo}">${HostReservationList.roomName}</a></td>
+			<td>${HostReservationList.roomAdd}</td>
+			<td>${HostReservationList.count}</td>
 			<td>
-			<a href="hostReservationDetail?roomNo=${HostRoomList.roomNo}" class="btn btn-primary">전체내역</a></button>
+			<a href="hostReservationDetail?roomNo=${HostReservationList.roomNo}" class="btn btn-primary">전체내역</a></button>
 			<a href="#" class="btn btn-warning">수정</a></button>
 			<a href="#" class="btn btn-danger">삭제</a></button>
 			</td>			
@@ -40,4 +40,42 @@
 	</c:forEach>
 	</table>
 	
+	
+	<table class="table text-center table-hover">
+		<thead>
+			<tr>
+				<th>썸네일</th>
+				<th>숙소번호</th>
+				<th>숙소명</th>				
+				<th>주소</th>
+				<th>수용인원</th>
+				<th>체크인</th>
+				<th>체크아웃</th>
+				<th>작성여부</th>
+			</tr>	
+		</thead>
+	<c:forEach var="HostRoomList" items="${HostRoomList}" varStatus="status">
+		<tbody>
+			<td>
+				<img src="${root}/data/room/download/${HostRoomPicNo[status.index]}" style="width:200px;height:200px;">
+			</td>
+			<td>${HostRoomList.roomNo}</td>
+			<td><a href="${root}/room/detail/${HostRoomList.roomNo}">${HostRoomList.roomName}</a></td>
+			<td>${HostRoomList.roomAdd}</td>
+			<td>${HostRoomList.roomCapa}</td>
+			<td>${HostRoomList.roomIn}</td>
+			<td>${HostRoomList.roomOut}</td>
+			<td>
+			<c:choose>
+				<c:when test="${HostRoomList.roomInsertComplete eq 1}">
+				작성완료
+				</c:when>
+				<c:when test="${HostRoomList.roomInsertComplete eq 0}">
+				작성중
+				</c:when>
+			</c:choose>
+			</td>			
+		</tbody>
+	</c:forEach>
+	</table>
 </div>

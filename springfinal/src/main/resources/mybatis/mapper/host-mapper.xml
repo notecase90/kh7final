@@ -61,6 +61,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			member_id = #{memberId}
 	</select>
 	
+	<select id="roomPicNo" parameterType="int" resultType="int">
+		select room_pic_no from room_pic
+		where room_origin_no = #{roomNo}
+		and
+		ROWNUM &lt;= 1
+	</select>
+	
 	
 
 </mapper>

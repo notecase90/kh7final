@@ -1,5 +1,6 @@
 package com.kh.project.hostcontroller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,8 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kh.project.entity.RoomDto;
+import com.kh.project.entity.RoomPicDto;
 import com.kh.project.repository.HostDao;
 import com.kh.project.repository.PaymentDao;
+import com.kh.project.repository.RoomDao;
 import com.kh.project.vo.HostRoomVO;
 import com.kh.project.vo.PaymentVO;
 
@@ -36,16 +40,25 @@ public class HostController {
 	@Autowired
 	private HostDao hostDao;
 	
+	@Autowired
+	private RoomDao roomDao;
+	
 	//숙소내역 페이지
 	@GetMapping("/hostRoomList")
 	public String hostRoomList(HttpSession session, Model model) {
 		
 		int hostNo = (int)session.getAttribute("hostNo");
 
-		List<HostRoomVO> hostRoomList = hostDao.hostRoomList(hostNo);
+		List<HostRoomVO> hostReservationList = hostDao.hostRoomList(hostNo);
+		List<RoomDto> hostRoomList = roomDao.list(hostNo);
 		
-		
+		ArrayList<Integer> hostRoomPicNo = new ArrayList<>();
+		for(int i=0;i<hostRoomList.size(); i++) {		
+			hostRoomPicNo.add(i, roomDao.getRoomPicNo(hostRoomList.get(i).getRoomNo()));
+		}
+		model.addAttribute("HostRoomPicNo",hostRoomPicNo);
 		model.addAttribute("HostRoomList",hostRoomList);
+		model.addAttribute("HostReservationList",hostReservationList);
 		
 		return "host/hostRoomList";
 	}

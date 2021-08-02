@@ -2,7 +2,9 @@ package com.kh.project.repository;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.ibatis.session.SqlSession;
@@ -23,6 +25,7 @@ import com.kh.project.entity.RoomTypeDto;
 import com.kh.project.entity.RoomTypeVO;
 import com.kh.project.vo.HostVo;
 import com.kh.project.vo.ReviewVo;
+import com.kh.project.vo.RoomVo;
 
 @Repository
 public class RoomDaoImpl implements RoomDao {
@@ -38,7 +41,7 @@ public class RoomDaoImpl implements RoomDao {
 	}
 
 	@Override
-	public List<RoomDto> list() {
+	public List<RoomVo> list() {
 		return sqlSession.selectList("room.list");
 	}
 
@@ -154,7 +157,6 @@ public class RoomDaoImpl implements RoomDao {
 		return sqlSession.selectOne("room.hostInfo", roomNo);
 	}
 
-	@Override
 	public List<RoomPicDto> preview(int roomNo) {
 		return sqlSession.selectList("room.preview",roomNo);
 	}
@@ -167,6 +169,10 @@ public class RoomDaoImpl implements RoomDao {
 	@Override
 	public int getRoomPicNo(int roomNo) {
 		return sqlSession.selectOne("host.roomPicNo",roomNo);
+	}
+
+	public int count() {
+		return sqlSession.selectOne("room.count");
 	}
 
 }

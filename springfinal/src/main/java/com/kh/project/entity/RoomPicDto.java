@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor @AllArgsConstructor @Data @Builder
 public class RoomPicDto {
 	private int roomPicNo;
-	private int roomNo;
+	private int roomOriginNo;
 	private String roomPicUploadName;
 	private String roomPicSaveName;
 	private String roomPicContentType;

@@ -2,8 +2,6 @@ package com.kh.project.vo;
 
 import java.sql.Date;
 
-import com.kh.project.hostentity.HostDto;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,4 +16,5 @@ public class HostVo {
 	private int memberNo;
 	private String memberName;
 	private String memberId;	
+
 }

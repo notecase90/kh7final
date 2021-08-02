@@ -70,8 +70,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 목록 -->
-	<select id="list" resultType="RoomDto">
-		select * from room where room_insert_complete = 1
+	<select id="list" resultType="RoomVo">
+		select * from listDetail where room_insert_complete = 1
 	</select>
 	
 	<!-- 호스트가 등록중/등록완료 한 숙소 목록 -->
@@ -164,14 +164,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 디테일페이지에서 이미지 다운로드하기 -->
 	<select id="preview" parameterType="int" resultType="RoomPicDto">
-		select * from room_pic where room_no = #{roomNo}
+		select * from room_pic where room_origin_no = #{roomOriginNo}
 	</select>
 	
 	<!-- 사진등록 -->
 	<insert id="addPic" parameterType="RoomPicDto">
 		insert into room_pic(
 			room_pic_no,
-			room_no,
+			room_origin_no,
 			room_pic_upload_name,
 			room_pic_save_name,
 			room_pic_content_type,
@@ -179,7 +179,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 		values(
 			#{roomPicNo},
-			#{roomNo},
+			#{roomOriginNo},
 			#{roomPicUploadName},
 			#{roomPicSaveName},
 			#{roomPicContentType},
@@ -191,4 +191,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getPic" resultType="RoomPicDto" parameterType="int">
 		select * from ROOM_PIC where room_pic_no = #{roomPicNo}
 	</select>
+	
+	<select id="count" resultType="int">
+		select count(*) from room
+	</select>
+	
+	<select id="getListWithPaging" resultType="RoomVo">
+		<![CDATA[
+          select
+              room_no,room_name, room_add
+          from
+              (
+                  select 
+                      rownum rn, room_no,room_name, room_add
+                  from
+                      room
+                  where rownum <= #{pageNum} * #{amount}
+              )
+          where rn > (#{pageNum}-1) * #{amount}
+    ]]>
+	</select>
+	
 </mapper> 

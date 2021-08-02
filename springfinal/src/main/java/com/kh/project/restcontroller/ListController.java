@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kh.project.entity.AllTypeDto;
+import com.kh.project.entity.FacilityOptionDto;
 import com.kh.project.entity.WishDto;
 import com.kh.project.repository.AllTypeDao;
 import com.kh.project.repository.MessageDao;
@@ -29,14 +30,18 @@ public class ListController {
 	@Autowired
 	private MessageDao messageDao;
 	
+	@Autowired
+	private WishDao wishDao = null;
+	
 	@GetMapping("type-list")
 	public List<AllTypeDto> typeList() {
 		return allTypeDao.list();
 	}
+	@GetMapping("option-list")
+	public List<FacilityOptionDto> listOption(){
+		return allTypeDao.listOption();
+	}
 	
-	
-	@Autowired
-	private WishDao wishDao = null;
 	
 	@GetMapping("wish-insert")
 	public void wishInsert(@RequestParam int roomNo, HttpSession session) {

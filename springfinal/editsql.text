@@ -155,10 +155,31 @@ left outer join RESERVATION R on R.reservation_no = P.payment_reservation_no
 left outer join RESERVATIONDETAIL RD on rd.reservation_no = p.payment_reservation_no
 where payment_status = '승인' or payment_status = '취소';
 
--- 로그인할때 호스트번호 체크 view
+-- 로그인할때 호스트번호 체크 view   
 create view host_member_view as
 select
     member_no , member_name, member_id,
    host_no, host_member_no
 from member 
     inner join host on member_no = host_member_no;
+
+-- 숙소list 정보불러오는 view
+create or replace view listDetail as
+select
+r.room_no, r.room_name, r.room_intro, r.room_add, r.room_insert_complete, 
+i.infacility_room_no, i.bed_count, i.bath_count, i.balcony_count,
+p.ROOM_PIC_NO, p.room_origin_no
+from room R
+inner join infacility I on R.room_no = I.infacility_room_no
+inner join room_pic P on R.room_no = P.room_origin_no
+where room_insert_complete = 1;
+
+-- 호스트 숙소정보 VIEW
+create or replace view host_info as
+    select
+        host_no, host_member_no, host_intro, host_join,
+        member_no, member_name,
+        room_no, room_name, room_host_no        
+from host
+inner join member on member_no = host_member_no
+inner join room on room_host_no = host_no;

@@ -2,25 +2,41 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
+<c:set var="isLogin" value="${not empty memberNo}"></c:set>
+<c:set var="isHost" value="${not empty hostNo}"></c:set>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <style>
         *{
             position: relative;
             width: 100%;
             height: 100%;
+            
         }
         body{
             margin: 0px;
+            
         }
         .logo{
-            display: inline;
+            width: 30%;
             left: 30px ;
             box-sizing: border-box; 
         }        
+        .btn-group{
+        	width: fit-content;
+        	display: flex;
+        	right: 30px;
+        }
         .logo-box{
             width: 100%;
              height: 10%;
+             display: flex;
+             justify-content: space-between;
         }
         .content{
             height: 90%;
@@ -31,63 +47,122 @@
             width: 100px;
             font-size: 35px;
         }
+        .fa{
+        	width: fit-content;
+        	display: flex;
+    		align-items: center;
+        }
         .list{
             width: 55%;
             display: flex;
     		flex-direction: column;
-    		padding-left: 10px;
+    		padding-left: 20px;
         }
         #map{
             width: 45%;
-            height: 100%;
+            height: auto;
+            margin-top: 5px;
         }
-        .title{
-			font-size: 25px;
-			font-weight: bold;
+		.preview{
+			width: 320px;
+			height: 220px;
+			border-radius: 7px;
 		}
-		.roomName{
-			height: auto; 
-			width: 65%;
+		.img{
+			width: 320px;
+			height: 220px;
+		}
+		.roombox{
+			display: flex;
+		}
+		.roomInfo{
+			padding-left: 10px;
+		}
+		.fa-airbnb{
+			display: flex;
+    		align-items: center;
+    		color: #ff4567;
+		}
+		.astyle{
+			color: black;
 			text-decoration: none;
-			font-size: 25px;
-   			font-weight: 600;
+		}
+		.btn{
+			display: flex;
+   			align-items: center;
+   			color: black;
+    		text-decoration: none;
+    		justify-content: flex-end;
+    		padding: 0 15px;
+		}
+		.user{
+			width: fit-content;
+			color: black;
 		}
 </style>   
 
 
 <div class="logo-box">
 	<div class="logo">
-            <a href="#" style="text-decoration: none;">
+            <a href="${root}" style="text-decoration: none;">
                 <i class="fab fa-airbnb"></i>
             </a>
 	</div>
+
+	<div class="btn-group">
+		<c:choose>
+			<c:when test="${!isLogin}"> <!-- 비회원일때 -->
+				<a class="btn" href="${root}/member/regist">호스트 모드 생성</a>
+			</c:when>
+		<c:otherwise>
+			<c:if test="${isHost}">
+				<a class="btn" href="${root}/host/host-home">호스트 모드 전환</a>
+			</c:if>
+			<c:if test="${!isHost}">
+				<a class="btn" href="${root}/email/certEmail">호스트 모드 생성</a>
+			</c:if>			
+		</c:otherwise>
+		</c:choose>
+		<a class="user" href="#"><i class="fa fa-user" aria-hidden="true"></i></a>				     
+	</div>
+
 </div>
 
 
 <div class="content">
-	<div class="list">
-		<c:forEach var="roomVo" items="${list}">
-		<div>
-		
+	<div class="list">	
+		<div style="margin-top: 4px; margin-bottom: 24px;width: 97%">
+			<div style="border-bottom-width: 1px; border-bottom-color: rgb(235,235,235); border-bottom-style: solid;">	
+			</div>
 		</div>
-			<div class="roomName">
-				<a href="detail/${roomVo.roomNo}" style="text-decoration: none;color: black;">
-					${roomVo.roomName}</a>
+		<c:forEach var="roomVo" items="${list}">
+			<div class="roombox">
+				<div class="img">
+					<a href="detail/${roomVo.roomNo}" style="text-decoration: none;color: black;">
+						<img class="preview" src="${root}/data/room/download/${roomVo.roomPicNo}">	
+					</a>		
+				</div>
+				<div class="roomInfo">
+					<a href="detail/${roomVo.roomNo}" style="text-decoration: none;color: black;font-size: 22px;">
+						${roomVo.roomName}</a>
+					<div style="margin-top: 10px; margin-bottom: 10px;height: 1px;width: 30px;">
+						<div style="border-bottom-width: 1px; border-bottom-color: rgb(235,235,235); border-bottom-style: solid;">	
+						</div>
+					</div>	
+					
+					<a href="detail/${roomVo.roomNo}" style="text-decoration: none;color: black;font-weight: 200;font-size: 14px;">
+						${roomVo.roomAdd}<br>
+					</a>
+					<a href="detail/${roomVo.roomNo}" style="text-decoration: none;color: black;font-weight: 200;font-size: 14px;">
+						침실 ${roomVo.bedCount}개 · 욕실 ${roomVo.bathCount}개 · 발코니 ${roomVo.balconyCount}개
+					</a>
+				</div>	
 			</div>
-			<div>
-				<a href="detail/${roomVo.roomNo}" style="text-decoration: none;color: black;font-weight: 200;font-size: 14px;">
-					${roomVo.roomAdd}<br>
-				</a>
-				<a href="detail/${roomVo.roomNo}" style="text-decoration: none;color: black;font-weight: 200;font-size: 14px;">
-					침실 ${roomVo.bedCount}개 · 욕실 ${roomVo.bathCount}개 · 발코니 ${roomVo.balconyCount}개
-				</a>
-			</div>
-			<div style="margin-top: 24px; margin-bottom: 4px;">
+			<div style="margin-top: 24px; margin-bottom: 24px;width: 97%">
 				<div style="border-bottom-width: 1px; border-bottom-color: rgb(235,235,235); border-bottom-style: solid;">	
 				</div>
 			</div>
 		</c:forEach>
-
 		
 	</div>
 	<!-- 

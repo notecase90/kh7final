@@ -90,9 +90,10 @@ public class PayController {
 		payService.cancel(prepareVO);
 		
 		PaymentVO paymentVO = paymentDao.detail(prepareVO.getPaymentNo());
+		reservationDao.reservationCancel(paymentVO.getPaymentReservationNo());
 		
 		model.addAttribute("paymentVO",paymentVO);
-
+		
 		
 		return "pay/paymentRefund";
 	}

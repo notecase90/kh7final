@@ -1,5 +1,7 @@
 package com.kh.project.repository;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -31,6 +33,12 @@ public class ReservationDaoImpl implements ReservationDao {
 	@Override
 	public void reservation(int reservationNo) {
 		sqlSession.update("reservation.reservation",reservationNo);	
+	}
+
+	@Override
+	public void reservationCancel(int paymentReservationNo) {
+		sqlSession.update("reservation.reservationCancel",paymentReservationNo);
+		
 	}
 
 	

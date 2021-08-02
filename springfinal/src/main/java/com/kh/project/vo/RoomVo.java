@@ -1,7 +1,5 @@
 package com.kh.project.vo;
 
-import com.kh.project.entity.RoomDto;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,4 +22,5 @@ public class RoomVo {
 	private int bedCount;
 	private int bathCount;
 	private int balconyCount;	
+	private int roomPicNo;
 }

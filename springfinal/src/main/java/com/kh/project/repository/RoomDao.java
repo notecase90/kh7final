@@ -52,5 +52,7 @@ public interface RoomDao {
 	
 	RoomPicDto get(int roomPicNo);
 	ByteArrayResource getPic(String fileName) throws IOException;
+	List<RoomPicDto> preview(int roomNo);
 
+	
 }

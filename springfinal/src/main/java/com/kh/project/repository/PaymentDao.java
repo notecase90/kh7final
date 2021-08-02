@@ -12,5 +12,6 @@ public interface PaymentDao {
 	PaymentVO detail(int paymentNo); //결제정보 확인
 	void cancel(int paymentNo);
 	PaymentDto get(int paymentNo);
-	List<PaymentVO> list(int memberNo);
+	List<PaymentVO> list(int memberNo); //멤버로 결제정보
+	List<PaymentVO> list2(int roomNo); //방번호로 결제정보
 }

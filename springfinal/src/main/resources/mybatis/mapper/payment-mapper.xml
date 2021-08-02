@@ -36,4 +36,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="list" parameterType="int" resultType="PaymentVO">
 		select * from paymentDetail where member_no = #{memberNo}
 	</select>
+	
+	<select id="list2" parameterType="int" resultType="PaymentVO">
+		select * from paymentDetail where room_no = #{roomNo}
+	</select>
 </mapper>

@@ -13,7 +13,7 @@
 <div id="first">
 	<div class="s" id="left">
     		<div class="logo">
-                <a href="#">
+                <a href="${root}">
                     <i class="fab fa-airbnb fa-2x"></i>
                 </a>
             </div>

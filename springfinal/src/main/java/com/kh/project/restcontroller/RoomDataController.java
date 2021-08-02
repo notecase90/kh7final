@@ -52,7 +52,7 @@ public class RoomDataController {
 			) throws IllegalStateException, IOException {
 		int roomNo = (int)session.getAttribute("roomNo");
 		RoomPicDto roomPicDto = RoomPicDto.builder()
-												.roomNo(roomNo)
+												.roomOriginNo(roomNo)
 												.roomPicUploadName(f.getOriginalFilename())
 												.roomPicContentType(f.getContentType())
 												.roomPicFileSize(f.getSize())

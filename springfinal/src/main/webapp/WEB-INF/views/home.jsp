@@ -56,7 +56,7 @@
 				  <div class="btn-group">
 				  <c:choose>
 				  	<c:when test="${!isLogin}"> <!-- 비회원일때 -->
-				  		<a class="btn btn-large text-white" href="${root}/member/regist">호스트 모드 생성</a>
+				  		<a class="btn btn-large text-white" href="${root}/member/regist">호스트 되기</a>
 				  	</c:when>
 					<c:otherwise>
 					<c:if test="${isHost}">

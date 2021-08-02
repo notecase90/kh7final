@@ -9,6 +9,7 @@
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 <c:set var="isLogin" value="${not empty memberNo}"></c:set>
 <c:set var="isHost" value="${not empty hostNo}"></c:set>
+<c:set var="isAdmin" value="${not empty adminNo}"></c:set>
 
 <!DOCTYPE html>
 <html>
@@ -47,6 +48,7 @@
 	<main>
 		<header>
 			<h4><a href="#" class="text-muted">코로나19 대응 방안에 대한 최신 정보를 확인하세요.</a></h4>
+			<h4>${gongji.gongjiContent}</h4>
 		</header>
 		<div class="container">
 			<div class="header-side">
@@ -54,7 +56,7 @@
 				  <div class="btn-group">
 				  <c:choose>
 				  	<c:when test="${!isLogin}"> <!-- 비회원일때 -->
-				  		<a class="btn btn-large text-white" href="${root}/member/regist">호스트 모드 생성</a>
+				  		<a class="btn btn-large text-white" href="${root}/member/regist">호스트 되기</a>
 				  	</c:when>
 					<c:otherwise>
 					<c:if test="${isHost}">

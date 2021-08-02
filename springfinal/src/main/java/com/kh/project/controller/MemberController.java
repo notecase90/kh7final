@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.project.entity.MemberDto;
+import com.kh.project.hostentity.HostDto;
+import com.kh.project.repository.HostDao;
 import com.kh.project.repository.MemberDao;
 import com.kh.project.repository.WishDao;
 import com.kh.project.service.FindService;
@@ -28,7 +30,6 @@ public class MemberController {
 	@Autowired
 	private MemberDao memberDao;
 	
-
 	//회원가입 
 	@GetMapping("/regist")
 	public String regist() {

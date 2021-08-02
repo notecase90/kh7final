@@ -7,7 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="${pageContext.request.contextPath}/chat/ㅇㅇ">입장</a>
+	<a href="${pageContext.request.contextPath}/chat/ㅇㅇ">${chatVo.memberName}</a>
 	<a href="${pageContext.request.contextPath}/chat/ㅋㅋ">입장2</a>
+	<a href="${pageContext.request.contextPath}/chat/${memberName}">입장2</a>
 </body>
 </html>

@@ -26,6 +26,7 @@ public class ChatController {
 	}
 	@GetMapping("chat/{chatName}")
 	public String chat(@PathVariable String chatName, Model model) {
+		
 		model.addAttribute("chatName",chatName);		
 				
 		return "chat/chat";

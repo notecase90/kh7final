@@ -23,13 +23,13 @@
         $(function(){
             //좋아요가 선택되어 있는지를 먼저 비동기 통신으로 확인 --> 초기 상태를 설정
             
-            
+          	var roomNo = ${roomDto.roomNo}
             //그 다음에 누르면 어떻게 할지 이벤트 등을 설정
             $.ajax({
                 url:"${pageContext.request.contextPath}/wish-check",
                 method :"get",
                 data : { 
-                        roomNo : ${roomDto.roomNo}, memberNo : ${memberNo}
+                        roomNo : roomNo, memberNo : ${memberNo}
                        },
                 success : function(resp){
                     console.log("체크");
@@ -51,7 +51,7 @@
                                 url :"${pageContext.request.contextPath}/wish-delete",
                                 method : "get",
                                 data : {
-                                        roomNo : ${roomDto.roomNo}, memberNo : ${memberNo}
+                                        roomNo : roomNo, memberNo : ${memberNo}
                                        },
                                        
                                 success : function(resp){
@@ -69,7 +69,7 @@
                                 url :"${pageContext.request.contextPath}/wish-insert",
                                 method : "get",				
                                 data : {
-                                        roomNo : ${roomDto.roomNo}, memberNo : ${memberNo}
+                                        roomNo : roomNo, memberNo : ${memberNo}
                                        },
                                        
                                 success : function(resp){

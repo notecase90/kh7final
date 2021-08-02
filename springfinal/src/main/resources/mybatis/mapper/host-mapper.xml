@@ -2,7 +2,7 @@
 
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 
 	매퍼 파일은 SQL 구문을 보관하는 파일을 말하며 일반적으로 "테이블당 1개" 만든다.
@@ -36,6 +36,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			host_member_no = #{hostMemberNo}
 	</select>
 	
+	<delete id="delete" parameterType="int">
+		delete host where host_no = #{hostNo}
+	</delete>
 </mapper>
 
 

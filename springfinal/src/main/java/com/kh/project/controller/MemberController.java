@@ -32,7 +32,7 @@ public class MemberController {
 	
 	@Autowired
 	private MemberDao memberDao;
-	private HostDao hostDao;
+
 	
 	@Autowired
 	private HostDao hostDao;
@@ -59,22 +59,22 @@ public class MemberController {
 	public String login() {
 		return "/member/login";
 	}
-	@PostMapping("/login")
-		public String login(@ModelAttribute MemberDto memberDto, @ModelAttribute HostVo hostVo,HttpSession session) {
-		MemberDto find = memberDao.login(memberDto);
-		if(find !=null ) { //성공
-		HostVo find1 = hostDao.check(hostVo);
-		if(find !=null) { //성공
-			session.setAttribute("memberNo", find.getMemberNo());
-			if(find1 != null) {
-				session.setAttribute("hostNo", find1.getHostNo());
-			}
-			return "redirect:login_success";
-		}		
-		else { //실패
-			return "redirect:login?error";
-		}
-	}
+	 @PostMapping("/login")
+	    public String login(@ModelAttribute MemberDto memberDto, @ModelAttribute HostVo hostVo,HttpSession session) {
+	    MemberDto find = memberDao.login(memberDto);
+	    HostVo find1 = hostDao.check(hostVo);
+	    if(find !=null) { //성공
+	       session.setAttribute("memberNo", find.getMemberNo());
+	       if(find1 != null) {
+	          session.setAttribute("hostNo", find1.getHostNo());
+	       }
+	       return "redirect:login_success";
+	    }      
+	    else { //실패
+	       return "redirect:login?error";
+	    }
+	 }
+
 	@GetMapping("/login_success")
 	public String loginSuccess() {
 	return "/member/loginSuccess";

@@ -1,64 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-  <head>  
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-     integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" 
-     crossorigin="anonymous">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   
-  </head>
- <script id="alltype-list-template" type="text/template">
-	  <div> 
- 		<div>
-			<label>  
-					<input type="checkbox" name="allTypeNo" value="allTypeNo">
-					 allTypeIcon <span>allTypeName<span> <br> 
-			</label>
-		</div>
-	  </div> 
- </script> 
-
- 
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script>
-	$(function(){
-	
-			$.ajax({
-				url:"${pageContext.request.contextPath}/type-list",
-				type:"get",
-				dataType:"json",
-				success:function(resp){
-					$(".show-list").empty();
-					for(var i=0; i<resp.length; i++){
-						var template = $("#alltype-list-template").html();
-						template = template.replace("allTypeIcon", resp[i].allTypeIcon);
-						template = template.replace("allTypeName", resp[i].allTypeName);
-						template = template.replace("allTypeNo", resp[i].allTypeNo);
-						$(".show-list").append(template);
-
-					}
-				},
-				error:function(){
-					$(".show-list").text("불러오기 실패");
-				}
-				
-			});
-		
-				
-			});
-			
-		
-</script>
-
-
-  
-  
   <style>
 
+  
   #page-wrapper {
     padding-left: 250px;
   }
@@ -107,9 +63,8 @@
     line-height: 3em;
   }
 
-
 </style>
-
+</head>
 <body>
   <div id="page-wrapper">
   <!-- 사이드바 -->
@@ -131,18 +86,40 @@
   <!-- 본문 -->
   <div id="page-content-wrapper">
     <div class="container-fluid">
-       <h1>타입 조회/등록</h1>
+      <h1>공지 사항</h1>
       <div class="container">
+	
+  <table class="table">
+    <thead>
+	      <tr>
+	        <th>번호</th>
+	        <th>내용</th>
+	        <th>닉네임</th>
+	         <th>시간</th>
+	      </tr>
+    </thead>
+    <tbody>
+     <c:forEach var="gongjiVo" items="${gongjiList}">
+	      <tr>
+	        <td>${gongjiVo.gongjiNo}</td>
+	        <td>${gongjiVo.gongjiContent}</td>
+	        <td>${gongjiVo.adminName}</td>
+	         <td>
+	        <fmt:formatDate pattern = "yyyy-MM-dd HH:mm" value="${gongjiVo.gongjiTime}"/>
+	        </td>
+	      </tr>
+       </c:forEach> 
+    </tbody>
+    
+  </table>
 
-<div class="show-list"></div>
-<form action="alltype-insert" method="post">
-	<input type="text" name="allTypeName" placeholder="name">
-	<input type="text" name="allTypeIcon" placeholder='<i class="블라블라"></i>'>
-	<input type="submit" value="등록"> 
-</form>
-	</div>
+</div>
 	
-	
+	<form action="gongji" method="post">
+		<input type="text" name="gongjiContent">
+		<input type="hidden" name="${gongjiDto.adminNo}">
+		<input type="submit" value="등록">
+	</form>
 	
     </div>
   </div>
@@ -155,6 +132,6 @@
 </body>
 </html> 
 
-
-
-
+	
+	
+	

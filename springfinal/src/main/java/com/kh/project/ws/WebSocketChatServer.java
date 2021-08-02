@@ -88,8 +88,9 @@ public class WebSocketChatServer extends TextWebSocketHandler{
 		}
 		else if(chatVo.getChatType() == LEAVE) {
 			server.exit(memberNo, chatVo.getChatName());
-			messageDao.delete(chatVo.getChatName());
-			log.debug("삭제실행---------------------------------------------------");
+
+//			messageDao.delete(chatVo.getChatName());
+//			log.debug("삭제실행---------------------------------------------------");
 		}
 		
 	

@@ -26,6 +26,11 @@ public class HostDaoImpl implements HostDao {
 	public HostDto login(HostDto hostDto) {
 		return sqlSession.selectOne("host.login", hostDto);
 	}
+	@Override
+	public void delete(int hostNo) {
+		sqlSession.delete("host.delete",hostNo);
+		
+	}
 
 	@Override
 	public List<HostRoomVO> hostRoomList(int hostNo) {

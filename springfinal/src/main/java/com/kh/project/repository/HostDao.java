@@ -11,6 +11,9 @@ public interface HostDao {
 	void registHost(HostDto hostDto);
 	HostDto login(HostDto hostDto); 
 
+	void delete(int hostNo);
+
+
 	List<HostRoomVO> hostRoomList(int hostNo);
 
 	HostVo check(HostVo hostVo);

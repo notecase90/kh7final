@@ -35,6 +35,14 @@ inner join member
 inner join room
     on review_room_no = room_no;
 
+/*디테일 페이지에서 필요한 리뷰 view*/
+create view review_view as
+select 
+    room_no , room_name,
+    review_no, review_room_no, review_content, review_star, review_member, review_date
+from room 
+    inner join review on room_no = review_room_no;
+
 /*detail 페이지 가격 view*/
 create view room_price as
 select
@@ -55,7 +63,7 @@ CREATE TABLE room (
 	room_intro	varchar2(3000)	NOT NULL,
 	room_add	varchar2(300)	NOT NULL,
 	room_capa	number(10)	NOT NULL,
-	room_in	varchar2(30)	NOT NULL, -- 체크인
+	room_in		varchar2(30)	NOT NULL, -- 체크인
 	room_out	varchar2(30)	NOT NULL, -- 체크아웃
     room_insert_complete number(10) not null --insert완료여부
 );
@@ -79,9 +87,6 @@ insert into facilityOption values (option_seq.nextval,'주차장', 'fa fa-car fa
 insert into facilityOption values (option_seq.nextval,'욕조', 'fas fa-bath fa-3x');
 insert into facilityOption values (option_seq.nextval,'주방시설', 'fas fa-utensils fa-3x');
 commit;
-
-);
-
 
 예약 테이블
 DROP TABLE "RESERVATION" CASCADE CONSTRAINTS;
@@ -149,3 +154,11 @@ left outer join MEMBER M on P.payment_member_no = M.member_no
 left outer join RESERVATION R on R.reservation_no = P.payment_reservation_no
 left outer join RESERVATIONDETAIL RD on rd.reservation_no = p.payment_reservation_no
 where payment_status = '승인' or payment_status = '취소';
+
+-- 로그아웃하고 로그인하면 호스트번호 세션관련 뷰      
+create view host_member_view as
+select
+    member_no , member_name, member_id,
+   host_no, host_member_no
+from member 
+    inner join host on member_no = host_member_no;

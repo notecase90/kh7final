@@ -21,6 +21,8 @@ import com.kh.project.entity.RoomPriceDto;
 import com.kh.project.entity.RoomPicDto;
 import com.kh.project.entity.RoomTypeDto;
 import com.kh.project.entity.RoomTypeVO;
+import com.kh.project.vo.HostVo;
+import com.kh.project.vo.ReviewVo;
 
 @Repository
 public class RoomDaoImpl implements RoomDao {
@@ -140,6 +142,21 @@ public class RoomDaoImpl implements RoomDao {
 	@Override
 	public void insertComplete(RoomDto roomDto) {
 		sqlSession.insert("room.insertSuccess",roomDto);
+	}
+
+	@Override
+	public List<ReviewVo> onelist(int roomNo) {
+		return sqlSession.selectList("review.onelist", roomNo);
+	}
+
+	@Override
+	public HostVo hostInfo(int roomNo) {
+		return sqlSession.selectOne("room.hostInfo", roomNo);
+	}
+
+	@Override
+	public List<RoomPicDto> preview(int roomNo) {
+		return sqlSession.selectList("room.preview",roomNo);
 	}
 
 }

@@ -36,6 +36,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where
 		reservation_no = #{reservationNo}
 	</update>
+	
+	<update id="reservationCancel" parameterType="int">
+		update RESERVATION
+		set
+		reservation_state = '대기'
+		where
+		reservation_no = #{paymentReservationNo}
+	</update>
 </mapper>
 
 

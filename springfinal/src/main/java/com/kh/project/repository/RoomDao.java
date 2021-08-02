@@ -16,6 +16,8 @@ import com.kh.project.entity.RoomPriceDto;
 import com.kh.project.entity.RoomPicDto;
 import com.kh.project.entity.RoomTypeDto;
 import com.kh.project.entity.RoomTypeVO;
+import com.kh.project.vo.HostVo;
+import com.kh.project.vo.ReviewVo;
 
 public interface RoomDao {
 	void insert(RoomDto roomDto);
@@ -38,6 +40,8 @@ public interface RoomDao {
 	InFacilityDto infacility(int inFacilityRoomNo); //내부시설 불러오기(디테일페이지)
 	RoomTypeVO roomType(int roomNo);
 	RoomPriceDto price(int roomOrigin); // 가격 불러오기
+	List<ReviewVo> onelist(int roomNo); // 한숙소에 대한 리뷰목록 불러오기
+	HostVo hostInfo(int roomNo); // 호스트정보 불러오기
 
 	
 	RoomPicDto addPic(RoomPicDto roomPicDto);//
@@ -45,5 +49,7 @@ public interface RoomDao {
 	
 	RoomPicDto get(int roomPicNo);
 	ByteArrayResource getPic(String fileName) throws IOException;
+	List<RoomPicDto> preview(int roomNo);
 
+	
 }

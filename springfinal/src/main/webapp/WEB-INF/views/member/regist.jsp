@@ -3,11 +3,20 @@
     
     <!-- 부트 스트랩 적용 -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/regist.css">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/common.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/layout.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     
+    <style>
+    span{
+    display: block;
+    }
+  
+    
+    </style>
     
     <!-- 끝 -->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -121,94 +130,71 @@
 	});
 		</script>
 
-<div class="container-800">
+<div class="container-600">
 	<div class="row">
 		<h2>가입 정보 입력</h2>
 	</div>
 	
 			<!-- 부트스트랩 적용 도전-->
-	<div class="container-1000">
-	<div class="card bg-light">
-<article class="card-body mx-auto" style="max-width: 800px;">
+	<div class="container-600 text-center">
 	<h4 class="card-title mt-3 text-center">계정 생성하기</h4>
-	<p class="text-center">자유롭게 계정을 생성해보세요</p>
+	<p class="text-center">자유롭게 계정을 생성해보세요(* 필수 입력 정보입니다)</p>
 	
 	<!-- 아이디 구분선 -->
 	
 	
 	<!-- 부트스트랩 끝 -->
-	
+	<div class="container-600 text-left">
 	<form action="regist" method="post">
-		<div class="form-group input-group">
-			<div class="input-group-prepend">
-				  <span class="input-group-text"> <i class="fa fa-id-card"></i> </span>
+			<div class="row">
+			<input type="text" name="memberId" id="id-input" required class="form-input form-input-underline"
+						placeholder="아이디를 입력하세요 *"> 
+					<span></span>
 				  		 </div>
-			<input type="text" name="memberId" id="id-input" required class="form-control"
-						placeholder="아이디를 입력하세요">
+		
+		
+		<div class="row">
+		    <input type="password" name="memberPw" id="pw-input"required class="form-input form-input-underline"
+						placeholder="비밀번호*">
+		</div>
+		
+		
+		<div class="row">
+			<input type="password" id="pw-reInput" class="form-input form-input-underline"
+						placeholder="동일한 비밀번호를 한번 더 입력*">
+						
+		</div>
+		<div id="pwCheck"></div>
+		
+		<div class="row">
+			<input type="text" name="memberName" id="name-input" required class="form-input form-input-underline"
+						placeholder="이름*">
+		</div>
+		
+		
+		<div class="row">
+			<input type="date" name="memberBirth" required class="form-input form-input-underline" value="생년월일*">
+		</div>
+		
+		
+		<div class="row">
+			<input type="text" name="memberEmail" class="form-input form-input-underline" required placeholder="이메일 주소 입력*">
 			<span></span>
 		</div>
 		
 		
-		<div class="form-group input-group">
-			<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-				</div>
-			<input type="password" name="memberPw" id="pw-input"required class="form-control"
-						placeholder="비밀번호">
-		</div>
-		
-		
-		<div class="form-group input-group">
-    	<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-		</div>
-			<input type="password" id="pw-reInput" class="form-control"
-						placeholder="동일한 비밀번호를 한번 더 입력">
-						<span id="pwCheck"></span>
-		</div>
-		
-		
-		<div class="form-group input-group">
-    	<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-		 </div>
-			<input type="text" name="memberName" id="name-input" required class="form-control"
-						placeholder="이름">
-		</div>
-		
-		
-		<div class="form-group input-group">
-    	<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-birthday-cake"></i> </span>
-		 </div>
-			<input type="date" name="memberBirth" required class="form-control" placeholder="생년월일">
-		</div>
-		
-		
-		<div class="form-group input-group">
-    	<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
-		 </div>
-			<input type="text" name="memberEmail" class="form-control" required placeholder="이메일 주소 입력">
-			<span></span>
-		</div>
-		
-		
-		<div class="form-group input-group">
-    	<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-phone" aria-hidden="true"></i> </span>
-		 </div>
-			<input type="text" name="memberPhone" required class="form-control"
-						placeholder="- 를 제외하고 입력 (예 : 010XXXXXXXX)">
+		<div class="row">
+			<input type="text" name="memberPhone" required class="form-input form-input-underline"
+						placeholder="- 를 제외하고 입력 *(예 : 010XXXXXXXX)">
 		</div>
 		
 		
 		
-		<div class="form-group">
-			<input type="submit" value="가입하기" class="btn btn-primary btn-block">
+		<div class="row text-center">
+			<input type="submit" value="가입하기" class="btn-positive">
 		</div>
 		
+		</div>
 		<p class="text-center">이미 계정이 있으신가요? <a href="${pageContext.request.contextPath}/member/login"">로그인하기</a> </p> 
 	</form>
-</div>
 	</div>

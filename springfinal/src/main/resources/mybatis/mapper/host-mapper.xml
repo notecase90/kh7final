@@ -39,6 +39,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="delete" parameterType="int">
 		delete host where host_no = #{hostNo}
 	</delete>
+
+	<select id="list" parameterType="int" resultType="HostRoomVO">
+		select 
+			room_no,
+			room_name,
+			room_add,
+			count(case when reservation_state ='예약중' then 1 end) count 
+		from reservationDetail 
+		where 
+			room_host_no = #{hostNo}
+		group by 
+			room_no,
+			room_name,
+			room_add
+	</select>
+	
+	<select id="check" parameterType="HostVo" resultType="HostVo">
+		select * from host_member_view
+		where
+			member_id = #{memberId}
+	</select>
+	
+	
+
 </mapper>
 
 

@@ -1,6 +1,7 @@
 package com.kh.project.repository;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +18,8 @@ import com.kh.project.entity.RoomPriceDto;
 import com.kh.project.entity.RoomPicDto;
 import com.kh.project.entity.RoomTypeDto;
 import com.kh.project.entity.RoomTypeVO;
+import com.kh.project.vo.AlltypeSearchVo;
+import com.kh.project.vo.DateVo;
 import com.kh.project.vo.HostVo;
 import com.kh.project.vo.PagingVo;
 import com.kh.project.vo.ReviewVo;
@@ -60,6 +63,7 @@ public interface RoomDao {
 	List<RoomPicDto> preview(int roomNo);
 	
 	int getRoomPicNo(int roomNo); //roomNo로 업로드한 사진의 pk를 DB에서 조회해서 얻어옴
-
-	
+	List<RoomVo> searchAdd(String roomAdd);
+	List<AlltypeSearchVo> searchList(String alltypeName);
+	List<DateVo> searchDate(Date start, Date end);
 }

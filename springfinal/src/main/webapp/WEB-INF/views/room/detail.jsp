@@ -24,6 +24,8 @@
           	var memberNo = ${memberNo};
           	var roomNo = ${roomDto.roomNo};
             //그 다음에 누르면 어떻게 할지 이벤트 등을 설정
+            
+         
             $.ajax({
                 url:"${pageContext.request.contextPath}/wish-check",
                 method :"get",
@@ -32,6 +34,9 @@
                        },
                 success : function(resp){
                     console.log("체크");
+                 
+                    	
+                    
                     if(resp){//값이 있을경우					
                         $(".nowish-btn").show();//꽉찬하트를 보여준다
                         $(".wish-btn").hide();
@@ -39,7 +44,8 @@
                     else{
                         $(".wish-btn").show();
                         $(".nowish-btn").hide();
-                    } 
+                    }
+                  
                 }
             });
             		
@@ -77,7 +83,7 @@
                                 }
                             });
                             });
-            
+           
                 
             
                 
@@ -116,12 +122,16 @@
 	<div class="title" style="display: flex;align-items: center;">
 		${roomDto.roomName}
 		<div>
-        <!-- 체크확인 -->
-        <i class="wish-btn  far fa-heart "  data-roomNo="${roomDto.roomNo}"></i>
-        <!--빈하트 -->
-                        
-        <i class="nowish-btn fas fa-heart"  data-roomNo="${roomDto.roomNo}"></i>
-        <!-- 꽉찬하트 -->
+        <c:choose>
+        	<c:when test="${!isLogin}">
+		        <i class="wish-btn  far fa-heart "  data-roomNo="${roomDto.roomNo}"></i>
+		        <!--빈하트 -->
+            </c:when>
+            <c:otherwise>            
+		        <i class="nowish-btn fas fa-heart"  data-roomNo="${roomDto.roomNo}"></i>
+		        <!-- 꽉찬하트 -->
+        	</c:otherwise>
+        </c:choose>
   </div>
 	</div>
 	<div>최대 인원  ${roomDto.roomCapa}명 · 침실 ${infacilityDto.bedCount}개 · 욕실 ${infacilityDto.bathCount}개 · 발코니 ${infacilityDto.balconyCount}개</div>

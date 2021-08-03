@@ -24,6 +24,7 @@ import com.kh.project.entity.RoomTypeDto;
 import com.kh.project.repository.HostDao;
 import com.kh.project.repository.ReservationDao;
 import com.kh.project.repository.RoomDao;
+import com.kh.project.vo.PagingVo;
 import com.kh.project.vo.RoomVo;
 
 @Controller
@@ -130,7 +131,19 @@ public class RoomController {
 	
 	// 숙소명 리스트
 	@GetMapping("/list")
-	public String list(Model model) {
+	public String list(PagingVo vo, Model model
+			, @RequestParam(value="nowPage", required=false)String nowPage
+			, @RequestParam(value="cntPerPage", required=false)String cntPerPage) {
+		int total = roomDao.count();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "2";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "2";
+		}
+		vo = new PagingVo(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		
 		List<RoomVo> roomList = roomDao.list();
 		
@@ -138,7 +151,9 @@ public class RoomController {
 		for(int i=0;i<roomList.size();i++) {
 			roomPicNo.add(i,roomDao.getRoomPicNo(roomList.get(i).getRoomNo()));
 		}
+		model.addAttribute("paging", vo);
 		model.addAttribute("list", roomList);
+		model.addAttribute("list", roomDao.selectRoom(vo));
 		model.addAttribute("roomPicNo",roomPicNo);
 		return "room/roomList2";
 	}

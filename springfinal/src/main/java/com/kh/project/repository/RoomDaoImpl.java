@@ -24,6 +24,7 @@ import com.kh.project.entity.RoomPicDto;
 import com.kh.project.entity.RoomTypeDto;
 import com.kh.project.entity.RoomTypeVO;
 import com.kh.project.vo.HostVo;
+import com.kh.project.vo.PagingVo;
 import com.kh.project.vo.ReviewVo;
 import com.kh.project.vo.RoomVo;
 
@@ -173,6 +174,11 @@ public class RoomDaoImpl implements RoomDao {
 
 	public int count() {
 		return sqlSession.selectOne("room.count");
+	}
+
+	@Override
+	public List<RoomVo> selectRoom(PagingVo vo) {
+		return sqlSession.selectList("room.selectRoom",vo);
 	}
 
 }

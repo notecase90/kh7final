@@ -152,7 +152,7 @@
 				<input type="hidden" value="${roomVo.roomAdd}">
 				<div class="img">
 					<a href="detail/${roomVo.roomNo}" style="text-decoration: none;color: black;">
-						<img class="preview" src="${root}/data/room/download/${roomVo.roomPicNo}">	
+						<img class="preview" src="${root}/data/room/download/${roomPicNo[status.index]}">	
 					</a>		
 				</div>
 				<div class="roomInfo">

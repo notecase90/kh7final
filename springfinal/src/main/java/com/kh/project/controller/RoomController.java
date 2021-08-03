@@ -275,5 +275,4 @@ public class RoomController {
 		return "room/search-type";
 	}
 
-		
 }

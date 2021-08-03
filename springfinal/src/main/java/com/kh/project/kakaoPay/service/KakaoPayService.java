@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.kh.project.entity.PaymentDto;
 import com.kh.project.kakaoPay.VO.KakaoPayApprovePrepareVO;
@@ -56,11 +57,17 @@ public class KakaoPayService implements PayService{
 		body.add("total_amount", String.valueOf(kakaoPayReadyPrepareVO.getTotal_amount()));//총 구매금액
 		body.add("tax_free_amount", String.valueOf(kakaoPayReadyPrepareVO.getTax_free_amount()));//면세금액(없으면 0)
 		
-		body.add("approval_url", "http://localhost:8080/project/pay/success");//사용자 결제 성공시 신호를 받을 주소
-		body.add("cancel_url", "http://localhost:8080/project/pay/cancel");//사용자 결제 취소시 신호를 받을 주소
-		body.add("fail_url", "http://localhost:8080/project/pay/fail");//사용자 결제 실패시 신호를 받을 주소
-		
+		//ServletUriComponentsBuilder 계산
+		//String path = "http://localhost:8080/컨텍스트패스";
+		String path = ServletUriComponentsBuilder.fromCurrentContextPath().port(8080).toUriString();
+//		System.out.println("path = " + path);
 
+		body.add("approval_url", path +"/pay/success");//사용자 결제 성공시 신호를 받을 주소
+		body.add("cancel_url", path + "/pay/cancel");//사용자 결제 취소시 신호를 받을 주소
+		body.add("fail_url", path + "/pay/fail");//사용자 결제 실패시 신호를 받을 주소
+		
+		
+		
 		HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity<>(body, headers);
 		
 	

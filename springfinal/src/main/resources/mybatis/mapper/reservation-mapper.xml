@@ -44,6 +44,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where
 		reservation_no = #{paymentReservationNo}
 	</update>
+	
+	<delete id="autoDelete">
+		delete RESERVATION
+		where
+		reservation_state = '대기'
+	</delete>
+	
+	<select id="reservationDate" parameterType="int" resultType="ReservationDto">
+		select reservation_checkin,reservation_checkout 
+		from 
+		reservation 
+		where reservation_state = '예약중' 
+		and 
+		reservation_room_no = #{reservationRoomNo}
+	</select>
 </mapper>
 
 

@@ -41,6 +41,16 @@ public class ReservationDaoImpl implements ReservationDao {
 		
 	}
 
+	@Override
+	public void autoDelete() {
+		sqlSession.delete("reservation.autoDelete");
+	}
+
+	@Override
+	public List<ReservationDto> getDate(int reservationRoomNo) {
+		return sqlSession.selectList("reservation.reservationDate",reservationRoomNo);
+	}
+
 	
 
 }

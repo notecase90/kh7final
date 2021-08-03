@@ -12,40 +12,57 @@
 	vertical-align: middle;
 }
 </style>
-<div class="container text-center">
-	<h1>호스트 숙소 관리 페이지</h1>
+<script>
+$(function(){
+	$("#reservationRooms").hide();
 	
-	<table class="table text-center table-hover">
+	$("#allRoomBtn").click(function(){
+		$("#allRooms").fadeIn(350);
+		$("#reservationRooms").hide();
+	});
+	
+	$("#reservationRoomBtn").click(function(){
+		$("#allRooms").hide();
+		$("#reservationRooms").fadeIn(350);
+	});
+	
+});
+</script>
+<div class="container text-center">
+	<br><br>
+	<h1>호스트 숙소 관리 페이지</h1>
+	<br><br>
+	<div class="float-right">
+	<button id="allRoomBtn" class="btn btn-success">전체 숙소</button>
+	<button id="reservationRoomBtn" class="btn btn-success">예약 리스트</button><br><br>
+	</div>
+	<br><br>
+	<table id="reservationRooms" class="table text-right table-hover">
 		<thead>
-			<tr>
-				<th>숙소번호</th>
-				<th>숙소명</th>				
-				<th>주소</th>
+			<tr>				
+				<th style="padding-right:30px;">숙소명</th>				
+				<th style="padding-right:90px;">주소</th>
 				<th>현재 예약건수</th>
-				<th>메뉴</th>
+				<th style="padding-right:43px;">메뉴</th>
 			</tr>	
 		</thead>
 	<c:forEach var="HostReservationList" items="${HostReservationList}">
-		<tbody>
-			<td>${HostReservationList.roomNo}</td>
+		<tbody>			
 			<td><a href="${root}/room/detail/${HostReservationList.roomNo}">${HostReservationList.roomName}</a></td>
 			<td>${HostReservationList.roomAdd}</td>
 			<td>${HostReservationList.count}</td>
 			<td>
-			<a href="hostReservationDetail?roomNo=${HostReservationList.roomNo}" class="btn btn-primary">전체내역</a></button>
-			<a href="#" class="btn btn-warning">수정</a></button>
-			<a href="#" class="btn btn-danger">삭제</a></button>
+			<a href="hostReservationDetail?roomNo=${HostReservationList.roomNo}" class="btn btn-primary">예약 상세</a></button>			
 			</td>			
 		</tbody>
 	</c:forEach>
 	</table>
 	
 	
-	<table class="table text-center table-hover">
+	<table id="allRooms" class="table text-center table-hover">
 		<thead>
 			<tr>
-				<th>썸네일</th>
-				<th>숙소번호</th>
+				<th>썸네일</th>				
 				<th>숙소명</th>				
 				<th>주소</th>
 				<th>수용인원</th>
@@ -57,9 +74,8 @@
 	<c:forEach var="HostRoomList" items="${HostRoomList}" varStatus="status">
 		<tbody>
 			<td>
-				<img src="${root}/data/room/download/${HostRoomPicNo[status.index]}" style="width:200px;height:200px;">
-			</td>
-			<td>${HostRoomList.roomNo}</td>
+				<img class="img-thumbnail" src="${root}/data/room/download/${HostRoomPicNo[status.index]}" style="width:200px;height:200px;">
+			</td>			
 			<td><a href="${root}/room/detail/${HostRoomList.roomNo}">${HostRoomList.roomName}</a></td>
 			<td>${HostRoomList.roomAdd}</td>
 			<td>${HostRoomList.roomCapa}</td>

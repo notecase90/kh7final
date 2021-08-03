@@ -183,7 +183,8 @@
 	
 	<c:set var="RoomHostNo" value="${roomDto.roomHostNo}"></c:set>  <!-- 세션의 hostNo와 숙소페이지의 hostNo가 같으면 예약창을 감춘다. -->
 	<c:set var="SessionHostNo" value="${hostNo}"></c:set>
-	<c:if test="${RoomHostNo ne SessionHostNo}">
+	<c:set var="memberNo" value="${memberNo}"></c:set>
+	<c:if test="${RoomHostNo ne SessionHostNo || not empty memberNo}">
 	<!-- 예약 -->
 	<div class="reservation">
 		<label>₩${roomPriceDto.dayPrice} / 박</label>

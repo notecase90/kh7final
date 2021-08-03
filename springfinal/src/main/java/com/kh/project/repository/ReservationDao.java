@@ -13,4 +13,7 @@ public interface ReservationDao {
 	void reservation(int reservationNo);
 	void reservationCancel(int paymentReservationNo);
 	
+	void autoDelete(); //'대기'상태 예약들 자동삭제
+	
+	List<ReservationDto> getDate(int reservationRoomNo);
 }

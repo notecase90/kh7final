@@ -76,7 +76,6 @@
 	    background: #db0b64;
 	    color: white;
        }
-
        #next-btn{
            width: auto;
 	    padding-top: 14px;
@@ -176,7 +175,6 @@ $(function(){
 // 	console.log(edt);
 	var dateDiff = Math.ceil((edt.getTime()-sdt.getTime())/(1000*3600*24));
 	console.log(dateDiff);
-
 	var refundRate = 1;
 	if(dateDiff > 2) { // 예약일로부터 2일 이상 남은 경우
 		refundRate = 1;
@@ -208,4 +206,3 @@ $(function(){
 	</c:if>
 	<button class="footer-btn"id="back-btn"><a href="paymentList" style="text-decoration: none;color: white;">나의 결제 목록</a></button>
 </div>
-

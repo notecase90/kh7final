@@ -185,3 +185,13 @@ create or replace view host_info as
 from host
 inner join member on member_no = host_member_no
 inner join room on room_host_no = host_no;
+
+
+--메시지 뷰
+create or replace view message_view as
+    select 
+        ms.message_no,ms.member_no,ms.message,m.member_name,send_time,ms.chat_name
+    from 
+        message ms 
+        left outer join member m on ms.member_no = m.member_no  ;
+

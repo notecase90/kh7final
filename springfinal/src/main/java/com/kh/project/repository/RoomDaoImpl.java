@@ -21,8 +21,8 @@ import com.kh.project.entity.FacilityVO;
 import com.kh.project.entity.InFacilityDto;
 import com.kh.project.entity.ReservationDto;
 import com.kh.project.entity.RoomDto;
-import com.kh.project.entity.RoomPriceDto;
 import com.kh.project.entity.RoomPicDto;
+import com.kh.project.entity.RoomPriceDto;
 import com.kh.project.entity.RoomTypeDto;
 import com.kh.project.entity.RoomTypeVO;
 import com.kh.project.vo.AlltypeSearchVo;
@@ -31,6 +31,7 @@ import com.kh.project.vo.HostVo;
 import com.kh.project.vo.PagingVo;
 import com.kh.project.vo.ReviewVo;
 import com.kh.project.vo.RoomVo;
+import com.kh.project.vo.SearchVO;
 
 @Repository
 public class RoomDaoImpl implements RoomDao {
@@ -38,7 +39,7 @@ public class RoomDaoImpl implements RoomDao {
 	@Autowired 
 	private SqlSession sqlSession;
 	
-	private final File baseDir = new File("C:/upload/room");
+	private final File baseDir = new File("C:\\upload\\room");
 	
 	@Override
 	public void insert(RoomDto roomDto) {
@@ -188,17 +189,19 @@ public class RoomDaoImpl implements RoomDao {
 		return sqlSession.selectList("room.search",alltypeName);
 		
 	}
-	@Override
-	public List<DateVo> searchDate(Date start, Date end) {
-		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("start", start);
-		map.put("end", end);
-		return sqlSession.selectList("room.searchDate",map);
-	}
 
 	@Override
+
+	public boolean searchCheck(SearchVO searchVO) {
+		int count = sqlSession.selectOne("room.searchCheck",searchVO);
+		System.out.println(count);
+		return count>0;
+	}
+  //카운트1 이상인 경우 해당 날짜에 예약중인게 있다.
+
 	public List<RoomVo> selectRoom(PagingVo vo) {
 		return sqlSession.selectList("room.selectRoom",vo);
+
 	}
 
 	@Override

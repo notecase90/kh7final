@@ -213,6 +213,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	WHERE RN BETWEEN #{start} AND #{end}
 	</select>
 	
+
+	<select id="searchCheck" parameterType="SearchVO" resultType="int">
+		select count(*) from reservation where 
+		reservation_room_no = #{roomNo}
+		and 
+		reservation_state = '예약중'
+		and
+		reservation_checkin between #{checkIn} and #{checkOut}
+		and
+		reservation_checkout between #{checkIn} and add_months(TO_DATE(#{checkIn},'YY-MM-DD'),1)
+	</select>
+	
 	<select id="searchAdd" resultType="RoomVo" parameterType="String">
 		select * from type_select where instr(room_add,#{roomAdd})>0
 	</select>
@@ -236,6 +248,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select reservation_no,reservation_member_no,reservation_room_no ,reservation_date
 		from reservation where reservation_state ='예약중' and reservation_room_no = #{roomNo}
 	</select>
-	
 	
 </mapper> 

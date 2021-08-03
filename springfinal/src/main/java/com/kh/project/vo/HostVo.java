@@ -16,5 +16,8 @@ public class HostVo {
 	private int memberNo;
 	private String memberName;
 	private String memberId;	
-
+	private String memberEmail;
+	private String memberBirth;
+	private String memberPhone;
+	private Date memberJoin;
 }

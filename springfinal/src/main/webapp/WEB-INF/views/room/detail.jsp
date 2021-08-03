@@ -6,13 +6,12 @@
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 <c:set var="isHost" value="${not empty hostNo}"></c:set>
 <c:set var="isLogin" value="${not empty memberNo}"></c:set>
-
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- icon 사용을 위한 CSS 의존성 등록(font awesome) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	
+	<link rel="stylesheet" href="${root}/resources/css/room/detail.css">
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>	
@@ -92,63 +91,32 @@
             
         
     </script>
-<style>
-	.title{
-		font-size: 25px;
-		font-weight: bold;
-	}
-	.content-box{
-		display: flex;
-    	flex-direction: column;
-    	width: 50%;
-	}
-	.content{
-		padding: 5px;
-	}
-	.test-box{
-		display: flex;
-	}
-	.reservation{
-		width: 50%;
-		display: flex;
-    	flex-direction: column;
-   		align-items: center;
-	}
-	.check{
-		display: flex;
-		align-items: center;
-		justify-content: flex-end;
-	}
-	 .fa-heart {
-		color:red;
-		cursor: pointer;
-		padding-left: 5px;
-    	font-size: 20;
-	}
-	.two{
-		display: flex;
-	    justify-content: flex-end;
-	    align-items: center;
-	}
-	#submit{
-		background: #db0b64;
-	    color: white;
-	    border-radius: 8px;
-	    outline: none;
-	    font-size: 16px;
-	    line-height: 20px;
-	    font-weight: 600;
-	    border-color: none;
-	    padding: 14 24;
-	    border: 0;
-	}
-	.preview{
-		width:400px;
-		height:300px;
-	}
-	.carousel-control-prev-icon { background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E"); } 
-	.carousel-control-next-icon { background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E"); }
-</style>
+
+<div class="logo-box">
+	<div class="logo">
+            <a href="${root}" style="text-decoration: none;">
+                <i class="fab fa-airbnb"></i>
+            </a>
+	</div>
+
+	<div class="btn-group">
+		<c:choose>
+			<c:when test="${!isLogin}"> <!-- 비회원일때 -->
+				<a class="btn" href="${root}/member/regist">호스트 모드 생성</a>
+			</c:when>
+		<c:otherwise>
+			<c:if test="${isHost}">
+				<a class="btn" href="${root}/host/host-home">호스트 모드 전환</a>
+			</c:if>
+			<c:if test="${!isHost}">
+				<a class="btn" href="${root}/email/certEmail">호스트 모드 생성</a>
+			</c:if>			
+		</c:otherwise>
+		</c:choose>
+		<a class="user" href="#"><i class="fa fa-user" aria-hidden="true"></i></a>				     
+	</div>
+
+</div>
 
 <div>
 	<div class="title" style="display: flex;align-items: center;">
@@ -248,47 +216,12 @@
 <a href="${root}/room/delete?roomNo=${roomDto.roomNo}">삭제</a>
 <a href="${root}/room/edit?roomNo=${roomDto.roomNo}">수정</a>
 </c:if>
-<c:if test="${RoomHostNo ne SessionHostNo}">
+<c:if test="${isLogin && RoomHostNo ne SessionHostNo && reservationDto.reservationMemberNo eq memberNo}">
 <a href="${root}/review/insert?roomNo=${roomDto.roomNo}">리뷰쓰기</a>
 </c:if>
 <hr>
 
 
-<style>
-body{
-	padding: 0 60px;
-}
-.thumnail {
-	width:250px;
-	height:250px;
-}
-.test{
-	display: flex;
-	flex-wrap: wrap;
-}
-.test3{
-	width: 33%;
-	display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 5px;
-}
-.text{
-	padding: 5px;
-    width: fit-content;
-}
-.option-box{
-	display: flex;
-}
-.option{
-	display: flex;
-    align-items: center;
-    padding: 2px 8px;
-}
-.fa-3x{
-	padding-left: 5px;
-}
-</style>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1038b1ced14e22e17b2cd601ec877523&libraries=services"></script>
 
 <script>
@@ -356,40 +289,17 @@ geocoder.addressSearch('${roomDto.roomAdd}', function(result, status) {
 </div>
 <hr>
 
-<style>
-	.review-list{
-		display: flex;
-		flex-wrap: wrap;
-	}
-	.review{
-		width: 50%;
-	}
-	.fa-2x{
-		width: 70px;
-	}
-	.review-box{
-		width: 50%;
-    	padding: 10 0;
-	}
-	#date{
-		
-	}
-	#join{
-		font-weight: 100;
-    	font-size: 15;
-	}
-</style>
 
-<div class="title">후기</div>
+<div class="title" style="margin-bottom: 5px;">후기</div>
 <div class="review-list">
 	<c:forEach var="reviewVo" items="${reviewVo}">
 		<div class="review-box">
-			<div>
+			<div id="name">
 				${reviewVo.memberName}
 			</div>
 			<div id="star">
 				<c:if test="${reviewVo.reviewStar== 1}">
-					<i style="color: darkblue;"class="fas fa-star"></i>
+					<i style="color: darkblue;padding: 3px 0;"class="fas fa-star"></i>
 				</c:if>
 				<c:if test="${reviewVo.reviewStar== 2}">
 					<i style="color: darkblue;"class="fas fa-star"></i>
@@ -415,7 +325,14 @@ geocoder.addressSearch('${roomDto.roomAdd}', function(result, status) {
 				</c:if>
 			</div>
 			<div id="date">${reviewVo.reviewDate}</div>
-			<div>${reviewVo.reviewContent}</div>
+			
+			<div id="cotent">
+			${reviewVo.reviewContent}
+			<c:if test="${reviewVo.reviewMember eq memberNo}">
+				<a class="mine"href="${root}/review/edit?reviewNo=${reviewVo.reviewNo}">수정</a>
+				<a class="mine"href="${root}/review/delete?reviewNo=${reviewVo.reviewNo}">삭제</a>				
+			</c:if>
+			</div>
 		</div>
 
 	</c:forEach>
@@ -505,35 +422,6 @@ $(function(){
 	});
 });
 </script>
-
-
-<style>
-	.host-box{
-		display: flex;
-    	justify-content: space-between;
-    	margin-bottom: 20px;
-	}
-	.host-info{
-	
-	}
-	.a-box{
-		display: flex;
-	}
-	#contact{
-		font-size: 16px;
-		line-height: 20px;
-		font-weight: 600;
-		border-radius: 8px;
-		border-width: 1px;
-		border-style: solid;
-		outline: none;
-		padding: 13px 23px;
-		margin: 0px;
-		text-align: center;
-		text-decoration: none;
-		color: black;
-	}
-</style>
 
 <hr>
 

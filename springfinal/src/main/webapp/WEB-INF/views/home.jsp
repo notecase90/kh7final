@@ -98,7 +98,7 @@
 <body>
 	<main>
 		<header>
-			<h4><a href="http://ncov.mohw.go.kr/" class="text-muted">코로나19 대응 방안에 대한 최신 정보를 확인하세요.</a></h4>
+			<h4><a href="#" class="text-muted">코로나19 대응 방안에 대한 최신 정보를 확인하세요.</a></h4>
 			<h4>${gongji.gongjiContent}</h4>
 		</header>
 		<div class="container">
@@ -129,6 +129,7 @@
 	    					<li><a class="btn" href="${root}/member/logout">로그아웃</a></li>
 	    					<li><a class="btn" href="${root}/member/wish-list">위시리스트</a></li>	    			
 	    					<li><a class="btn" href="${root}/chat/main">메세지</a></li>			
+	    					<li><a class="btn" href="${root}/pay/paymentList">나의 결제내역</a>
 				     	</c:when>
 						
 						<c:otherwise>

@@ -27,6 +27,7 @@ import com.kh.project.entity.RoomTypeVO;
 import com.kh.project.vo.AlltypeSearchVo;
 import com.kh.project.vo.DateVo;
 import com.kh.project.vo.HostVo;
+import com.kh.project.vo.PagingVo;
 import com.kh.project.vo.ReviewVo;
 import com.kh.project.vo.RoomVo;
 import com.kh.project.vo.SearchVO;
@@ -196,11 +197,17 @@ public class RoomDaoImpl implements RoomDao {
 	}
 
 	@Override
+
 	public boolean searchCheck(SearchVO searchVO) {
 		int count = sqlSession.selectOne("room.searchCheck",searchVO);
 		System.out.println(count);
 		return count>0;
+	}
   //카운트1 이상인 경우 해당 날짜에 예약중인게 있다.
+
+	public List<RoomVo> selectRoom(PagingVo vo) {
+		return sqlSession.selectList("room.selectRoom",vo);
+
 	}
 
 }

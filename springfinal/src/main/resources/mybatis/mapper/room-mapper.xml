@@ -197,23 +197,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="count" resultType="int">
-		select count(*) from room
+		select count(*) from room where room_insert_complete = 1
 	</select>
 	
-	<select id="getListWithPaging" resultType="RoomVo">
-		<![CDATA[
-          select
-              room_no,room_name, room_add
-          from
-              (
-                  select 
-                      rownum rn, room_no,room_name, room_add
-                  from
-                      room
-                  where rownum <= #{pageNum} * #{amount}
-              )
-          where rn > (#{pageNum}-1) * #{amount}
-    ]]>
+	<select id="selectRoom" resultType="RoomVo">
+		SELECT * 
+		FROM (
+			SELECT ROWNUM RN, A.* 
+				FROM (
+						SELECT * 
+						FROM listDetail where room_insert_complete=1
+						ORDER BY room_no DESC 
+						) A
+				)
+	WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+	
+
+	<select id="searchCheck" parameterType="SearchVO" resultType="int">
+		select count(*) from reservation where 
+		reservation_room_no = #{roomNo}
+		and 
+		reservation_state = '예약중'
+		and
+		reservation_checkin between #{checkIn} and #{checkOut}
+		and
+		reservation_checkout between #{checkIn} and add_months(TO_DATE(#{checkIn},'YY-MM-DD'),1)
 	</select>
 	
 	<select id="searchAdd" resultType="RoomVo" parameterType="String">
@@ -230,9 +239,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			and reservation_checkout > #{end}
 	
 	]]>
+	</select>
 	<!-- 	
 		reservation_checkout > #{end} 예약중
 		reservation_checkout < #{end} 대기중
 	-->
+	<select id="getReservation" parameterType="int" resultType="reservationDto">
+		select reservation_no,reservation_member_no,reservation_room_no ,reservation_date
+		from reservation where reservation_state ='예약중' and reservation_room_no = #{roomNo}
 	</select>
+	
 </mapper> 

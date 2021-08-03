@@ -27,6 +27,7 @@ import com.kh.project.repository.ReservationDao;
 import com.kh.project.repository.RoomDao;
 import com.kh.project.vo.AlltypeSearchVo;
 import com.kh.project.vo.DateVo;
+import com.kh.project.vo.PagingVo;
 import com.kh.project.vo.RoomVo;
 
 @Controller
@@ -133,7 +134,19 @@ public class RoomController {
 	
 	// 숙소명 리스트
 	@GetMapping("/list")
-	public String list(Model model) {
+	public String list(PagingVo vo, Model model
+			, @RequestParam(value="nowPage", required=false)String nowPage
+			, @RequestParam(value="cntPerPage", required=false)String cntPerPage) {
+		int total = roomDao.count();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "2";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "2";
+		}
+		vo = new PagingVo(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		
 		List<RoomVo> roomList = roomDao.list();
 		
@@ -141,9 +154,31 @@ public class RoomController {
 		for(int i=0;i<roomList.size();i++) {
 			roomPicNo.add(i,roomDao.getRoomPicNo(roomList.get(i).getRoomNo()));
 		}
+		model.addAttribute("paging", vo);
 		model.addAttribute("list", roomList);
+		model.addAttribute("list", roomDao.selectRoom(vo));
 		model.addAttribute("roomPicNo",roomPicNo);
 		return "room/roomList2";
+	}
+	
+	//검색된 숙소 리스트
+	@SuppressWarnings("unchecked")
+	@GetMapping("/searchList")
+	public String searchList(
+			Model model,
+			HttpSession session
+			) {
+		List<RoomVo> searchList = new ArrayList<RoomVo>();
+		ArrayList<Integer> roomPicNo = new ArrayList<>();
+		
+		searchList = (ArrayList)session.getAttribute("checkedRoom");
+		for(int i=0;i<searchList.size();i++) {
+			roomPicNo.add(i,roomDao.getRoomPicNo(searchList.get(i).getRoomNo()));
+		}
+		session.removeAttribute("checkedRoom");
+		model.addAttribute("searchList",searchList);
+		model.addAttribute("roomPicNo",roomPicNo);
+		return "room/searchList";
 	}
 	
 	// 모든숙소 정보 
@@ -164,6 +199,8 @@ public class RoomController {
 		model.addAttribute("reviewVo",roomDao.onelist(roomNo));
 		model.addAttribute("hostVo", roomDao.hostInfo(roomNo));
 		model.addAttribute("roomPicDto",roomDao.preview(roomNo));
+		model.addAttribute("reservationDto", roomDao.getReservation(roomNo));
+		model.addAttribute("reservationDate",reservationDao.getDate(roomNo));
 		return "room/detail";// "/WEB-INF/views/room/detail.jsp";
 	}
 	
@@ -237,20 +274,6 @@ public class RoomController {
 		model.addAttribute("roomPicNo",roomPicNo);
 		return "room/search-type";
 	}
-	@GetMapping("search-date")
-	public String searchDate(@RequestParam Date start,@RequestParam Date end,Model model) {
-//		int count = roomDao.searchDate(start, end);
-		List<DateVo> roomList = roomDao.searchDate(start, end);
-		
-		ArrayList<Integer> roomPicNo = new ArrayList<>();
-		for(int i =0;i<roomList.size(); i++) {
-			if(roomList.size() == 0) {
-				model.addAttribute("searchDate",roomList);
-				roomPicNo.add(i,roomDao.getRoomPicNo(roomList.get(i).getRoomNo()));
-			}
-		}
-		
-		return "room/search-date";
-	}
+
 		
 }

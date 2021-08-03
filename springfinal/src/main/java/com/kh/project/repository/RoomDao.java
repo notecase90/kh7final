@@ -2,7 +2,6 @@ package com.kh.project.repository;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,13 +12,14 @@ import com.kh.project.entity.FacilityOptionDto;
 import com.kh.project.entity.FacilityVO;
 import com.kh.project.entity.InFacilityDto;
 import com.kh.project.entity.RoomDto;
-import com.kh.project.entity.RoomPriceDto;
 import com.kh.project.entity.RoomPicDto;
+import com.kh.project.entity.RoomPriceDto;
 import com.kh.project.entity.RoomTypeDto;
 import com.kh.project.entity.RoomTypeVO;
 import com.kh.project.vo.HostVo;
 import com.kh.project.vo.ReviewVo;
 import com.kh.project.vo.RoomVo;
+import com.kh.project.vo.SearchVO;
 
 public interface RoomDao {
 	void insert(RoomDto roomDto);
@@ -60,5 +60,5 @@ public interface RoomDao {
 	
 	int getRoomPicNo(int roomNo); //roomNo로 업로드한 사진의 pk를 DB에서 조회해서 얻어옴
 
-	
+	boolean searchCheck(SearchVO searchVO); //roomNo,사용자시작체크인,사용자 종료체크인으로 예약판별 
 }

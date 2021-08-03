@@ -143,6 +143,26 @@ public class RoomController {
 		return "room/roomList2";
 	}
 	
+	//검색된 숙소 리스트
+	@SuppressWarnings("unchecked")
+	@GetMapping("/searchList")
+	public String searchList(
+			Model model,
+			HttpSession session
+			) {
+		List<RoomVo> searchList = new ArrayList<RoomVo>();
+		ArrayList<Integer> roomPicNo = new ArrayList<>();
+		
+		searchList = (ArrayList)session.getAttribute("checkedRoom");
+		for(int i=0;i<searchList.size();i++) {
+			roomPicNo.add(i,roomDao.getRoomPicNo(searchList.get(i).getRoomNo()));
+		}
+		session.removeAttribute("checkedRoom");
+		model.addAttribute("searchList",searchList);
+		model.addAttribute("roomPicNo",roomPicNo);
+		return "room/searchList";
+	}
+	
 	// 모든숙소 정보 
 	@GetMapping("/list2")
 	public String list2(Model model) {
@@ -161,6 +181,7 @@ public class RoomController {
 		model.addAttribute("reviewVo",roomDao.onelist(roomNo));
 		model.addAttribute("hostVo", roomDao.hostInfo(roomNo));
 		model.addAttribute("roomPicDto",roomDao.preview(roomNo));
+		model.addAttribute("reservationDate",reservationDao.getDate(roomNo));
 		return "room/detail";// "/WEB-INF/views/room/detail.jsp";
 	}
 	

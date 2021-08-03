@@ -216,4 +216,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     ]]>
 	</select>
 	
+	<select id="searchCheck" parameterType="SearchVO" resultType="int">
+		select count(*) from reservation where 
+		reservation_room_no = #{roomNo}
+		and 
+		reservation_state = '예약중'
+		and
+		reservation_checkin between #{checkIn} and #{checkOut}
+		and
+		reservation_checkout between #{checkIn} and add_months(TO_DATE(#{checkIn},'YY-MM-DD'),1)
+	</select>
 </mapper> 

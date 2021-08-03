@@ -273,20 +273,6 @@ public class RoomController {
 		model.addAttribute("roomPicNo",roomPicNo);
 		return "room/search-type";
 	}
-	@GetMapping("search-date")
-	public String searchDate(@RequestParam Date start,@RequestParam Date end,Model model) {
-//		int count = roomDao.searchDate(start, end);
-		List<DateVo> roomList = roomDao.searchDate(start, end);
-		
-		ArrayList<Integer> roomPicNo = new ArrayList<>();
-		for(int i =0;i<roomList.size(); i++) {
-			if(roomList.size() == 0) {
-				model.addAttribute("searchDate",roomList);
-				roomPicNo.add(i,roomDao.getRoomPicNo(roomList.get(i).getRoomNo()));
-			}
-		}
-		
-		return "room/search-date";
-	}
+
 		
 }

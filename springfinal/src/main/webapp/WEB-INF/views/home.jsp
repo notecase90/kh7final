@@ -22,11 +22,10 @@
 	<link rel="stylesheet" type="text/css" href="${root}/resources/css/common.css">
 	<link rel="stylesheet" type="text/css" href="${root}/resources/css/menu.css">
 	<link rel="stylesheet" type="text/css" href="${root}/resources/css/layout.css">
-<<<<<<< HEAD
+
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-=======
 	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
->>>>>>> refs/remotes/origin/main
+
 	<style>
 .carousel-control-prev-icon { background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E"); } 
 .carousel-control-next-icon { background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E"); }
@@ -146,17 +145,13 @@
 			
 		
 			<div class="main-img">
-<<<<<<< HEAD
+
 			<form class="form-search text-center" action="${root}/search" method="post">
-				<input type="text" class="form-control" placeholder="검색어 입력" name="keyword">
-				<input type="text" class="check checkIn" name="checkIn"><span class="text-light">부터</span>
-				<input type="text" class="check checkOut" name="checkOut"><span class="text-light">까지</span>
-=======
-			<form class="form-search text-center" action="room/search-date">
-<!-- 				<input type="text" class="form-control" placeholder="검색어 입력"> -->
-				<input type="date" name="start" class="form-control start"><span class="text-light">부터</span>
-				<input type="date" name="end" class="form-control end"><span class="text-light">까지</span>
->>>>>>> refs/remotes/origin/main
+<!-- 				<input type="text" class="form-control" placeholder="검색어 입력" name="keyword"> -->
+				<input type="text" class="form-control start check checkIn" name="checkIn"><span class="text-light">부터</span>
+				<input type="text" class="form-control end check checkOut" name="checkOut"><span class="text-light">까지</span>
+			
+
 				<input type="submit" class="btn btn-primary form-control" value="검색하기">
 			</form>
 			</div>

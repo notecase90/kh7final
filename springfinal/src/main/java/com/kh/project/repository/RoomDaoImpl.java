@@ -19,10 +19,9 @@ import com.kh.project.entity.FacilityDto;
 import com.kh.project.entity.FacilityOptionDto;
 import com.kh.project.entity.FacilityVO;
 import com.kh.project.entity.InFacilityDto;
-import com.kh.project.entity.ReservationDto;
 import com.kh.project.entity.RoomDto;
-import com.kh.project.entity.RoomPriceDto;
 import com.kh.project.entity.RoomPicDto;
+import com.kh.project.entity.RoomPriceDto;
 import com.kh.project.entity.RoomTypeDto;
 import com.kh.project.entity.RoomTypeVO;
 import com.kh.project.vo.AlltypeSearchVo;
@@ -38,7 +37,7 @@ public class RoomDaoImpl implements RoomDao {
 	@Autowired 
 	private SqlSession sqlSession;
 	
-	private final File baseDir = new File("C:/upload/room");
+	private final File baseDir = new File("D:/upload/room");
 	
 	@Override
 	public void insert(RoomDto roomDto) {

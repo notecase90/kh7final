@@ -19,6 +19,7 @@ import com.kh.project.entity.FacilityDto;
 import com.kh.project.entity.FacilityOptionDto;
 import com.kh.project.entity.FacilityVO;
 import com.kh.project.entity.InFacilityDto;
+import com.kh.project.entity.ReservationDto;
 import com.kh.project.entity.RoomDto;
 import com.kh.project.entity.RoomPicDto;
 import com.kh.project.entity.RoomPriceDto;
@@ -201,6 +202,11 @@ public class RoomDaoImpl implements RoomDao {
 	public List<RoomVo> selectRoom(PagingVo vo) {
 		return sqlSession.selectList("room.selectRoom",vo);
 
+	}
+
+	@Override
+	public ReservationDto getReservation(int roomNo) {
+		return sqlSession.selectOne("room.getReservation", roomNo);
 	}
 
 }

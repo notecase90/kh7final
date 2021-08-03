@@ -1,0 +1,543 @@
+/* sec->box->card_box->tilte ,img,contents */
+/* 초기화 */
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+  }
+  
+  
+  #main-page {
+    background: url(img/bg.jpg) no-repeat bottom center ;
+    background-size:cover;
+    height: 75vh;
+  }
+  
+  
+  .main-navi {
+    background-color: white;
+    padding: 0px 80px;
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  
+  
+  .main-navi.logo {
+    height: 80px;
+    display: flex;
+    align-items: center;
+  }
+  
+  
+  .logo a {
+    text-decoration: none;
+    color: #ff385c;
+    font-size: 1.5rem;
+    font-weight: 900;
+    padding-bottom: 10px;
+  }
+  
+  
+  .logo i {
+    font-size: 40px;
+    position: relative;
+    top: 6px;
+  }
+  
+  
+  .main-navi .search .button {
+    width: 300px;
+    height: 48px;
+    border-radius: 30px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 15px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    outline: none;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  
+  
+  
+  .main-navi .search .button .rbutton {
+     background-color: #ff385c;
+     color: white;
+     border-radius: 50%;
+     padding: 5px 7px;
+  }
+  
+  
+  .main-navi .search .button:hover{
+    box-shadow: rgba(0,0,0,0.15) 0px 2px 8px;
+  }
+  
+  
+  .main-navi .search .button .rbutton i{
+    font-size: 10px;
+  }
+  
+  
+  .main-navi .menu {
+     display: flex;
+     justify-content: space-around;
+  }
+  
+  .main-navi .menu .item:nth-child(1) {
+    background-color: white;
+    cursor: pointer;
+    width: 100px;
+    height: 42px;
+    font-size: 14px;
+    font-weight: 600;
+    outline: none;
+    border: 0;
+    border-radius: 21px;
+  }
+  
+  .main-navi .menu .item:nth-child(2){
+    background-color: white;
+    cursor: pointer;
+    width: 50px;
+    height: 40px;
+    font-size: 14px;
+    font-weight: 600;
+    outline: 0;
+    border: 0;
+    border-radius: 15px;
+  }
+  
+  .main-navi .menu .item:nth-child(3){
+    width: 80px;
+    height: 42px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 21px;
+    cursor: pointer;
+    outline: none;
+    font-size: 20px;
+    color: rgb(114, 113, 113);
+  }
+  
+  
+  #main-page .center{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-left: 190px;
+    width: 570px;
+    height: 430px;
+  }
+  
+  #main-page .center div{
+    width: 318px;
+    height: 150px;
+    color: white;
+    font-size: 52px;
+    font-weight: 800;
+  }
+  
+  #main-page .center button{
+  width: 157px;
+  height: 33px;
+  background-color: #ffffff;
+  border-radius:8px;
+  margin-top: 20px;
+  outline: none;
+  border:none ;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 800;
+  font-size: 14px;
+  }
+  
+  .main-navi .menu .item:nth-child(3):hover{
+    box-shadow: rgba(0,0,0,0.15) 0px 2px 8px;
+  }
+  .main-navi .menu .item i {
+    padding: 5px;
+  }
+  
+  .main-navi .menu .item:nth-child(1):hover {
+    background: rgb(247, 247, 247)
+  }
+  
+  .main-navi .menu .item:nth-child(2):hover {
+    background: rgb(247, 247, 247)
+  }
+  #main-page .center button:hover{
+    background-color: #ebe7e7;
+  }
+  
+  
+  /* 찻번째 페이지 */
+  #fist_sec {
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 80px 80px;
+  }
+  .fist_box {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+    width: 1600px;
+    height: 144px;
+  }
+  .card_box {
+    display: grid;
+    grid-template-columns: 0.8fr 3fr;
+    width: 363px;
+    height: 64px;
+  
+  }
+  .card_box .img_box1 {
+    background-image: url(img/img_box1.jpg) ;
+    background-size: 100% 100%;
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+  }
+  
+  .card_box .contens_box .contens_box_title {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    color: rgb(34,34,34);
+    padding-top: 12px;
+  }
+  
+  .card_box .contens_box div{
+    font-size: 16px;
+    color: #222222;
+  }
+  
+  .card_box .img_box2 {
+    background-image: url(img/img_box2.jpg) ;
+    background-size: 100% 100%;
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+  }
+  
+  .card_box .img_box3 {
+    background-image: url(img/img_box3.jpg) ;
+    background-size: 100% 100%;
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+  }
+  
+  .card_box .img_box4 {
+    background-image: url(img/img_box4.jpg) ;
+    background-size: 100% 100%;
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+  }
+  
+  .card_box .img_box5 {
+    background-image: url(img/img_box5.jpg) ;
+    background-size: 100% 100%;
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+  }
+  
+  .card_box .img_box6 {
+    background-image: url(img/img_box6.jpg) ;
+    background-size: 100% 100%;
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+  }
+  
+  .card_box .img_box7 {
+    background-image: url(img/img_box7.jpg) ;
+    background-size: 100% 100%;
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+  }
+  
+  .card_box .img_box8 {
+    background-image: url(img/img_box8.jpg) ;
+    background-size: 100% 100%;
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+  }
+  .card_box:hover{
+    cursor: pointer;
+  }
+  
+  /* 두번째페이지 */
+  
+  #second_sec {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 80px;
+    height: 576px;
+    
+  }
+  
+  .second_card_box {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    padding-top: 15px;
+  }
+  .mini_title {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 36px;
+    /* padding-bottom: 20px; */
+  }
+  
+  .second_card_box .mini_card_box {
+    width: 386px;
+    height: 415px;
+  }
+  
+  #second_sec .mini_card_box img{
+    border-radius: 12px;
+  }
+  
+  #second_sec .second_box .second_card_box:hover{
+    cursor: pointer;
+  }
+  
+  
+  
+  /* 세번째 페이지 */
+  #third_sec {
+    /* display: grid;
+    grid-template-rows:0.8fr 5fr; */
+    display: flex;
+    background-color: rgb(0,0,0);
+    color: white;
+    padding: 80px;
+    height: 740px;
+    justify-content: center;
+  }
+  
+  #third_sec .third_card_box {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+  }
+  
+  #third_sec .third_card_box .third_card {
+    display: grid;
+    grid-template-rows: 5fr 0.8fr;
+    width: 520px;
+    height: 584px;
+  
+  }
+  
+  #third_sec .ps {
+    padding-bottom: 20px;
+  }
+  
+  #third_sec .third_card_box .third_img_box1 {
+    background-image: url(img/third_img_box1.jpg);
+    background-size: 100% 100%;
+    border-radius: 12px;
+  }
+  
+  #third_sec .third_card_box .third_img_box2{
+    background-image: url(img/third_img_box2.jpg);
+    background-size: 100% 100%;
+    border-radius: 12px;
+  }
+  
+  #third_sec .third_card_box .third_img_box3{
+    background-image: url(img/third_img_box3.jpg);
+    background-size: 100% 100%;
+    border-radius: 12px;
+  }
+  #third_sec .third_box {
+    /* display: grid; */
+    /* justify-content: center;
+    align-items: center; */
+    width: 1600px;
+    height: 657px;
+    /* gap: 20px; */
+    
+  }
+  
+  .third_contents {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    height: 44px;
+  }
+  
+  
+  .third_card:hover{
+    cursor: pointer;
+  }
+  
+  
+  /* 네번째 페이지 */
+  .card_title{
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 22px;
+    max-height: 44px;
+    padding-top: 10px;
+  }
+  
+  #fourth_sec {
+    margin: 80px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .fourth_box{
+    display: grid;
+    grid-template-rows: 0.8fr 5fr;
+    gap: 20px;
+    width: 1600px;
+    height: 440px;
+  }
+  .fourth_card_box {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px;
+  }
+  
+  .fourth_card {
+    display: grid;
+    grid-template-rows: 5fr 0.8fr;
+    width: 536px;
+    height: 389px;
+  }
+  
+  .fourth_img_box1 {
+    background-image: url(img/fourth_img_box1.jpg);
+    background-size: 100% 100%;
+    border-radius: 12px;
+    width: 520px;
+    height: 347px;
+  }
+  
+  .fourth_img_box2 {
+    background-image: url(img/fourth_img_box2.jpg);
+    background-size: 100% 100%;
+    border-radius: 12px;
+    width: 520px;
+    height: 347px;
+  }
+  
+  .fourth_img_box3 {
+    background-image: url(img/fourth_img_box3.jpg);
+    background-size: 100% 100%;
+    border-radius: 12px;
+    width: 520px;
+    height: 347px;
+  }
+  
+  .fourth_card:hover {
+    cursor: pointer;
+  }
+  
+  /* 마지막 */
+  footer {
+    background-color:#f7f7f7;
+    border-top: 1px solid #dddddd;
+    padding: 40px;
+  }
+  
+  table {
+    width: 95%;
+    height: 400px;
+    text-align: left;
+    font-size: 14px;
+    color: #484848;
+    line-height: 1.43;
+    margin-left: 90px;
+    border-bottom: 1px solid #dddddd;
+  }
+  
+  table tr td:hover{
+    cursor: pointer;
+    text-decoration: underline;
+    color: #5c5b5b;
+  }
+  
+  .last_footer {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    align-items: center;
+    width: 1635px;
+    height: 69px;
+    margin-left: 90px;
+  
+  }
+  .last_footer div {
+    color: #222222;
+    font-size: 14px;
+  }
+  
+  .last_footer div .here:hover{
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  .icons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .icons div {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .button{
+    background-color: #f7f7f7f7;
+    border: 0;
+    outline: 0;
+    font-size: 14px;
+    text-decoration: underline;
+    color: #222222;
+    font-weight: 600;
+    line-height: 18px
+    
+  }
+  
+  .button:hover{
+    cursor: pointer;
+    color: #3b3b3b;
+  }
+  
+  
+  .icons .items {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .items i {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .items i:hover{
+    cursor: pointer;
+    color: #3b3b3b;
+  }

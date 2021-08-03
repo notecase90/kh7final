@@ -21,6 +21,7 @@ import com.kh.project.entity.RoomTypeVO;
 import com.kh.project.vo.AlltypeSearchVo;
 import com.kh.project.vo.DateVo;
 import com.kh.project.vo.HostVo;
+import com.kh.project.vo.PagingVo;
 import com.kh.project.vo.ReviewVo;
 import com.kh.project.vo.RoomVo;
 
@@ -52,7 +53,7 @@ public interface RoomDao {
 	RoomPriceDto price(int roomOrigin); // 가격 불러오기
 	List<ReviewVo> onelist(int roomNo); // 한숙소에 대한 리뷰목록 불러오기
 	HostVo hostInfo(int roomNo); // 호스트정보 불러오기
-
+	List<RoomVo> selectRoom(PagingVo vo);
 	
 	RoomPicDto addPic(RoomPicDto roomPicDto);//
 	void save(String fileName, MultipartFile file) throws IllegalStateException, IOException;

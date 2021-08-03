@@ -27,6 +27,7 @@ import com.kh.project.entity.RoomTypeVO;
 import com.kh.project.vo.AlltypeSearchVo;
 import com.kh.project.vo.DateVo;
 import com.kh.project.vo.HostVo;
+import com.kh.project.vo.PagingVo;
 import com.kh.project.vo.ReviewVo;
 import com.kh.project.vo.RoomVo;
 
@@ -192,6 +193,11 @@ public class RoomDaoImpl implements RoomDao {
 		map.put("start", start);
 		map.put("end", end);
 		return sqlSession.selectList("room.searchDate",map);
+	}
+
+	@Override
+	public List<RoomVo> selectRoom(PagingVo vo) {
+		return sqlSession.selectList("room.selectRoom",vo);
 	}
 
 }

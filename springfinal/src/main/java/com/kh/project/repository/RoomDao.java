@@ -69,6 +69,6 @@ public interface RoomDao {
 
 	List<RoomVo> searchAdd(String roomAdd);
 	List<AlltypeSearchVo> searchList(String alltypeName);
-	List<DateVo> searchDate(Date start, Date end);
+	
 
 }

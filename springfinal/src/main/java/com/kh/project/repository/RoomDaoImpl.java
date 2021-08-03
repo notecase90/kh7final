@@ -38,7 +38,7 @@ public class RoomDaoImpl implements RoomDao {
 	@Autowired 
 	private SqlSession sqlSession;
 	
-	private final File baseDir = new File("D:/upload/room");
+	private final File baseDir = new File("C:\\upload\\room");
 	
 	@Override
 	public void insert(RoomDto roomDto) {
@@ -187,13 +187,6 @@ public class RoomDaoImpl implements RoomDao {
 	public List<AlltypeSearchVo> searchList(String alltypeName) {
 		return sqlSession.selectList("room.search",alltypeName);
 		
-	}
-	@Override
-	public List<DateVo> searchDate(Date start, Date end) {
-		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("start", start);
-		map.put("end", end);
-		return sqlSession.selectList("room.searchDate",map);
 	}
 
 	@Override

@@ -231,18 +231,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="search" resultType="AlltypeSearchVo" parameterType="String">
 		select * from type_select where alltype_name=#{alltypeName}
 	</select>
-	<select id ="searchDate" resultType="DateVo" parameterType="date">
-	<![CDATA[
-		select * from search_date where reservation_date 
-			BETWEEN #{start} and #{end} 
-			and reservation_state ='예약중'	 
-			and reservation_checkout > #{end}
-	
-	]]>
-	<!-- 	
-		reservation_checkout > #{end} 예약중
-		reservation_checkout < #{end} 대기중
-	-->
 
-	</select>
 </mapper> 

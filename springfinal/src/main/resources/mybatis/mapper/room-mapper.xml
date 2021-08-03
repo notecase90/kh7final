@@ -239,10 +239,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			and reservation_checkout > #{end}
 	
 	]]>
+	</select>
 	<!-- 	
 		reservation_checkout > #{end} 예약중
 		reservation_checkout < #{end} 대기중
 	-->
-
+	<select id="getReservation" parameterType="int" resultType="reservationDto">
+		select reservation_no,reservation_member_no,reservation_room_no ,reservation_date
+		from reservation where reservation_state ='예약중' and reservation_room_no = #{roomNo}
 	</select>
+	
 </mapper> 

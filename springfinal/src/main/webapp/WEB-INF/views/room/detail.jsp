@@ -6,6 +6,7 @@
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 <c:set var="isHost" value="${not empty hostNo}"></c:set>
 <c:set var="isLogin" value="${not empty memberNo}"></c:set>
+
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- icon 사용을 위한 CSS 의존성 등록(font awesome) -->
@@ -34,9 +35,7 @@
                        },
                 success : function(resp){
                     console.log("체크");
-                 
-                    	
-                    
+           
                     if(resp){//값이 있을경우					
                         $(".nowish-btn").show();//꽉찬하트를 보여준다
                         $(".wish-btn").hide();
@@ -122,16 +121,13 @@
 	<div class="title" style="display: flex;align-items: center;">
 		${roomDto.roomName}
 		<div>
-        <c:choose>
-        	<c:when test="${!isLogin}">
+     
 		        <i class="wish-btn  far fa-heart "  data-roomNo="${roomDto.roomNo}"></i>
 		        <!--빈하트 -->
-            </c:when>
-            <c:otherwise>            
+                    
 		        <i class="nowish-btn fas fa-heart"  data-roomNo="${roomDto.roomNo}"></i>
 		        <!-- 꽉찬하트 -->
-        	</c:otherwise>
-        </c:choose>
+       
   </div>
 	</div>
 	<div>최대 인원  ${roomDto.roomCapa}명 · 침실 ${infacilityDto.bedCount}개 · 욕실 ${infacilityDto.bathCount}개 · 발코니 ${infacilityDto.balconyCount}개</div>

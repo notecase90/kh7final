@@ -19,6 +19,7 @@ import com.kh.project.entity.FacilityDto;
 import com.kh.project.entity.FacilityOptionDto;
 import com.kh.project.entity.FacilityVO;
 import com.kh.project.entity.InFacilityDto;
+import com.kh.project.entity.ReservationDto;
 import com.kh.project.entity.RoomDto;
 import com.kh.project.entity.RoomPicDto;
 import com.kh.project.entity.RoomPriceDto;
@@ -38,7 +39,7 @@ public class RoomDaoImpl implements RoomDao {
 	@Autowired 
 	private SqlSession sqlSession;
 	
-	private final File baseDir = new File("D:/upload/room");
+	private final File baseDir = new File("C:\\upload\\room");
 	
 	@Override
 	public void insert(RoomDto roomDto) {
@@ -188,13 +189,6 @@ public class RoomDaoImpl implements RoomDao {
 		return sqlSession.selectList("room.search",alltypeName);
 		
 	}
-	@Override
-	public List<DateVo> searchDate(Date start, Date end) {
-		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("start", start);
-		map.put("end", end);
-		return sqlSession.selectList("room.searchDate",map);
-	}
 
 	@Override
 
@@ -208,6 +202,11 @@ public class RoomDaoImpl implements RoomDao {
 	public List<RoomVo> selectRoom(PagingVo vo) {
 		return sqlSession.selectList("room.selectRoom",vo);
 
+	}
+
+	@Override
+	public ReservationDto getReservation(int roomNo) {
+		return sqlSession.selectOne("room.getReservation", roomNo);
 	}
 
 }

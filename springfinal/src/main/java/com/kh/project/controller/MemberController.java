@@ -220,7 +220,7 @@ public class MemberController {
             private WishDao wishDao;
             @GetMapping("wish-list")
             public String wishList(Model model,HttpSession session) {
-               log.info("나와라");
+ 
                int memberNo =(int)session.getAttribute("memberNo");
                
                model.addAttribute("list",wishDao.mywish(memberNo));

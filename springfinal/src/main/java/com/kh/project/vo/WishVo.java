@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 public class WishVo {
 	private int memberNo;
 	private String roomName;
-	private String roomImg;
+	private String roomPicNo;
 }

@@ -199,6 +199,7 @@ public class RoomController {
 		model.addAttribute("reviewVo",roomDao.onelist(roomNo));
 		model.addAttribute("hostVo", roomDao.hostInfo(roomNo));
 		model.addAttribute("roomPicDto",roomDao.preview(roomNo));
+		model.addAttribute("reservationDto", roomDao.getReservation(roomNo));
 		model.addAttribute("reservationDate",reservationDao.getDate(roomNo));
 		return "room/detail";// "/WEB-INF/views/room/detail.jsp";
 	}
@@ -273,20 +274,6 @@ public class RoomController {
 		model.addAttribute("roomPicNo",roomPicNo);
 		return "room/search-type";
 	}
-	@GetMapping("search-date")
-	public String searchDate(@RequestParam Date start,@RequestParam Date end,Model model) {
-//		int count = roomDao.searchDate(start, end);
-		List<DateVo> roomList = roomDao.searchDate(start, end);
-		
-		ArrayList<Integer> roomPicNo = new ArrayList<>();
-		for(int i =0;i<roomList.size(); i++) {
-			if(roomList.size() == 0) {
-				model.addAttribute("searchDate",roomList);
-				roomPicNo.add(i,roomDao.getRoomPicNo(roomList.get(i).getRoomNo()));
-			}
-		}
-		
-		return "room/search-date";
-	}
+
 		
 }

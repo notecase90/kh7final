@@ -39,7 +39,7 @@ public class RoomDaoImpl implements RoomDao {
 	@Autowired 
 	private SqlSession sqlSession;
 	
-	private final File baseDir = new File("C:\\upload\\room");
+	private final File baseDir = new File("D:\\upload\\room");
 	
 	@Override
 	public void insert(RoomDto roomDto) {

@@ -205,9 +205,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM (
 			SELECT ROWNUM RN, A.* 
 				FROM (
-						SELECT * 
+						SELECT room_no,room_name,room_add,infacility_room_no,bed_count,bath_count,balcony_count,room_origin_no  
 						FROM listDetail where room_insert_complete=1
-						ORDER BY room_no DESC 
+						group by room_no,room_name,room_add,infacility_room_no,bed_count,bath_count,balcony_count,room_origin_no 
 						) A
 				)
 	WHERE RN BETWEEN #{start} AND #{end}
@@ -229,7 +229,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from type_select where instr(room_add,#{roomAdd})>0
 	</select>
 	<select id="search" resultType="AlltypeSearchVo" parameterType="String">
-		select * from type_select where alltype_name=#{alltypeName}
+		select room_no,room_name,room_add,infacility_room_no,bed_count,bath_count,balcony_count,alltype_name
+		from type_select
+		where
+		alltype_name = #{alltypeName}
+		group by room_no,room_name,room_add,infacility_room_no,bed_count,bath_count,balcony_count,alltype_name
 	</select>
 	<select id ="searchDate" resultType="DateVo" parameterType="date">
 	<![CDATA[

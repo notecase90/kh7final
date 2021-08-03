@@ -58,4 +58,6 @@ public class HomeController {
 		session.setAttribute("checkedRoom", roomList);
 		return "redirect:room/searchList";
 	}
+	
+	
 }

@@ -2,6 +2,7 @@ package com.kh.project.repository;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,8 @@ import com.kh.project.entity.RoomPriceDto;
 import com.kh.project.entity.RoomPicDto;
 import com.kh.project.entity.RoomTypeDto;
 import com.kh.project.entity.RoomTypeVO;
+import com.kh.project.vo.AlltypeSearchVo;
+import com.kh.project.vo.DateVo;
 import com.kh.project.vo.HostVo;
 import com.kh.project.vo.ReviewVo;
 import com.kh.project.vo.RoomVo;
@@ -35,7 +38,7 @@ public class RoomDaoImpl implements RoomDao {
 	@Autowired 
 	private SqlSession sqlSession;
 	
-	private final File baseDir = new File("D:/upload/room");
+	private final File baseDir = new File("C:/upload/room");
 	
 	@Override
 	public void insert(RoomDto roomDto) {
@@ -175,6 +178,22 @@ public class RoomDaoImpl implements RoomDao {
 
 	public int count() {
 		return sqlSession.selectOne("room.count");
+	}
+	@Override
+	public List<RoomVo> searchAdd(String roomAdd) {
+		return sqlSession.selectList("room.searchAdd",roomAdd);	
+	}
+	@Override
+	public List<AlltypeSearchVo> searchList(String alltypeName) {
+		return sqlSession.selectList("room.search",alltypeName);
+		
+	}
+	@Override
+	public List<DateVo> searchDate(Date start, Date end) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("start", start);
+		map.put("end", end);
+		return sqlSession.selectList("room.searchDate",map);
 	}
 
 	@Override

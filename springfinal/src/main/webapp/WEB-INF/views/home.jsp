@@ -12,6 +12,7 @@
 <c:set var="isAdmin" value="${not empty adminNo}"></c:set>
 
 <!DOCTYPE html>
+
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -21,7 +22,11 @@
 	<link rel="stylesheet" type="text/css" href="${root}/resources/css/common.css">
 	<link rel="stylesheet" type="text/css" href="${root}/resources/css/menu.css">
 	<link rel="stylesheet" type="text/css" href="${root}/resources/css/layout.css">
+<<<<<<< HEAD
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+=======
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+>>>>>>> refs/remotes/origin/main
 	<style>
 .carousel-control-prev-icon { background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E"); } 
 .carousel-control-next-icon { background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E"); }
@@ -77,11 +82,24 @@
     $(".check.checkOut").datepicker();
     });
     </script>
+
+<script>
+	$(function(){
+		today = new Date();
+		console.log("today.toISOString() >>>" + today.toISOString());
+		today = today.toISOString().slice(0, 10);
+		console.log("today >>>> " + today);
+		var bir = $(".start");		
+		bir.value = today;
+	});
+</script>
+
+
 </head>
 <body>
 	<main>
 		<header>
-			<h4><a href="#" class="text-muted">코로나19 대응 방안에 대한 최신 정보를 확인하세요.</a></h4>
+			<h4><a href="http://ncov.mohw.go.kr/" class="text-muted">코로나19 대응 방안에 대한 최신 정보를 확인하세요.</a></h4>
 			<h4>${gongji.gongjiContent}</h4>
 		</header>
 		<div class="container">
@@ -128,23 +146,30 @@
 			
 		
 			<div class="main-img">
+<<<<<<< HEAD
 			<form class="form-search text-center" action="${root}/search" method="post">
 				<input type="text" class="form-control" placeholder="검색어 입력" name="keyword">
 				<input type="text" class="check checkIn" name="checkIn"><span class="text-light">부터</span>
 				<input type="text" class="check checkOut" name="checkOut"><span class="text-light">까지</span>
+=======
+			<form class="form-search text-center" action="room/search-date">
+<!-- 				<input type="text" class="form-control" placeholder="검색어 입력"> -->
+				<input type="date" name="start" class="form-control start"><span class="text-light">부터</span>
+				<input type="date" name="end" class="form-control end"><span class="text-light">까지</span>
+>>>>>>> refs/remotes/origin/main
 				<input type="submit" class="btn btn-primary form-control" value="검색하기">
 			</form>
 			</div>
 		
 			<div class="go-btn text-center">
-				<h2 class="text-left">바로가기 아이콘</h2>
+				<h2 class="text-left">숙소별 바로가기</h2>
 				<div class="btn text-center">
 				  <div class="btn-group">
-				    <a class="btn" href="#"><i class="fa fa-building fa-3x" aria-hidden="true"></i><span class="fa-2x">아파트</span></a>
-				    <a class="btn" href="#"><i class="fa fa-home fa-3x" aria-hidden="true"></i><span class="fa-2x">빌라</span></a>
-				    <a class="btn" href="#"><i class="fa fa-building fa-3x" aria-hidden="true"></i><span class="fa-2x">한옥</span></a>
-				    <a class="btn" href="#"><i class="fa fa-building fa-3x" aria-hidden="true"></i><span class="fa-2x">OO</span></a>
-				    <a class="btn" href="#"><i class="fa fa-building fa-3x" aria-hidden="true"></i><span class="fa-2x">OO</span></a>
+				    <a class="btn" href="${pageContext.request.contextPath}/room/search-type/아파트"><i class="fa fa-building fa-3x" aria-hidden="true"></i><span class="fa-2x">아파트</span></a>
+				    <a class="btn" href="${pageContext.request.contextPath}/room/search-type/빌라"><i class="fas fa-city fa-3x" aria-hidden="true"></i><span class="fa-2x">빌라</span></a>
+				    <a class="btn" href="${pageContext.request.contextPath}/room/search-type/한옥"><i class="fas fa-landmark fa-3x" aria-hidden="true"></i><span class="fa-2x">한옥</span></a>
+				    <a class="btn" href="${pageContext.request.contextPath}/room/search-type/호텔"><i class="fas fa-hotel fa-3x" aria-hidden="true"></i><span class="fa-2x">호텔</span></a>
+				    <a class="btn" href="${pageContext.request.contextPath}/room/search-type/게스트하우스"><i class="fas fa-home fa-3x" aria-hidden="true"></i><span class="fa-2x">게스트하우스</span></a>
 				    <hr><hr>
 				  </div>
 				</div>
@@ -154,12 +179,12 @@
 				<h2 class="text-left">지역별 바로가기</h2>
 				<div class="btn text-center">
 				  <div class="btn-group">
-				    <a class="btn" href="#"><img src="http://placehold.it/100x100?text=Seoul" class="rounded"></a>
-				    <a class="btn" href="#"><img src="http://placehold.it/100x100?text=Daejeon" class="rounded"></a>
-				    <a class="btn" href="#"><img src="http://placehold.it/100x100?text=Jeju" class="rounded"></a>
-				    <a class="btn" href="#"><img src="http://placehold.it/100x100?text=Incheon" class="rounded"></a>
-				    <a class="btn" href="#"><img src="http://placehold.it/100x100?text=Gwangju" class="rounded"></a>
-				    <a class="btn" href="#"><img src="http://placehold.it/100x100?text=Busan" class="rounded"></a>
+				    <a class="btn" href="${pageContext.request.contextPath}/room/list/서울"><img src="http://placehold.it/100x100?text=서울" class="rounded"></a>
+				    <a class="btn" href="${pageContext.request.contextPath}/room/list/대전"><img src="http://placehold.it/100x100?text=Daejeon" class="rounded"></a>
+				    <a class="btn" href="${pageContext.request.contextPath}/room/list/제주"><img src="http://placehold.it/100x100?text=Jeju" class="rounded"></a>
+				    <a class="btn" href="${pageContext.request.contextPath}/room/list/인천"><img src="http://placehold.it/100x100?text=Incheon" class="rounded"></a>
+				    <a class="btn" href="${pageContext.request.contextPath}/room/list/광주"><img src="http://placehold.it/100x100?text=Gwangju" class="rounded"></a>
+				    <a class="btn" href="${pageContext.request.contextPath}/room/list/부산"><img src="http://placehold.it/100x100?text=Busan" class="rounded"></a>
 				    <hr><hr>
 				  </div>
 				</div>

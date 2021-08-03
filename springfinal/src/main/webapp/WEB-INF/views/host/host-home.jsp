@@ -24,7 +24,7 @@
 		<br><br><br><br>
 			<h1> 호스트 홈</h1>
 			<p> 원하시는 메뉴를 선택하세요</p>
-		
+		<a href="${root}" class="">메인으로</a>
 		<br><br><br><br><br><br><br><br>
 		<div class='btn-container'>
 			  <button class='btn btn--shockwave is-active' >

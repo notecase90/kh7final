@@ -1,6 +1,5 @@
 package com.kh.project.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -14,14 +13,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.project.repository.AdminDao;
+import com.kh.project.repository.AllTypeDao;
 import com.kh.project.repository.RoomDao;
 import com.kh.project.vo.RoomVo;
 import com.kh.project.vo.SearchVO;
+
 
 @Controller
 public class HomeController {
 	@Autowired
 	private AdminDao adminDao;
+	@Autowired
+	private AllTypeDao allTypeDao;
 	@GetMapping("/")
 	public String gongji(Model model) {
 		if(adminDao.list().size()!=0) {
@@ -34,6 +37,7 @@ public class HomeController {
 		//return "/WEB-INF/views/index.jsp"; 
 		return "/template/header"; //주소
 	}
+	
 
 	@Autowired
 	private RoomDao roomDao;

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.project.entity.AllTypeDto;
 import com.kh.project.entity.FacilityOptionDto;
+import com.kh.project.vo.AlltypeSearchVo;
 
 @Repository
 public class AllTypeDaoImpl implements AllTypeDao{
@@ -34,5 +35,6 @@ public class AllTypeDaoImpl implements AllTypeDao{
 	public List<FacilityOptionDto> listOption() {
 		return sqlSession.selectList("facilityOption.list");
 	}
+	
 	
 }

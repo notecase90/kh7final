@@ -1,5 +1,6 @@
 package com.kh.project.controller;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,8 @@ import com.kh.project.entity.RoomTypeDto;
 import com.kh.project.repository.HostDao;
 import com.kh.project.repository.ReservationDao;
 import com.kh.project.repository.RoomDao;
+import com.kh.project.vo.AlltypeSearchVo;
+import com.kh.project.vo.DateVo;
 import com.kh.project.vo.RoomVo;
 
 @Controller
@@ -227,4 +230,48 @@ public class RoomController {
 		return "redirect:/reservation/reservation?reservationNo="+reservationDto.getReservationNo();
 	}
 	
+	//지역별 목록
+	@GetMapping("/list/{roomAdd}")
+	public String search(@PathVariable String roomAdd,Model model) {
+		
+		List<RoomVo> roomList = roomDao.searchAdd(roomAdd);		
+		
+		ArrayList<Integer> roomPicNo = new ArrayList<>();
+		for(int i=0;i<roomList.size();i++) {
+			roomPicNo.add(i,roomDao.getRoomPicNo(roomList.get(i).getRoomNo()));
+		}
+		model.addAttribute("list", roomList);
+		model.addAttribute("roomPicNo",roomPicNo);
+		return "room/roomList2";
+	}
+	//숙소별 목록
+	@GetMapping("/search-type/{alltypeName}")
+	public String searchType(@PathVariable String alltypeName,Model model) {
+				
+		List<AlltypeSearchVo> roomList = roomDao.searchList(alltypeName);		
+		
+		ArrayList<Integer> roomPicNo = new ArrayList<>();
+		for(int i=0;i<roomList.size();i++) {
+			roomPicNo.add(i,roomDao.getRoomPicNo(roomList.get(i).getRoomNo()));
+		}
+		model.addAttribute("search", roomList);
+		model.addAttribute("roomPicNo",roomPicNo);
+		return "room/search-type";
+	}
+	@GetMapping("search-date")
+	public String searchDate(@RequestParam Date start,@RequestParam Date end,Model model) {
+//		int count = roomDao.searchDate(start, end);
+		List<DateVo> roomList = roomDao.searchDate(start, end);
+		
+		ArrayList<Integer> roomPicNo = new ArrayList<>();
+		for(int i =0;i<roomList.size(); i++) {
+			if(roomList.size() == 0) {
+				model.addAttribute("searchDate",roomList);
+				roomPicNo.add(i,roomDao.getRoomPicNo(roomList.get(i).getRoomNo()));
+			}
+		}
+		
+		return "room/search-date";
+	}
+		
 }

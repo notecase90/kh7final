@@ -47,7 +47,7 @@
 <body>
 	<main>
 		<header>
-			<h4><a href="http://ncov.mohw.go.kr/bdBoardList_Real.do?brdId=1&brdGubun=11&ncvContSeq=&contSeq=&board_id=&gubun=" class="text-muted">코로나19 대응 방안에 대한 최신 정보를 확인하세요.</a></h4>
+			<h4><a href="http://ncov.mohw.go.kr/" class="text-muted">코로나19 대응 방안에 대한 최신 정보를 확인하세요.</a></h4>
 			<h4>${gongji.gongjiContent}</h4>
 		</header>
 		<div class="container">

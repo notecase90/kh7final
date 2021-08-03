@@ -32,6 +32,7 @@
   #page-content-wrapper {
     width: 100%;
     padding: 20px;
+    margin:0 auto;
   }
   /* 사이드바 스타일 */
   
@@ -62,6 +63,12 @@
     font-size: 1.3em;
     line-height: 3em;
   }
+  .display{  	
+    text-align: center;
+  }
+  .text{
+  	text-align:center;
+  }
 
 </style>
 </head>
@@ -86,7 +93,9 @@
   <!-- 본문 -->
   <div id="page-content-wrapper">
     <div class="container-fluid">
+    <div class="text">
       <h1>공지 사항</h1>
+     </div>
       <div class="container">
 	
   <table class="table">
@@ -112,20 +121,20 @@
     </tbody>
     
   </table>
-
-</div>
 	
+</div>
+	<div class="display">
 	<form action="gongji" method="post">
 		<input type="text" name="gongjiContent">
 		<input type="hidden" name="${gongjiDto.adminNo}">
 		<input type="submit" value="등록">
 	</form>
-	
+	</div>
     </div>
   </div>
-  
+ 	 
 </div>
- 
+ 		
 	
               
 

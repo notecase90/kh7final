@@ -49,6 +49,7 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="${root}/resources/js/location.js"></script>
     
     <script>
     $(function(){
@@ -93,7 +94,64 @@
 	});
 </script>
 
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1038b1ced14e22e17b2cd601ec877523&libraries=services"></script>
 
+<script>
+$(function(){
+var geocoder = new kakao.maps.services.Geocoder();
+geocoder.addressSearch('강원도', function(result, status) {
+  
+     if (status === kakao.maps.services.Status.OK) {
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+        console.log(result[0].x);
+        console.log(result[0].y);
+        
+        var key = "B4XmQQunYeblIH0aCEJgMU3xVZBMSMmfGNEyrgw3yW36SPd7mOmsU1W2IEmYwjaHiazJwtEfsdQgad0XKLMrkA==";
+        
+        $(function(){
+	        $.ajax({
+				url : "http://api.visitkorea.or.kr/openapi/service/rest/KorService/locationBasedList",
+				data:{
+					ServiceKey : key,
+					numOfRows : 3,
+					pageNo : 1,
+					MobileOS : "ETC",
+					MobileApp : "AppTest",
+					arrange : "A",
+					contentTypeId : 15,
+					mapX : result[0].x,
+					mapY : result[0].y,
+					radius : 2000,
+					listYN : "Y"	
+				},
+				type:"get",
+				dataType:"xml",
+				success:function(resp){
+					var xmlData = $(resp).find("item");
+					
+					var listLength = xmlData.length;
+					if(listLength) {
+						var contentStr = "";
+						var contentImgUrl = "";
+						$(xmlData).each(function(index,data){		
+							contentStr = "<img class='img-responsive img-rounded' src='"+$(this).find("firstimage").text()+"' style='width:300px;height:300px;'><br><br>"+"<h3>"+$(this).find("title").text()+"</h3>"+"<span class='text'>"+$(this).find("addr1").text()+"</span><br><br>";
+// 							$("#carousel"+[index]).remove();
+							$("#carousel"+[index]).append(contentStr);
+							console.log([index]+2);
+							
+						});
+						
+					}
+				}
+			});	
+        })
+        
+        
+        
+     }
+});
+});
+</script>
 </head>
 <body>
 	<main>
@@ -158,7 +216,7 @@
 			</div>
 		
 			<div class="go-btn text-center">
-				<h2 class="text-left">숙소별 바로가기</h2>
+<!-- 				<h2 class="text-left">숙소별 바로가기</h2> --><br><br>
 				<div class="btn text-center">
 				  <div class="btn-group">
 				    <a class="btn" href="${pageContext.request.contextPath}/room/search-type/아파트"><i class="fa fa-building fa-3x" aria-hidden="true"></i><span class="fa-2x">아파트</span></a>
@@ -172,7 +230,7 @@
 			</div>
 			
 			<div class="location-btn text-center">
-				<h2 class="text-left">지역별 바로가기</h2>
+<!-- 				<h2 class="text-left">지역별 바로가기</h2> --><br><br>
 				<div class="btn text-center">
 				  <div class="btn-group">
 				    <a class="btn" href="${pageContext.request.contextPath}/room/list/서울"><img src="http://placehold.it/100x100?text=서울" class="rounded"></a>
@@ -187,36 +245,44 @@
 			
 			</div>
 			
-			<div class="location-event">
-				<h3 class="text-center">지역별 추천 관광지</h3>
-				<div id="location-event" class="carousel slide" data-ride="carousel">
+		<div class="location-event">
+			<br><br>
+			<h3 class="text-center">지역별 추천 관광지</h3>
+			<br>
+			<div id="location-event1" class="carousel slide" data-ride="carousel">
 			  <div class="carousel-inner">
-			    <div class="carousel-item active text-center">
-			     <img src="${root}/resources/img/5.jpg" style="width:300px;height:300px;">
-			     <span>안녕하세요</span>
-			     <span>내용입니다.</span>
+			    <div class="carousel-item active text-center" id="carousel0">
 			    </div>
-			    <div class="carousel-item text-center">
-			     <img src="${root}/resources/img/6.jpg" style="width:300px;height:300px;">
-			     <span>안녕하세요</span>
-			     <span>내용입니다.</span>
+			    <div class="carousel-item text-center" id="carousel1">
 			    </div>
-			    <div class="carousel-item text-center">
-			      <img src="${root}/resources/img/4.jpg" style="width:300px;height:300px;">
-			     <span>안녕하세요</span>
-			     <span>내용입니다.</span>
+			    <div class="carousel-item text-center" id="carousel2">
 			    </div>
+			    <div class="carousel-item text-center" id="carousel01">
+			    </div>
+			    <div class="carousel-item text-center" id="carousel11">
+			    </div>
+			    <div class="carousel-item text-center" id="carousel21">
+			    </div>
+			    <div class="carousel-item text-center" id="carousel02">
+			    </div>
+			    <div class="carousel-item text-center" id="carousel12">
+			    </div>
+			    <div class="carousel-item text-center" id="carousel22">
+			    </div>
+			    
 			  </div>
-			  <a class="carousel-control-prev" href="#location-event" role="button" data-slide="prev">
+			  <a class="carousel-control-prev" href="#location-event1" role="button" data-slide="prev">
 			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 			    <span class="sr-only">Previous</span>
 			  </a>
-			  <a class="carousel-control-next" href="#location-event" role="button" data-slide="next">
+			  <a class="carousel-control-next" href="#location-event1" role="button" data-slide="next">
 			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
 			    <span class="sr-only">Next</span>
 			  </a>
-			</div>
-			</div>
+			</div>					
+		</div>
+			
+			
 		
 		<div class="review text-center clearfix">
 			<h3>여행 후기</h3>

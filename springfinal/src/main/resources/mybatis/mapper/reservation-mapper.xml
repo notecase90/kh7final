@@ -52,7 +52,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<select id="reservationDate" parameterType="int" resultType="ReservationDto">
-		select reservation_checkin,reservation_checkout 
+		select 
+		TO_CHAR(reservation_checkin,'YYYY.fmMM.dd'),
+		TO_CHAR(reservation_checkout,'YYYY.fmMM.dd')  
 		from 
 		reservation 
 		where reservation_state = '예약중' 

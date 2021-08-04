@@ -199,7 +199,7 @@ public class RoomController {
 		model.addAttribute("reviewVo",roomDao.onelist(roomNo));
 		model.addAttribute("hostVo", roomDao.hostInfo(roomNo));
 		model.addAttribute("roomPicDto",roomDao.preview(roomNo));
-		model.addAttribute("reservationDto", roomDao.getReservation(roomNo));
+//		model.addAttribute("reservationDto", roomDao.getReservation(roomNo));
 		model.addAttribute("reservationDate",reservationDao.getDate(roomNo));
 		return "room/detail";// "/WEB-INF/views/room/detail.jsp";
 	}

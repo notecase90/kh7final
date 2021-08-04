@@ -172,8 +172,8 @@
 				</div>	
 			</div>
 			<div style="margin-top: 20px; margin-bottom: 20px;width: 97%">
-				<div style="border-bottom-width: 1px; border-bottom-color: rgb(235,235,235); border-bottom-style: solid;">	
-				</div>
+			<div style="border-bottom-width: 1px; border-bottom-color: rgb(235,235,235); border-bottom-style: solid;">	
+			</div>
 			</div>
 		</c:forEach>
 		
